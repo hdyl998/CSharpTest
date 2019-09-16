@@ -1,0 +1,9 @@
+D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\bin\Debug\WXRobot.exe
+D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\bin\Debug\WXRobot.pdb
+D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.Form1.resources
+D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.Properties.Resources.resources
+D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.SettingForm.resources
+D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.csproj.GenerateResource.Cache
+D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.exe
+D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.pdb
+D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.csprojResolveAssemblyReference.cache
