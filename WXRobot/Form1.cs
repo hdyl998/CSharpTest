@@ -47,6 +47,8 @@ namespace WXRobot
         {
 
 
+            if (bitmaps == null)
+                return;
 
 
             DateTime dateTime = DateTime.Now;
@@ -99,8 +101,7 @@ namespace WXRobot
 
             this.ClientSize = new Size(WIDTH * DATA_LEN + PADDING*2, HEIGHT+ PADDING*2);
 
-            Rectangle rec = Screen.GetWorkingArea(this);
-            this.Location = new Point(rec.Width - this.Width - 5, 5);
+
 
             const int LINE_INDEX = 11;
             //const int SPACE_INDEX = 10;
@@ -127,13 +128,42 @@ namespace WXRobot
             {
                 IniUtil.setValue(Constants.START_UP, 1);
                 Utils.enableStartUp(true);
+                defaultLocation();
             }
+            else
+            {
+                string startLocation=IniUtil.getValue(Constants.START_LOCATION,null);
+                if (startLocation == null||startLocation.Length==0)
+                {
+                    defaultLocation();
+                }
+                else {
+                    string[] arr = startLocation.Split(',');
+                    this.Location = new Point(NumberUtil.convertToInt(arr[0]), NumberUtil.convertToInt(arr[1]));
+                }
+            }
+
+            isStarted = true;
         }
+
+        bool isStarted = false;
+
+        private void defaultLocation() {
+            Rectangle rec = Screen.GetWorkingArea(this);
+            this.Location = new Point(rec.Width - this.Width - 5, 5);
+        }
+
 
         private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SettingForm setting = new SettingForm();
             setting.Show();
+        }
+        private void Form1_LocationChanged(object sender, EventArgs e)
+        {
+            if (isStarted) {
+                IniUtil.setValue(Constants.START_LOCATION, Location.X + "," + Location.Y);
+            }
         }
     }
 }

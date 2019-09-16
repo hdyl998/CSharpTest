@@ -16,5 +16,7 @@ namespace WXRobot
         public const string INI_SECTION = "DEFAULT";
         public const string START_UP = "START_UP";
 
+
+        public const string START_LOCATION = "START_LOCATION";
     }
 }
