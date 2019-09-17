@@ -12,6 +12,8 @@ namespace WXRobot
 {
     public partial class SettingForm : Form
     {
+
+        bool isEnable = IniUtil.getValueAsBool(Constants.REMIND_ENABLE, true);
         public SettingForm()
         {
             InitializeComponent();
@@ -46,28 +48,54 @@ namespace WXRobot
 
         //string[] titles = { "提醒内容", "时间", "提醒方式" };
         private void bindListData(){
-
-
-
-            int index = 0;
-     
+            updateListItemEnable();
+            listView1.Items.Clear();
             foreach (RemindItem item in RemindManager.getInstance().getList())
             {
 
                 ListViewItem list = new ListViewItem();
                 list.Text = item.content;
                 list.SubItems.Add(item.getShowTime());
-                list.SubItems.Add(item.remindType + "");
+                list.SubItems.Add(item.getRemindTypeString());
+                list.SubItems.Add(item.getEnableString());
                 listView1.Items.Add(list);
             }
-            index++;
             //list.EnsureVisible();
+        }
+
+        private void updateListItemEnable() {
+            foreach (RemindItem item in RemindManager.getInstance().getList())
+            {
+                item.isEnable = isEnable;
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            RemindNewForm dlg = new RemindNewForm();
+            dlg.ShowDialog();
+
+        }
 
 
 
+        private void btnAllEnable_Click(object sender, EventArgs e)
+        {
 
+            isEnable = !isEnable;
+            IniUtil.setValue(Constants.REMIND_ENABLE, isEnable);
 
+            bindListData();
+        }
 
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            var items=listView1.SelectedItems;
+
+            if (items.Count == 1) {
+
+                LogUtil.showMessageBox("find");
+            }
         }
     }
 }

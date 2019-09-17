@@ -82,6 +82,12 @@
     <Compile Include="RemindForm.Designer.cs">
       <DependentUpon>RemindForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RemindNewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RemindNewForm.Designer.cs">
+      <DependentUpon>RemindNewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SettingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     </Compile>
     <EmbeddedResource Include="RemindForm.resx">
       <DependentUpon>RemindForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RemindNewForm.resx">
+      <DependentUpon>RemindNewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
