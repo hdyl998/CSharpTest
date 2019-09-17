@@ -22,6 +22,11 @@ namespace WXRobot
             iniFiles.setValue(key, value);
         }
 
+        public static void setValue(string key, bool value)
+        {
+            iniFiles.setValue(key, value?1:0);
+        }
+
 
         public static string getValue(string key) {
            return iniFiles.getValue(key);
@@ -43,6 +48,16 @@ namespace WXRobot
             return iniFiles.getValueAsInt(key);
         }
 
+
+        public static bool getValueAsBool(string key, bool defalutValue)
+        {
+            return iniFiles.getValueAsInt(key, defalutValue?1:0)==1;
+        }
+
+        public static bool getValueAsBool(string key)
+        {
+            return iniFiles.getValueAsInt(key)==1;
+        }
 
 
         public static bool isExistINIFile() {

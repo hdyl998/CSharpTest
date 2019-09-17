@@ -25,7 +25,7 @@ namespace WXRobot
         private void button1_Click(object sender, EventArgs e)
         {
 
-            IniUtil.setValue(Constants.START_UP,checkBox1.Checked?1:0);
+            IniUtil.setValue(Constants.START_UP,checkBox1.Checked);
             string str=Utils.enableStartUp(checkBox1.Checked);
             if (str == null)
             {
@@ -39,6 +39,35 @@ namespace WXRobot
         private void SettingForm_Load(object sender, EventArgs e)
         {
             checkBox1.Checked = Utils.isStartUp();
+
+            bindListData();
+
+        }
+
+        //string[] titles = { "提醒内容", "时间", "提醒方式" };
+        private void bindListData(){
+
+
+
+            int index = 0;
+     
+            foreach (RemindItem item in RemindManager.getInstance().getList())
+            {
+
+                ListViewItem list = new ListViewItem();
+                list.Text = item.content;
+                list.SubItems.Add(item.getShowTime());
+                list.SubItems.Add(item.remindType + "");
+                listView1.Items.Add(list);
+            }
+            index++;
+            //list.EnsureVisible();
+
+
+
+
+
+
         }
     }
 }

@@ -7,3 +7,4 @@ D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.csproj.
 D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.exe
 D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.pdb
 D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.csprojResolveAssemblyReference.cache
+D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.RemindForm.resources

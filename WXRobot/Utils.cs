@@ -86,5 +86,12 @@ namespace WXRobot
             }
      
         }
+
+        public static bool isTextEmpty(string text) {
+            if (text == null || text.Length == 0) {
+                return true;
+            }
+            return false;
+        }
     }
 }

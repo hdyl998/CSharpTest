@@ -96,16 +96,16 @@ namespace WXRobot
             };
 
 
-            graphicsControl=this.CreateGraphics();
-       
+            graphicsControl = this.CreateGraphics();
 
-            this.ClientSize = new Size(WIDTH * DATA_LEN + PADDING*2, HEIGHT+ PADDING*2);
+
+            this.ClientSize = new Size(WIDTH * DATA_LEN + PADDING * 2, HEIGHT + PADDING * 2);
 
 
 
             const int LINE_INDEX = 11;
             //const int SPACE_INDEX = 10;
-            map[5]= map[2] = LINE_INDEX;
+            map[5] = map[2] = LINE_INDEX;
             //map[8] = SPACE_INDEX;
 
             bufferimage = new Bitmap(this.Width, this.Height);
@@ -113,16 +113,12 @@ namespace WXRobot
             g.Clear(this.BackColor);
             g.SmoothingMode = SmoothingMode.HighQuality; //高质量
             g.PixelOffsetMode = PixelOffsetMode.HighQuality; //高像素偏移质量
-
             timer1_Tick(null, null);
-
-
             defaultConfig();
-       
-
         }
 
-        private void defaultConfig() {
+        private void defaultConfig()
+        {
             //默认设置
             if (!IniUtil.isExistINIFile())
             {
@@ -132,14 +128,23 @@ namespace WXRobot
             }
             else
             {
-                string startLocation=IniUtil.getValue(Constants.START_LOCATION,null);
-                if (startLocation == null||startLocation.Length==0)
+                string startLocation = IniUtil.getValue(Constants.START_LOCATION, null);
+                if (Utils.isTextEmpty(startLocation))
                 {
                     defaultLocation();
                 }
-                else {
-                    string[] arr = startLocation.Split(',');
-                    this.Location = new Point(NumberUtil.convertToInt(arr[0]), NumberUtil.convertToInt(arr[1]));
+                else
+                {
+                    try
+                    {
+                        string[] arr = startLocation.Split(',');
+                        this.Location = new Point(NumberUtil.convertToInt(arr[0]), NumberUtil.convertToInt(arr[1]));
+
+                    }
+                    catch (Exception)
+                    {
+                        defaultLocation();
+                    }
                 }
             }
 
@@ -154,7 +159,7 @@ namespace WXRobot
         }
 
 
-        private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SettingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SettingForm setting = new SettingForm();
             setting.Show();
@@ -164,6 +169,11 @@ namespace WXRobot
             if (isStarted) {
                 IniUtil.setValue(Constants.START_LOCATION, Location.X + "," + Location.Y);
             }
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
