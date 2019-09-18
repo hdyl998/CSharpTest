@@ -72,7 +72,18 @@ namespace WXRobot
                 g.DrawImage(bitmaps[mapIndex], x, y, WIDTH, HEIGHT);
             }
             this.Invalidate();
+
+            if (dateTime.Second == 0 && !isZero) {
+                isZero = true;
+                RemindManager.getInstance().handleTime(dateTime);
+            }
+            else {
+                isZero = false;
+            }
         }
+
+        bool isZero = false;
+
 
         private void Form1_Load(object sender, EventArgs e)
         {

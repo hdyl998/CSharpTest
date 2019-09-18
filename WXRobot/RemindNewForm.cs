@@ -11,6 +11,14 @@ namespace WXRobot
 {
     public partial class RemindNewForm : Form
     {
+
+        public RemindItem remindItem {
+            get;set;
+        }
+
+        
+
+
         public RemindNewForm()
         {
             InitializeComponent();
@@ -23,7 +31,15 @@ namespace WXRobot
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
 
+        private void RemindNewForm_Load(object sender, EventArgs e)
+        {
+            if (remindItem != null) {
+                textBox1.Text = remindItem.content;
+
+            }
         }
     }
 }

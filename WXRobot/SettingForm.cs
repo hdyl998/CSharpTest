@@ -22,20 +22,21 @@ namespace WXRobot
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
+  
+            string str = Utils.enableStartUp(checkBox1.Checked);
+            if (str == null)
+            {
+                IniUtil.setValue(Constants.START_UP, checkBox1.Checked);
+            }
+            else
+            {
+                MessageBox.Show(str);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
 
-            IniUtil.setValue(Constants.START_UP,checkBox1.Checked);
-            string str=Utils.enableStartUp(checkBox1.Checked);
-            if (str == null)
-            {
-                LogUtil.showMessageBox("设置成功");
-            }
-            else {
-                MessageBox.Show(str);
-            }
         }
 
         private void SettingForm_Load(object sender, EventArgs e)
@@ -90,12 +91,35 @@ namespace WXRobot
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            var items=listView1.SelectedItems;
+            var indexs = listView1.SelectedIndices;
 
-            if (items.Count == 1) {
-
-                LogUtil.showMessageBox("find");
+            if (indexs.Count == 1) {
+                int index =indexs[0];
+                var var=RemindManager.getInstance().getList()[index];
+                RemindNewForm dlg = new RemindNewForm();
+                dlg.remindItem = var;
+                dlg.ShowDialog();
             }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            var indexs = listView1.SelectedIndices;
+            if (indexs.Count == 1) {
+                if (MessageBox.Show("确认删除？", "确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    RemindManager.getInstance().getList().RemoveAt(indexs[0]);
+                    bindListData();
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("确认清空？", "确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) {
+                RemindManager.getInstance().getList().Clear();
+                bindListData();
+            } 
         }
     }
 }
