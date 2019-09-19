@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -93,5 +94,32 @@ namespace WXRobot
             }
             return false;
         }
+
+        public static void runExe(params string[]listExePath) { 
+            foreach(string str in listExePath){
+                Process pr = new Process();//声明一个进程类对象
+                pr.StartInfo.FileName = str;
+                pr.Start();
+            }
+        }
+
+        public static void runCmd(params string []cmds) {
+            var startInfo = new System.Diagnostics.ProcessStartInfo("cmd.exe");
+            startInfo.UseShellExecute = false;
+            startInfo.RedirectStandardInput = true;
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = true;
+            startInfo.CreateNoWindow = true;
+            var myProcess = new System.Diagnostics.Process();
+            myProcess.StartInfo = startInfo;
+            myProcess.Start();
+
+            foreach (string cmd in cmds) {
+                myProcess.StandardInput.WriteLine(cmd);
+            }
+
+      
+        }
+
     }
 }
