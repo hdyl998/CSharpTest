@@ -11,6 +11,10 @@ namespace WXRobot
 
         public static void print(object obj) {
             if (Constants.isDebug) {
+                if (obj == null||"".Equals(obj)) {
+                    obj = "空对象";
+                }
+
                 System.Diagnostics.Debug.WriteLine(obj.ToString());
             }
         }

@@ -20,6 +20,10 @@ namespace WXRobot
         public const string START_LOCATION = "START_LOCATION";
 
 
-        public const string REMIND_ENABLE = "REMIND_ENABLE";
+
+
+        public const string REMIND_DATA = "REMIND_DATA";
+
+        public const string STARTUP_DATA = "STARTUP_DATA";
     }
 }

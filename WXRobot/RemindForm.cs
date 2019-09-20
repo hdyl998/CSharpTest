@@ -27,6 +27,18 @@ namespace WXRobot
 
         private void RemindForm_Load(object sender, EventArgs e)
         {
+            Bitmap[] bitmaps = { global::WXRobot.Properties.Resources.bg1
+                ,global::WXRobot.Properties.Resources.bg2
+                      ,global::WXRobot.Properties.Resources.bg3
+                            ,global::WXRobot.Properties.Resources.bg4
+                                  ,global::WXRobot.Properties.Resources.bg5
+            };
+
+            int index=new Random().Next(bitmaps.Length);
+
+            this.BackgroundImage = bitmaps[index]; 
+
+
             if (items.Count == 1)
             {
                 label1.Text = items[0].content;

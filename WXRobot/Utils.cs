@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -117,9 +118,16 @@ namespace WXRobot
             foreach (string cmd in cmds) {
                 myProcess.StandardInput.WriteLine(cmd);
             }
-
-      
         }
 
+
+        public static string toJSONString(object obj) {
+            return JsonConvert.SerializeObject(obj);
+        }
+
+
+        public static T parseObject<T>(string value) {
+           return JsonConvert.DeserializeObject<T>(value);
+        }
     }
 }

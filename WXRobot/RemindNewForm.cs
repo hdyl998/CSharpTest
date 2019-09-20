@@ -33,9 +33,26 @@ namespace WXRobot
         {
             this.Close();
         }
+        List<int> listSelType = new List<int>();
+
 
         private void RemindNewForm_Load(object sender, EventArgs e)
         {
+
+
+            listSelType.Add(RemindType.DAY);
+            listSelType.Add(RemindType.WEEK);
+            listSelType.Add(RemindType.MONTH);
+            listSelType.Add(RemindType.YEAR);
+            listSelType.Add(RemindType.HOUR);
+            listSelType.Add(RemindType.ONCE);
+
+
+            foreach (int type in listSelType) {
+                comboBox1.Items.Add(RemindType.remindType2String(type));
+            }
+            comboBox1.SelectedIndex = 0;
+
             if (remindItem != null) {
                 textBox1.Text = remindItem.content;
 

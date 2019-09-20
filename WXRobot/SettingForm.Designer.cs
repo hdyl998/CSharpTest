@@ -33,6 +33,17 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageA = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnShutdownRightNow = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnShutdownCancel = new System.Windows.Forms.Button();
+            this.cbShutdownMinute = new System.Windows.Forms.ComboBox();
+            this.cbShutdownHour = new System.Windows.Forms.ComboBox();
+            this.btnShutdownStart = new System.Windows.Forms.Button();
+            this.btnPaint = new System.Windows.Forms.Button();
+            this.btnNotepad = new System.Windows.Forms.Button();
+            this.btnCalc = new System.Windows.Forms.Button();
             this.tabPageB = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.btnEnable = new System.Windows.Forms.Button();
@@ -45,21 +56,16 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPageC = new System.Windows.Forms.TabPage();
-            this.btnCalc = new System.Windows.Forms.Button();
-            this.btnNotepad = new System.Windows.Forms.Button();
-            this.btnPaint = new System.Windows.Forms.Button();
-            this.btnShutdownStart = new System.Windows.Forms.Button();
-            this.cbShutdownHour = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnShutdownCancel = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbShutdownMinute = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnShutdownRightNow = new System.Windows.Forms.Button();
+            this.btnKJTest = new System.Windows.Forms.Button();
+            this.btnKJRemove = new System.Windows.Forms.Button();
+            this.btnKJAdd = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.btnRMTest = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageA.SuspendLayout();
-            this.tabPageB.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPageB.SuspendLayout();
+            this.tabPageC.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -108,8 +114,141 @@
             this.tabPageA.Text = "基本功能";
             this.tabPageA.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnShutdownRightNow);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.btnShutdownCancel);
+            this.groupBox1.Controls.Add(this.cbShutdownMinute);
+            this.groupBox1.Controls.Add(this.cbShutdownHour);
+            this.groupBox1.Controls.Add(this.btnShutdownStart);
+            this.groupBox1.Location = new System.Drawing.Point(19, 196);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(194, 114);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "关机";
+            // 
+            // btnShutdownRightNow
+            // 
+            this.btnShutdownRightNow.Location = new System.Drawing.Point(108, 82);
+            this.btnShutdownRightNow.Name = "btnShutdownRightNow";
+            this.btnShutdownRightNow.Size = new System.Drawing.Size(80, 23);
+            this.btnShutdownRightNow.TabIndex = 6;
+            this.btnShutdownRightNow.Text = "立即关机";
+            this.btnShutdownRightNow.UseVisualStyleBackColor = true;
+            this.btnShutdownRightNow.Click += new System.EventHandler(this.btnShutdownRightNow_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(64, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(22, 15);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "分";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(64, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "小时";
+            // 
+            // btnShutdownCancel
+            // 
+            this.btnShutdownCancel.Location = new System.Drawing.Point(108, 53);
+            this.btnShutdownCancel.Name = "btnShutdownCancel";
+            this.btnShutdownCancel.Size = new System.Drawing.Size(80, 23);
+            this.btnShutdownCancel.TabIndex = 6;
+            this.btnShutdownCancel.Text = "取消任务";
+            this.btnShutdownCancel.UseVisualStyleBackColor = true;
+            this.btnShutdownCancel.Click += new System.EventHandler(this.btnShutdownCancel_Click);
+            // 
+            // cbShutdownMinute
+            // 
+            this.cbShutdownMinute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbShutdownMinute.FormattingEnabled = true;
+            this.cbShutdownMinute.Items.AddRange(new object[] {
+            "0",
+            "5",
+            "10",
+            "20",
+            "30",
+            "40",
+            "50"});
+            this.cbShutdownMinute.Location = new System.Drawing.Point(9, 82);
+            this.cbShutdownMinute.Name = "cbShutdownMinute";
+            this.cbShutdownMinute.Size = new System.Drawing.Size(49, 23);
+            this.cbShutdownMinute.TabIndex = 4;
+            // 
+            // cbShutdownHour
+            // 
+            this.cbShutdownHour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbShutdownHour.FormattingEnabled = true;
+            this.cbShutdownHour.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.cbShutdownHour.Location = new System.Drawing.Point(9, 24);
+            this.cbShutdownHour.Name = "cbShutdownHour";
+            this.cbShutdownHour.Size = new System.Drawing.Size(49, 23);
+            this.cbShutdownHour.TabIndex = 4;
+            // 
+            // btnShutdownStart
+            // 
+            this.btnShutdownStart.Location = new System.Drawing.Point(108, 24);
+            this.btnShutdownStart.Name = "btnShutdownStart";
+            this.btnShutdownStart.Size = new System.Drawing.Size(80, 23);
+            this.btnShutdownStart.TabIndex = 3;
+            this.btnShutdownStart.Text = "定时任务";
+            this.btnShutdownStart.UseVisualStyleBackColor = true;
+            this.btnShutdownStart.Click += new System.EventHandler(this.btnShutdownStart_Click);
+            // 
+            // btnPaint
+            // 
+            this.btnPaint.Location = new System.Drawing.Point(19, 147);
+            this.btnPaint.Name = "btnPaint";
+            this.btnPaint.Size = new System.Drawing.Size(75, 23);
+            this.btnPaint.TabIndex = 3;
+            this.btnPaint.Text = "画图";
+            this.btnPaint.UseVisualStyleBackColor = true;
+            this.btnPaint.Click += new System.EventHandler(this.btnPaint_Click);
+            // 
+            // btnNotepad
+            // 
+            this.btnNotepad.Location = new System.Drawing.Point(19, 104);
+            this.btnNotepad.Name = "btnNotepad";
+            this.btnNotepad.Size = new System.Drawing.Size(75, 23);
+            this.btnNotepad.TabIndex = 3;
+            this.btnNotepad.Text = "记事本";
+            this.btnNotepad.UseVisualStyleBackColor = true;
+            this.btnNotepad.Click += new System.EventHandler(this.btnNotepad_Click);
+            // 
+            // btnCalc
+            // 
+            this.btnCalc.Location = new System.Drawing.Point(19, 61);
+            this.btnCalc.Name = "btnCalc";
+            this.btnCalc.Size = new System.Drawing.Size(75, 23);
+            this.btnCalc.TabIndex = 2;
+            this.btnCalc.Text = "计算器";
+            this.btnCalc.UseVisualStyleBackColor = true;
+            this.btnCalc.Click += new System.EventHandler(this.btnCalc_Click);
+            // 
             // tabPageB
             // 
+            this.tabPageB.Controls.Add(this.btnRMTest);
             this.tabPageB.Controls.Add(this.button2);
             this.tabPageB.Controls.Add(this.btnEnable);
             this.tabPageB.Controls.Add(this.btnEdit);
@@ -119,7 +258,7 @@
             this.tabPageB.Location = new System.Drawing.Point(4, 25);
             this.tabPageB.Name = "tabPageB";
             this.tabPageB.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageB.Size = new System.Drawing.Size(542, 322);
+            this.tabPageB.Size = new System.Drawing.Size(542, 345);
             this.tabPageB.TabIndex = 0;
             this.tabPageB.Text = "周期提醒";
             this.tabPageB.UseVisualStyleBackColor = true;
@@ -212,142 +351,66 @@
             // 
             // tabPageC
             // 
+            this.tabPageC.Controls.Add(this.btnKJTest);
+            this.tabPageC.Controls.Add(this.btnKJRemove);
+            this.tabPageC.Controls.Add(this.btnKJAdd);
+            this.tabPageC.Controls.Add(this.listBox1);
             this.tabPageC.Location = new System.Drawing.Point(4, 25);
             this.tabPageC.Name = "tabPageC";
             this.tabPageC.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageC.Size = new System.Drawing.Size(542, 322);
+            this.tabPageC.Size = new System.Drawing.Size(542, 345);
             this.tabPageC.TabIndex = 1;
             this.tabPageC.Text = "开机程序";
             this.tabPageC.UseVisualStyleBackColor = true;
             // 
-            // btnCalc
+            // btnKJTest
             // 
-            this.btnCalc.Location = new System.Drawing.Point(19, 61);
-            this.btnCalc.Name = "btnCalc";
-            this.btnCalc.Size = new System.Drawing.Size(75, 23);
-            this.btnCalc.TabIndex = 2;
-            this.btnCalc.Text = "计算器";
-            this.btnCalc.UseVisualStyleBackColor = true;
-            this.btnCalc.Click += new System.EventHandler(this.btnCalc_Click);
+            this.btnKJTest.Location = new System.Drawing.Point(448, 113);
+            this.btnKJTest.Name = "btnKJTest";
+            this.btnKJTest.Size = new System.Drawing.Size(75, 23);
+            this.btnKJTest.TabIndex = 2;
+            this.btnKJTest.Text = "测试";
+            this.btnKJTest.UseVisualStyleBackColor = true;
+            this.btnKJTest.Click += new System.EventHandler(this.btnKJTest_Click);
             // 
-            // btnNotepad
+            // btnKJRemove
             // 
-            this.btnNotepad.Location = new System.Drawing.Point(19, 104);
-            this.btnNotepad.Name = "btnNotepad";
-            this.btnNotepad.Size = new System.Drawing.Size(75, 23);
-            this.btnNotepad.TabIndex = 3;
-            this.btnNotepad.Text = "记事本";
-            this.btnNotepad.UseVisualStyleBackColor = true;
-            this.btnNotepad.Click += new System.EventHandler(this.btnNotepad_Click);
+            this.btnKJRemove.Location = new System.Drawing.Point(448, 84);
+            this.btnKJRemove.Name = "btnKJRemove";
+            this.btnKJRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnKJRemove.TabIndex = 2;
+            this.btnKJRemove.Text = "移除";
+            this.btnKJRemove.UseVisualStyleBackColor = true;
+            this.btnKJRemove.Click += new System.EventHandler(this.btnKJRemove_Click);
             // 
-            // btnPaint
+            // btnKJAdd
             // 
-            this.btnPaint.Location = new System.Drawing.Point(19, 147);
-            this.btnPaint.Name = "btnPaint";
-            this.btnPaint.Size = new System.Drawing.Size(75, 23);
-            this.btnPaint.TabIndex = 3;
-            this.btnPaint.Text = "画图";
-            this.btnPaint.UseVisualStyleBackColor = true;
-            this.btnPaint.Click += new System.EventHandler(this.btnPaint_Click);
+            this.btnKJAdd.Location = new System.Drawing.Point(448, 55);
+            this.btnKJAdd.Name = "btnKJAdd";
+            this.btnKJAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnKJAdd.TabIndex = 1;
+            this.btnKJAdd.Text = "添加";
+            this.btnKJAdd.UseVisualStyleBackColor = true;
+            this.btnKJAdd.Click += new System.EventHandler(this.btnKJAdd_Click);
             // 
-            // btnShutdownStart
+            // listBox1
             // 
-            this.btnShutdownStart.Location = new System.Drawing.Point(108, 24);
-            this.btnShutdownStart.Name = "btnShutdownStart";
-            this.btnShutdownStart.Size = new System.Drawing.Size(80, 23);
-            this.btnShutdownStart.TabIndex = 3;
-            this.btnShutdownStart.Text = "定时任务";
-            this.btnShutdownStart.UseVisualStyleBackColor = true;
-            this.btnShutdownStart.Click += new System.EventHandler(this.btnShutdownStart_Click);
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(29, 41);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(404, 274);
+            this.listBox1.TabIndex = 0;
             // 
-            // cbShutdownHour
+            // btnRMTest
             // 
-            this.cbShutdownHour.FormattingEnabled = true;
-            this.cbShutdownHour.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.cbShutdownHour.Location = new System.Drawing.Point(9, 24);
-            this.cbShutdownHour.Name = "cbShutdownHour";
-            this.cbShutdownHour.Size = new System.Drawing.Size(49, 23);
-            this.cbShutdownHour.TabIndex = 4;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnShutdownRightNow);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnShutdownCancel);
-            this.groupBox1.Controls.Add(this.cbShutdownMinute);
-            this.groupBox1.Controls.Add(this.cbShutdownHour);
-            this.groupBox1.Controls.Add(this.btnShutdownStart);
-            this.groupBox1.Location = new System.Drawing.Point(19, 196);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(194, 114);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "关机";
-            // 
-            // btnShutdownCancel
-            // 
-            this.btnShutdownCancel.Location = new System.Drawing.Point(108, 53);
-            this.btnShutdownCancel.Name = "btnShutdownCancel";
-            this.btnShutdownCancel.Size = new System.Drawing.Size(80, 23);
-            this.btnShutdownCancel.TabIndex = 6;
-            this.btnShutdownCancel.Text = "取消任务";
-            this.btnShutdownCancel.UseVisualStyleBackColor = true;
-            this.btnShutdownCancel.Click += new System.EventHandler(this.btnShutdownCancel_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 15);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "小时";
-            // 
-            // cbShutdownMinute
-            // 
-            this.cbShutdownMinute.FormattingEnabled = true;
-            this.cbShutdownMinute.Items.AddRange(new object[] {
-            "0",
-            "10",
-            "20",
-            "30",
-            "40",
-            "50"});
-            this.cbShutdownMinute.Location = new System.Drawing.Point(9, 82);
-            this.cbShutdownMinute.Name = "cbShutdownMinute";
-            this.cbShutdownMinute.Size = new System.Drawing.Size(49, 23);
-            this.cbShutdownMinute.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(64, 86);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 15);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "分";
-            // 
-            // btnShutdownRightNow
-            // 
-            this.btnShutdownRightNow.Location = new System.Drawing.Point(108, 82);
-            this.btnShutdownRightNow.Name = "btnShutdownRightNow";
-            this.btnShutdownRightNow.Size = new System.Drawing.Size(80, 23);
-            this.btnShutdownRightNow.TabIndex = 6;
-            this.btnShutdownRightNow.Text = "立即关机";
-            this.btnShutdownRightNow.UseVisualStyleBackColor = true;
-            this.btnShutdownRightNow.Click += new System.EventHandler(this.btnShutdownRightNow_Click);
+            this.btnRMTest.Location = new System.Drawing.Point(433, 179);
+            this.btnRMTest.Name = "btnRMTest";
+            this.btnRMTest.Size = new System.Drawing.Size(90, 23);
+            this.btnRMTest.TabIndex = 13;
+            this.btnRMTest.Text = "测试";
+            this.btnRMTest.UseVisualStyleBackColor = true;
+            this.btnRMTest.Click += new System.EventHandler(this.btnRMTest_Click);
             // 
             // SettingForm
             // 
@@ -366,9 +429,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPageA.ResumeLayout(false);
             this.tabPageA.PerformLayout();
-            this.tabPageB.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPageB.ResumeLayout(false);
+            this.tabPageC.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -402,5 +466,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbShutdownMinute;
+        private System.Windows.Forms.Button btnKJRemove;
+        private System.Windows.Forms.Button btnKJAdd;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button btnKJTest;
+        private System.Windows.Forms.Button btnRMTest;
     }
 }

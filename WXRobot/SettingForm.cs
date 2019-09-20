@@ -13,7 +13,6 @@ namespace WXRobot
     public partial class SettingForm : Form
     {
 
-        //bool isEnable = IniUtil.getValueAsBool(Constants.REMIND_ENABLE, true);
         public SettingForm()
         {
             InitializeComponent();
@@ -34,8 +33,11 @@ namespace WXRobot
 
         private void button1_Click(object sender, EventArgs e)
         {
+    
             this.Close();
         }
+
+        
 
         private void SettingForm_Load(object sender, EventArgs e)
         {
@@ -47,7 +49,10 @@ namespace WXRobot
             cbShutdownMinute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 
             bindListData();
-
+            foreach (StartUpItem item in DataManager.getInstance().getStartUpData())
+            {
+                listBox1.Items.Add(item.ToString());
+            }
         }
 
 
@@ -58,7 +63,7 @@ namespace WXRobot
 
             selectIndex = getListViewSelectIndex();
             listView1.Items.Clear();
-            foreach (RemindItem item in RemindManager.getInstance().getList())
+            foreach (RemindItem item in DataManager.getInstance().getRemindData())
             {
 
                 ListViewItem list = new ListViewItem();
@@ -68,7 +73,8 @@ namespace WXRobot
                 list.SubItems.Add(item.getEnableString());
                 listView1.Items.Add(list);
             }
-            //list.EnsureVisible();
+
+            //listRemind.EnsureVisible();
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -84,7 +90,7 @@ namespace WXRobot
             int index = getListViewSelectIndex();
             if (index != -1)
             {
-                var var = RemindManager.getInstance().getList()[index];
+                var var = DataManager.getInstance().getRemindData()[index];
                 RemindNewForm dlg = new RemindNewForm();
                 dlg.remindItem = var;
                 dlg.ShowDialog();
@@ -99,7 +105,7 @@ namespace WXRobot
             {
                 if (MessageBox.Show("确认删除？", "确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    RemindManager.getInstance().getList().RemoveAt(index);
+                    DataManager.getInstance().getRemindData().RemoveAt(index);
                     bindListData();
                 }
             }
@@ -109,20 +115,18 @@ namespace WXRobot
         {
             if (MessageBox.Show("确认清空？", "确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                RemindManager.getInstance().getList().Clear();
+                DataManager.getInstance().getRemindData().Clear();
                 bindListData();
             }
         }
 
         private void btnEnable_Click(object sender, EventArgs e)
         {
-            //isEnable = !isEnable;
-            //IniUtil.setValue(Constants.REMIND_ENABLE, isEnable);
 
             int index = getListViewSelectIndex();
             if (index != -1)
             {
-                var var = RemindManager.getInstance().getList()[index];
+                var var = DataManager.getInstance().getRemindData()[index];
                 var.isEnable = !var.isEnable;
                 //listView1.Items[index].SubItems[]
                 bindListData();
@@ -211,6 +215,69 @@ namespace WXRobot
             }
 
       
+        }
+
+
+
+
+        private void btnKJAdd_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "选择程序或快捷方式";
+            dialog.Multiselect = true;
+            dialog.InitialDirectory = Application.StartupPath;
+            dialog.Filter = "All files(*.*)|*.*|可执行程序|*.exe|快捷方式|*.lnk";
+            dialog.FilterIndex = 2;
+            dialog.RestoreDirectory = true;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                listBox1.Items.AddRange(dialog.FileNames);
+
+                foreach (string str in dialog.FileNames)
+                {
+                    StartUpItem item = new StartUpItem();
+                    item.path = str;
+                    DataManager.getInstance().getStartUpData().Add(item);
+                }
+                DataManager.getInstance().saveStartUpData();
+            }
+        }
+
+
+        private void btnKJRemove_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex != -1) {
+
+                DataManager.getInstance().getStartUpData().RemoveAt(listBox1.SelectedIndex);
+                DataManager.getInstance().saveStartUpData();
+                listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+
+            }
+        }
+
+        private void btnKJTest_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex != -1)
+            {
+                Utils.runExe(listBox1.SelectedItem.ToString());
+            }
+        }
+
+        private void btnRMTest_Click(object sender, EventArgs e)
+        {
+
+            int index = getListViewSelectIndex();
+            if (index != -1)
+            {
+
+                RemindForm dlg = new RemindForm();
+               
+                List<RemindItem> lists = new List<RemindItem>();
+                lists.Add(DataManager.getInstance().getRemindData()[index]);
+                dlg.items = lists;
+                dlg.ShowDialog();
+
+            }
         }
     }
 }

@@ -9,3 +9,6 @@ D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.pdb
 D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.csprojResolveAssemblyReference.cache
 D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.RemindForm.resources
 D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.RemindNewForm.resources
+D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\bin\Debug\Newtonsoft.Json.dll
+D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\bin\Debug\Newtonsoft.Json.pdb
+D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\bin\Debug\Newtonsoft.Json.xml

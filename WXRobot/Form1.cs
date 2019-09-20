@@ -26,6 +26,9 @@ namespace WXRobot
         const int PADDING = 2;//起始绘制位置
         const int DATA_LEN = 8;
         int[] map = new int[DATA_LEN];
+
+        int[] mapTemp = new int[DATA_LEN];
+
         Graphics g;
         Graphics graphicsControl;
         Bitmap bufferimage;
@@ -40,9 +43,24 @@ namespace WXRobot
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
 
-            e.Graphics.DrawImage(bufferimage,0,0);
             graphicsControl.DrawImage(bufferimage, 0, 0);
         }
+        private bool isMapSame() {
+            for (int i = 0; i < mapTemp.Length; i++) {
+                if (map[i] != mapTemp[i]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private void copyMap() {
+            //交换地址
+            var temp = map;
+            map = mapTemp;
+            mapTemp = temp;
+        }
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -53,14 +71,18 @@ namespace WXRobot
 
 
             DateTime dateTime = DateTime.Now;
-        
-            map[0] = dateTime.Hour / 10;
-            map[1] = dateTime.Hour % 10;
-            map[3] = dateTime.Minute / 10;
-            map[4] = dateTime.Minute % 10;
-            map[6] = dateTime.Second / 10;
-            map[7] = dateTime.Second % 10;
 
+            mapTemp[0] = dateTime.Hour / 10;
+            mapTemp[1] = dateTime.Hour % 10;
+            mapTemp[3] = dateTime.Minute / 10;
+            mapTemp[4] = dateTime.Minute % 10;
+            mapTemp[6] = dateTime.Second / 10;
+            mapTemp[7] = dateTime.Second % 10;
+
+            if (isMapSame()) {
+                return;
+            }
+            copyMap();
             //map[9] = dateTime.Millisecond / 100;
             //map[10] = dateTime.Millisecond / 10%10;
             //map[11] = dateTime.Millisecond % 10;
@@ -73,17 +95,32 @@ namespace WXRobot
                 g.DrawImage(bitmaps[mapIndex], x, y, WIDTH, HEIGHT);
             }
             this.Invalidate();
-
-            if (dateTime.Second == 0 && !isZero) {
-                isZero = true;
-                RemindManager.getInstance().handleTime(dateTime);
+            if (dateTime.Second == 0) {
+                var list = DataManager.getInstance().handleTime(dateTime);
+                if (list != null) {
+                    handleShowDialog(list);
+                }
             }
-            else {
-                isZero = false;
+            else if (dateTime.Second == 59) {
+                closeDialog();
             }
         }
 
-        bool isZero = false;
+        private void closeDialog() {
+            if (dlg != null)
+            {
+                dlg.Close();
+                dlg = null;
+            }
+        }
+
+        RemindForm dlg;
+        private void handleShowDialog(List<RemindItem> list) {
+            closeDialog();
+            dlg = new RemindForm();
+            dlg.items = list;
+            dlg.ShowDialog();
+        }
 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -123,15 +160,29 @@ namespace WXRobot
             const int LINE_INDEX = 11;
             //const int SPACE_INDEX = 10;
             map[5] = map[2] = LINE_INDEX;
+            mapTemp[5] = mapTemp[2] = LINE_INDEX;
+            
+
             //map[8] = SPACE_INDEX;
 
             bufferimage = new Bitmap(this.Width, this.Height);
             g = Graphics.FromImage(bufferimage);
-            g.Clear(this.BackColor);
             g.SmoothingMode = SmoothingMode.HighQuality; //高质量
             g.PixelOffsetMode = PixelOffsetMode.HighQuality; //高像素偏移质量
+            g.Clear(this.BackColor);
             timer1_Tick(null, null);
+
+
             defaultConfig();
+
+
+            handleStartUp();
+        }
+
+        private void handleStartUp() {
+            foreach(StartUpItem item in DataManager.getInstance().getStartUpData()){
+                Utils.runExe(item.path);
+            }
         }
 
         private void defaultConfig()

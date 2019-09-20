@@ -6,61 +6,103 @@ using System.Text;
 namespace WXRobot
 {
 
-    public class RemindManager {
+    public class DataManager {
 
-        private static RemindManager intance=new RemindManager();
+        private static DataManager intance=new DataManager();
 
-        public static RemindManager getInstance() {
+        public static DataManager getInstance() {
             return intance;
         }
 
-        private List<RemindItem> list;
+        private List<RemindItem> listRemind;
 
-        public RemindManager() {
+        private List<StartUpItem> listStartUp;//开机自启动
+
+
+        public List<StartUpItem> getStartUpData()
+        {
+            return listStartUp;
+        }
+
+
+        private DataManager() {
             createFromCache();
         }
 
-        public List<RemindItem> getList() {
-            return list;
+        public List<RemindItem> getRemindData() {
+            return listRemind;
         }
 
-        public void handleTime(DateTime dateTime) {
+        public List<RemindItem> handleTime(DateTime dateTime) {
 
             List<RemindItem> list1=null;
-            foreach (RemindItem item in list) {
-                bool isOK=item.handleTime(dateTime);
-                if (isOK) { 
+            foreach (RemindItem item in listRemind) {
+                if (item.handleTime(dateTime)) { 
                     if (list1 == null) {
                         list1 = new List<RemindItem>();
                     }
                     list1.Add(item);
                 }
             }
-            if(list1!=null){
-                RemindForm dlg = new RemindForm();
-                dlg.items = list1;
-                dlg.ShowDialog();
-            }
+            return list1;
         }
 
         private void createFromCache() {
-            list = new List<RemindItem>();
 
-            list.Add(new RemindItem());
-            list.Add(new RemindItem());
-            list.Add(new RemindItem());
+            string text= IniUtil.getValue(Constants.REMIND_DATA, null);
+            listRemind = Utils.parseObject<List<RemindItem>>(text);
+            if (listRemind == null) {
+                listRemind = new List<RemindItem>();
+            }
+
+            string textStartUp = IniUtil.getValue(Constants.STARTUP_DATA, null);
+            listStartUp = Utils.parseObject<List<StartUpItem>>(textStartUp);
+            if (listStartUp == null)
+            {
+                listStartUp = new List<StartUpItem>();
+            }
+
         }
 
-        public void save() {
+        public void saverRemindData() {
+            IniUtil.setValue(Constants.REMIND_DATA,Utils.toJSONString(listRemind));
+        }
 
+        public void saveStartUpData() {
+            IniUtil.setValue(Constants.STARTUP_DATA, Utils.toJSONString(listStartUp));
         }
 
 
+        public void saveAll() {
+            saverRemindData();
+            saveStartUpData();
+        }
 
 
     }
 
-    public class RemindItem
+    public class BaseItem {
+        public string createTime=DateTime.Now.ToString();//创建时间
+        public bool isEnable = true;//是否可用
+
+        public string getEnableString()
+        {
+            return isEnable ? "是" : "否";
+        }
+    }
+
+
+    public class StartUpItem :BaseItem{
+        public string path;
+
+        public override string ToString()
+        {
+            return path;
+        }
+    }
+
+
+    public class RemindItem : BaseItem
     {
 
         public int hour = 12;//小时 0-23
@@ -72,21 +114,19 @@ namespace WXRobot
 
         public int remindType = RemindType.DAY;//提醒周期
 
-        public bool isEnable = true;//是否可用
+        public string content = "提醒内容";//提醒内容
 
         public bool isHourMinuteSame(DateTime dateTime) {
             return dateTime.Hour == this.hour && dateTime.Minute == this.minute;
         }
 
 
-        public string getEnableString() {
-            return isEnable ? "是" : "否";
-        }
+   
 
 
-        public string content = "提醒内容";//提醒内容
 
-        public long createTime;//创建时间
+
+  
 
 
         public string getShowTime() {
@@ -157,6 +197,7 @@ namespace WXRobot
                 map.Add(WEEK, "每周");
                 map.Add(MONTH, "每月");
                 map.Add(YEAR, "每年");
+                map.Add(HOUR, "每小时");
                 map.Add(ONCE, "仅提醒一次");
             }
             return map[type];
