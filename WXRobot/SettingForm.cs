@@ -49,19 +49,33 @@ namespace WXRobot
             cbShutdownMinute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 
             bindListData();
+            bindKJListData();
+        }
+
+        private void bindKJListData()
+        {
+
+        
+            listViewKJ.Items.Clear();
             foreach (StartUpItem item in DataManager.getInstance().getStartUpData())
             {
-                listBox1.Items.Add(item.ToString());
+
+                ListViewItem list = new ListViewItem();
+                list.Text = item.getAppName();
+                list.SubItems.Add(item.path);
+                list.SubItems.Add(item.getEnableString());
+                listView1.Items.Add(list);
             }
+
+            //listRemind.EnsureVisible();
         }
 
 
-        int selectIndex = -1;
+
         //string[] titles = { "提醒内容", "时间", "提醒方式" };
         private void bindListData()
         {
 
-            selectIndex = getListViewSelectIndex();
             listView1.Items.Clear();
             foreach (RemindItem item in DataManager.getInstance().getRemindData())
             {
@@ -219,7 +233,6 @@ namespace WXRobot
 
 
 
-
         private void btnKJAdd_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -229,6 +242,7 @@ namespace WXRobot
             dialog.Filter = "All files(*.*)|*.*|可执行程序|*.exe|快捷方式|*.lnk";
             dialog.FilterIndex = 2;
             dialog.RestoreDirectory = true;
+
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 listBox1.Items.AddRange(dialog.FileNames);
@@ -267,17 +281,26 @@ namespace WXRobot
         {
 
             int index = getListViewSelectIndex();
+        
+
+            RemindForm dlg = new RemindForm();
+            List<RemindItem> lists = new List<RemindItem>();
             if (index != -1)
             {
-
-                RemindForm dlg = new RemindForm();
-               
-                List<RemindItem> lists = new List<RemindItem>();
                 lists.Add(DataManager.getInstance().getRemindData()[index]);
                 dlg.items = lists;
-                dlg.ShowDialog();
-
             }
+            dlg.ShowDialog();
+        }
+
+        private void btnKJEnable_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnKJEdit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

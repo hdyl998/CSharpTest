@@ -45,6 +45,7 @@
             this.btnNotepad = new System.Windows.Forms.Button();
             this.btnCalc = new System.Windows.Forms.Button();
             this.tabPageB = new System.Windows.Forms.TabPage();
+            this.btnRMTest = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnEnable = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -59,8 +60,12 @@
             this.btnKJTest = new System.Windows.Forms.Button();
             this.btnKJRemove = new System.Windows.Forms.Button();
             this.btnKJAdd = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.btnRMTest = new System.Windows.Forms.Button();
+            this.btnKJEnable = new System.Windows.Forms.Button();
+            this.listViewKJ = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnKJEdit = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageA.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -263,9 +268,19 @@
             this.tabPageB.Text = "周期提醒";
             this.tabPageB.UseVisualStyleBackColor = true;
             // 
+            // btnRMTest
+            // 
+            this.btnRMTest.Location = new System.Drawing.Point(420, 154);
+            this.btnRMTest.Name = "btnRMTest";
+            this.btnRMTest.Size = new System.Drawing.Size(90, 23);
+            this.btnRMTest.TabIndex = 13;
+            this.btnRMTest.Text = "测试";
+            this.btnRMTest.UseVisualStyleBackColor = true;
+            this.btnRMTest.Click += new System.EventHandler(this.btnRMTest_Click);
+            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(433, 150);
+            this.button2.Location = new System.Drawing.Point(420, 125);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(90, 23);
             this.button2.TabIndex = 12;
@@ -275,7 +290,7 @@
             // 
             // btnEnable
             // 
-            this.btnEnable.Location = new System.Drawing.Point(433, 120);
+            this.btnEnable.Location = new System.Drawing.Point(420, 95);
             this.btnEnable.Name = "btnEnable";
             this.btnEnable.Size = new System.Drawing.Size(90, 23);
             this.btnEnable.TabIndex = 11;
@@ -285,17 +300,17 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(433, 90);
+            this.btnEdit.Location = new System.Drawing.Point(420, 65);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(90, 23);
             this.btnEdit.TabIndex = 10;
-            this.btnEdit.Text = "修改";
+            this.btnEdit.Text = "编辑";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(433, 61);
+            this.btnRemove.Location = new System.Drawing.Point(420, 36);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(90, 23);
             this.btnRemove.TabIndex = 9;
@@ -305,7 +320,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(432, 31);
+            this.btnAdd.Location = new System.Drawing.Point(419, 6);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(91, 23);
             this.btnAdd.TabIndex = 8;
@@ -322,10 +337,10 @@
             this.columnHeader4});
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(19, 31);
+            this.listView1.Location = new System.Drawing.Point(6, 6);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(407, 261);
+            this.listView1.Size = new System.Drawing.Size(407, 293);
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -351,10 +366,12 @@
             // 
             // tabPageC
             // 
+            this.tabPageC.Controls.Add(this.btnKJEdit);
+            this.tabPageC.Controls.Add(this.listViewKJ);
+            this.tabPageC.Controls.Add(this.btnKJEnable);
             this.tabPageC.Controls.Add(this.btnKJTest);
             this.tabPageC.Controls.Add(this.btnKJRemove);
             this.tabPageC.Controls.Add(this.btnKJAdd);
-            this.tabPageC.Controls.Add(this.listBox1);
             this.tabPageC.Location = new System.Drawing.Point(4, 25);
             this.tabPageC.Name = "tabPageC";
             this.tabPageC.Padding = new System.Windows.Forms.Padding(3);
@@ -365,9 +382,9 @@
             // 
             // btnKJTest
             // 
-            this.btnKJTest.Location = new System.Drawing.Point(448, 113);
+            this.btnKJTest.Location = new System.Drawing.Point(419, 122);
             this.btnKJTest.Name = "btnKJTest";
-            this.btnKJTest.Size = new System.Drawing.Size(75, 23);
+            this.btnKJTest.Size = new System.Drawing.Size(90, 23);
             this.btnKJTest.TabIndex = 2;
             this.btnKJTest.Text = "测试";
             this.btnKJTest.UseVisualStyleBackColor = true;
@@ -375,9 +392,9 @@
             // 
             // btnKJRemove
             // 
-            this.btnKJRemove.Location = new System.Drawing.Point(448, 84);
+            this.btnKJRemove.Location = new System.Drawing.Point(419, 35);
             this.btnKJRemove.Name = "btnKJRemove";
-            this.btnKJRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnKJRemove.Size = new System.Drawing.Size(90, 23);
             this.btnKJRemove.TabIndex = 2;
             this.btnKJRemove.Text = "移除";
             this.btnKJRemove.UseVisualStyleBackColor = true;
@@ -385,32 +402,64 @@
             // 
             // btnKJAdd
             // 
-            this.btnKJAdd.Location = new System.Drawing.Point(448, 55);
+            this.btnKJAdd.Location = new System.Drawing.Point(419, 6);
             this.btnKJAdd.Name = "btnKJAdd";
-            this.btnKJAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnKJAdd.Size = new System.Drawing.Size(90, 23);
             this.btnKJAdd.TabIndex = 1;
-            this.btnKJAdd.Text = "添加";
+            this.btnKJAdd.Text = "新增";
             this.btnKJAdd.UseVisualStyleBackColor = true;
             this.btnKJAdd.Click += new System.EventHandler(this.btnKJAdd_Click);
             // 
-            // listBox1
+            // btnKJEnable
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(29, 41);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(404, 274);
-            this.listBox1.TabIndex = 0;
+            this.btnKJEnable.Location = new System.Drawing.Point(419, 93);
+            this.btnKJEnable.Name = "btnKJEnable";
+            this.btnKJEnable.Size = new System.Drawing.Size(90, 23);
+            this.btnKJEnable.TabIndex = 12;
+            this.btnKJEnable.Text = "禁/启用";
+            this.btnKJEnable.UseVisualStyleBackColor = true;
+            this.btnKJEnable.Click += new System.EventHandler(this.btnKJEnable_Click);
             // 
-            // btnRMTest
+            // listViewKJ
             // 
-            this.btnRMTest.Location = new System.Drawing.Point(433, 179);
-            this.btnRMTest.Name = "btnRMTest";
-            this.btnRMTest.Size = new System.Drawing.Size(90, 23);
-            this.btnRMTest.TabIndex = 13;
-            this.btnRMTest.Text = "测试";
-            this.btnRMTest.UseVisualStyleBackColor = true;
-            this.btnRMTest.Click += new System.EventHandler(this.btnRMTest_Click);
+            this.listViewKJ.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7});
+            this.listViewKJ.FullRowSelect = true;
+            this.listViewKJ.HideSelection = false;
+            this.listViewKJ.Location = new System.Drawing.Point(6, 6);
+            this.listViewKJ.MultiSelect = false;
+            this.listViewKJ.Name = "listViewKJ";
+            this.listViewKJ.Size = new System.Drawing.Size(407, 293);
+            this.listViewKJ.TabIndex = 13;
+            this.listViewKJ.UseCompatibleStateImageBehavior = false;
+            this.listViewKJ.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "应用名";
+            this.columnHeader5.Width = 89;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "路径";
+            this.columnHeader6.Width = 237;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "可用";
+            this.columnHeader7.Width = 74;
+            // 
+            // btnKJEdit
+            // 
+            this.btnKJEdit.Location = new System.Drawing.Point(419, 64);
+            this.btnKJEdit.Name = "btnKJEdit";
+            this.btnKJEdit.Size = new System.Drawing.Size(90, 23);
+            this.btnKJEdit.TabIndex = 14;
+            this.btnKJEdit.Text = "编辑";
+            this.btnKJEdit.UseVisualStyleBackColor = true;
+            this.btnKJEdit.Click += new System.EventHandler(this.btnKJEdit_Click);
             // 
             // SettingForm
             // 
@@ -468,8 +517,13 @@
         private System.Windows.Forms.ComboBox cbShutdownMinute;
         private System.Windows.Forms.Button btnKJRemove;
         private System.Windows.Forms.Button btnKJAdd;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button btnKJTest;
         private System.Windows.Forms.Button btnRMTest;
+        private System.Windows.Forms.Button btnKJEnable;
+        private System.Windows.Forms.Button btnKJEdit;
+        private System.Windows.Forms.ListView listViewKJ;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

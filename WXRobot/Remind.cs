@@ -94,11 +94,17 @@ namespace WXRobot
 
     public class StartUpItem :BaseItem{
         public string path;
+        public string appName;
 
-        public override string ToString()
-        {
-            return path;
+
+        public string getAppName() {
+            if (appName != null)
+            {
+                return appName;
+            }
+            return appName=path.Substring(path.LastIndexOf("/") + 1);
         }
+        
     }
 
 

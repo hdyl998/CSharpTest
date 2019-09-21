@@ -13,12 +13,13 @@ namespace WXRobot
     {
 
 
-        public List<RemindItem> items {
-            get;set;
+        public List<RemindItem> items
+        {
+            get; set;
         }
 
 
-        
+
 
         public RemindForm()
         {
@@ -33,30 +34,37 @@ namespace WXRobot
                             ,global::WXRobot.Properties.Resources.bg4
                                   ,global::WXRobot.Properties.Resources.bg5
             };
-
-            int index=new Random().Next(bitmaps.Length);
-
-            this.BackgroundImage = bitmaps[index]; 
-
-
-            if (items.Count == 1)
+            int index = new Random().Next(bitmaps.Length);
+            Bitmap bitmap=bitmaps[index];
+            panel1.BackgroundImage = bitmap;
+            if (items == null)
             {
-                label1.Text = items[0].content;
+                label1.Text = "测试提示文本";
             }
-            else {
-                StringBuilder builder = new StringBuilder();
-                foreach (RemindItem item in items)
+            else
+            {
+                if (items.Count == 1)
                 {
-                    if (builder.Length != 0)
-                    {
-                        builder.Append(" ");
-                    }
-                    builder.Append(item.content);
+                    label1.Text = items[0].content;
                 }
-                label1.Text = builder.ToString();
+                else
+                {
+                    StringBuilder builder = new StringBuilder();
+                    foreach (RemindItem item in items)
+                    {
+                        if (builder.Length != 0)
+                        {
+                            builder.Append(" ");
+                        }
+                        builder.Append(item.content);
+                    }
+                    label1.Text = builder.ToString();
+                }
             }
 
-    
+
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
