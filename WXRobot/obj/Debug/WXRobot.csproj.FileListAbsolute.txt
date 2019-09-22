@@ -12,3 +12,16 @@ D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\obj\Debug\WXRobot.RemindN
 D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\bin\Debug\Newtonsoft.Json.dll
 D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\bin\Debug\Newtonsoft.Json.pdb
 D:\HanDong\visual studio 2015\Projects\WXRobot\WXRobot\bin\Debug\Newtonsoft.Json.xml
+E:\1--Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.exe
+E:\1--Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.pdb
+E:\1--Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.csprojResolveAssemblyReference.cache
+E:\1--Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.Form1.resources
+E:\1--Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.Properties.Resources.resources
+E:\1--Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.RemindForm.resources
+E:\1--Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.RemindNewForm.resources
+E:\1--Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.SettingForm.resources
+E:\1--Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.csproj.GenerateResource.Cache
+E:\1--Projects\CSharpTest\WXRobot\bin\Debug\WXRobot.exe
+E:\1--Projects\CSharpTest\WXRobot\bin\Debug\WXRobot.pdb
+E:\1--Projects\CSharpTest\WXRobot\bin\Debug\Newtonsoft.Json.pdb
+E:\1--Projects\CSharpTest\WXRobot\bin\Debug\Newtonsoft.Json.xml

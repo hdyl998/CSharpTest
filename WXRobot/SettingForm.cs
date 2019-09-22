@@ -243,38 +243,38 @@ namespace WXRobot
             dialog.FilterIndex = 2;
             dialog.RestoreDirectory = true;
 
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                listBox1.Items.AddRange(dialog.FileNames);
+            //if (dialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    listBox1.Items.AddRange(dialog.FileNames);
 
-                foreach (string str in dialog.FileNames)
-                {
-                    StartUpItem item = new StartUpItem();
-                    item.path = str;
-                    DataManager.getInstance().getStartUpData().Add(item);
-                }
-                DataManager.getInstance().saveStartUpData();
-            }
+            //    foreach (string str in dialog.FileNames)
+            //    {
+            //        StartUpItem item = new StartUpItem();
+            //        item.path = str;
+            //        DataManager.getInstance().getStartUpData().Add(item);
+            //    }
+            //    DataManager.getInstance().saveStartUpData();
+            //}
         }
 
 
         private void btnKJRemove_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex != -1) {
+            //if (listBox1.SelectedIndex != -1) {
 
-                DataManager.getInstance().getStartUpData().RemoveAt(listBox1.SelectedIndex);
-                DataManager.getInstance().saveStartUpData();
-                listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+            //    DataManager.getInstance().getStartUpData().RemoveAt(listBox1.SelectedIndex);
+            //    DataManager.getInstance().saveStartUpData();
+            //    listBox1.Items.RemoveAt(listBox1.SelectedIndex);
 
-            }
+            //}
         }
 
         private void btnKJTest_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex != -1)
-            {
-                Utils.runExe(listBox1.SelectedItem.ToString());
-            }
+            //if (listBox1.SelectedIndex != -1)
+            //{
+            //    Utils.runExe(listBox1.SelectedItem.ToString());
+            //}
         }
 
         private void btnRMTest_Click(object sender, EventArgs e)

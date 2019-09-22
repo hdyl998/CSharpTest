@@ -42,8 +42,9 @@ namespace WXRobot
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            this.BackgroundImage = bufferimage;
 
-            graphicsControl.DrawImage(bufferimage, 0, 0);
+            LogUtil.print("Form1_Paint");
         }
         private bool isMapSame() {
             for (int i = 0; i < mapTemp.Length; i++) {
@@ -94,7 +95,7 @@ namespace WXRobot
                 int y = PADDING;
                 g.DrawImage(bitmaps[mapIndex], x, y, WIDTH, HEIGHT);
             }
-            this.Invalidate();
+            graphicsControl.DrawImage(bufferimage, 0, 0);
             if (dateTime.Second == 0) {
                 var list = DataManager.getInstance().handleTime(dateTime);
                 if (list != null) {
@@ -150,7 +151,7 @@ namespace WXRobot
             };
 
 
-            graphicsControl = this.CreateGraphics();
+            
 
 
             this.ClientSize = new Size(WIDTH * DATA_LEN + PADDING * 2, HEIGHT + PADDING * 2);
@@ -170,6 +171,7 @@ namespace WXRobot
             g.SmoothingMode = SmoothingMode.HighQuality; //高质量
             g.PixelOffsetMode = PixelOffsetMode.HighQuality; //高像素偏移质量
             g.Clear(this.BackColor);
+            graphicsControl = this.CreateGraphics();
             timer1_Tick(null, null);
 
 
