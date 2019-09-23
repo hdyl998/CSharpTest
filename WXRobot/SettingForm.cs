@@ -180,13 +180,20 @@ namespace WXRobot
 
         private void btnShutdownStart_Click(object sender, EventArgs e)
         {
+            int hour = NumberUtil.convertToInt(cbShutdownHour.SelectedItem.ToString());
+            int min = NumberUtil.convertToInt(cbShutdownMinute.SelectedItem.ToString());
+
+            if (radioButton1.Checked)
+            {
+                int second = hour * 3600 + min * 60;
+                shutdownWithTime(second);
+            }
+            else {
+
+            }
 
         
-            int hour=NumberUtil.convertToInt(cbShutdownHour.SelectedItem.ToString());
-            int min= NumberUtil.convertToInt(cbShutdownMinute.SelectedItem.ToString());
-            int second = hour * 3600 + min * 60;
-      
-            shutdownWithTime(second);
+  
         }
 
         private void btnShutdownRightNow_Click(object sender, EventArgs e)
@@ -301,6 +308,21 @@ namespace WXRobot
         private void btnKJEdit_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStartPath_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Application.StartupPath);
         }
     }
 }
