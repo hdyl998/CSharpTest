@@ -6,22 +6,71 @@ using System.Text;
 namespace WXRobot
 {
 
+    public class DataItem {
+        public int startX;
+        public int startY;
+
+        public int startUp;
+
+        public List<RemindItem> listRemind;//提醒
+
+        public List<StartUpItem> listStartUp;//开机自启动
+
+        public List<ShutdownItem> listShutdown;//关机
+
+        internal void defaultConfig()
+        {
+            startX = -1;
+            startY = -1;
+            startUp = 1;
+            listRemind = new List<RemindItem>();
+            listStartUp = new List<StartUpItem>();
+            listShutdown = new List<ShutdownItem>();
+        }
+    }
+
+    public class UiItem{
+        public int tabIndex = 0;
+
+        //关机
+        public int guanjiRadio = 0;
+        public int guanjiIndex0 = 0;
+        public int guanjiIndex1 = 5;
+
+        public int guanjiIndex10 = -1;
+        public int guanjiIndex11 = -1;
+
+
+    }
+
+
+
+
     public class DataManager {
 
         private static DataManager intance=new DataManager();
 
+        public bool isChanged = false;
+
+
+        public void setChanged() {
+            isChanged = true;
+        }
+
+
         public static DataManager getInstance() {
             return intance;
         }
+        DataItem dataItem;
 
-        private List<RemindItem> listRemind;
-
-        private List<StartUpItem> listStartUp;//开机自启动
+        public DataItem getDataItem() {
+            return dataItem;
+        }
 
 
         public List<StartUpItem> getStartUpData()
         {
-            return listStartUp;
+            return dataItem.listStartUp;
         }
 
 
@@ -30,13 +79,18 @@ namespace WXRobot
         }
 
         public List<RemindItem> getRemindData() {
-            return listRemind;
+            return dataItem.listRemind;
+        }
+
+
+        public List<ShutdownItem> getShutdownData() {
+            return dataItem.listShutdown;
         }
 
         public List<RemindItem> handleTime(DateTime dateTime) {
 
             List<RemindItem> list1=null;
-            foreach (RemindItem item in listRemind) {
+            foreach (RemindItem item in dataItem.listRemind) {
                 if (item.handleTime(dateTime)) { 
                     if (list1 == null) {
                         list1 = new List<RemindItem>();
@@ -44,38 +98,48 @@ namespace WXRobot
                     list1.Add(item);
                 }
             }
+
+            handShutdown(dateTime);
+            
             return list1;
         }
 
-        private void createFromCache() {
-
-            string text= IniUtil.getValue(Constants.REMIND_DATA, null);
-            listRemind = Utils.parseObject<List<RemindItem>>(text);
-            if (listRemind == null) {
-                listRemind = new List<RemindItem>();
-            }
-
-            string textStartUp = IniUtil.getValue(Constants.STARTUP_DATA, null);
-            listStartUp = Utils.parseObject<List<StartUpItem>>(textStartUp);
-            if (listStartUp == null)
+        private void handShutdown(DateTime dateTime)
+        {
+            foreach (ShutdownItem item in getShutdownData())
             {
-                listStartUp = new List<StartUpItem>();
+                if (dateTime.Hour == item.hour && dateTime.Minute == item.minute) {
+                    Utils.runCmd("shutdown -s -t " +10);
+                    break;
+                }
             }
-
         }
 
-        public void saverRemindData() {
-            IniUtil.setValue(Constants.REMIND_DATA,Utils.toJSONString(listRemind));
-        }
-
-        public void saveStartUpData() {
-            IniUtil.setValue(Constants.STARTUP_DATA, Utils.toJSONString(listStartUp));
+        private void createFromCache() {
+            string text = IniUtil.getValue(Constants.APP_CONFIG, null);
+            dataItem = Utils.parseObject<DataItem>(text);
+        
+            if (dataItem == null) {
+                dataItem = new DataItem();
+                dataItem.defaultConfig();
+            }
         }
 
 
         public void saveAll() {
-            saverRemindData();
-            saveStartUpData();
+
+            isChanged = false;
+            IniUtil.setValue(Constants.APP_CONFIG, Utils.toJSONString(dataItem));
+        }
+
+
+        public void saveIfChanged()
+        {
+
+            if (isChanged) {
+                saveAll();
+            }
+
         }
 
 
@@ -90,6 +154,19 @@ namespace WXRobot
             return isEnable ? "是" : "否";
         }
     }
+
+    public class ShutdownItem : BaseItem
+    {
+        public int hour;
+        public int minute;
+
+
+        public override string ToString()
+        {
+            return string.Format("{0:D2}:{1:D2}", hour, minute);
+        }
+    }
+
 
 
     public class StartUpItem :BaseItem{

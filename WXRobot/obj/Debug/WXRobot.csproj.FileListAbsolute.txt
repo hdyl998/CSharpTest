@@ -39,3 +39,4 @@ D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.Remi
 D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.RemindNewForm.resources
 D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.SettingForm.resources
 D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.csproj.GenerateResource.Cache
+D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.AddGuanjiForm.resources
