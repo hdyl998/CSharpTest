@@ -38,6 +38,9 @@ D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.Sett
 D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.csproj.GenerateResource.Cache
 D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.AddGuanjiForm.resources
 D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.AddRemindForm.resources
+<<<<<<< HEAD
 E:\1--Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.AddRemindForm.resources
 E:\1--Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.EditStartupForm.resources
 E:\1--Projects\CSharpTest\WXRobot\obj\Debug\WXRobot.MainForm.resources
+=======
+>>>>>>> 6fab08b93c592cc479517ceb1f9001832e352a99
