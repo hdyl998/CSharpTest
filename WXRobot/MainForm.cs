@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -15,7 +16,7 @@ namespace WXRobot
 
 
 
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
 
         Bitmap[] bitmaps;
@@ -33,7 +34,7 @@ namespace WXRobot
         Graphics graphicsControl;
         Bitmap bufferimage;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             System.Diagnostics.Debug.WriteLine("启动完成");
@@ -150,9 +151,10 @@ namespace WXRobot
                 global::WXRobot.Properties.Resources.line
             };
 
-
-            
-
+            //调整大小
+            for (int i = 0; i < bitmaps.Length; i++) {
+                bitmaps[i] = new Bitmap(bitmaps[i], WIDTH, HEIGHT);
+            }
 
             this.ClientSize = new Size(WIDTH * DATA_LEN + PADDING * 2, HEIGHT + PADDING * 2);
 
@@ -182,40 +184,31 @@ namespace WXRobot
         }
 
         private void handleStartUp() {
+
             foreach(StartUpItem item in DataManager.getInstance().getStartUpData()){
-                Utils.runExe(item.path);
+                if (item.isEnable &&File.Exists(item.path)) {
+                    Utils.runExe(item.path);
+                }
             }
         }
 
         private void defaultConfig()
         {
-            //默认设置
-            if (!IniUtil.isExistINIFile())
+
+           int startX= DataManager.getInstance().getDataItem().startX;
+
+           int startY = DataManager.getInstance().getDataItem().startY;
+
+           int startUp = DataManager.getInstance().getDataItem().startUp;
+
+            Utils.enableStartUp(startUp==1);
+
+            if (startX < 0 || startY < 0)
             {
-                IniUtil.setValue(Constants.START_UP, 1);
-                Utils.enableStartUp(true);
                 defaultLocation();
             }
-            else
-            {
-                string startLocation = IniUtil.getValue(Constants.START_LOCATION, null);
-                if (Utils.isTextEmpty(startLocation))
-                {
-                    defaultLocation();
-                }
-                else
-                {
-                    try
-                    {
-                        string[] arr = startLocation.Split(',');
-                        this.Location = new Point(NumberUtil.convertToInt(arr[0]), NumberUtil.convertToInt(arr[1]));
-
-                    }
-                    catch (Exception)
-                    {
-                        defaultLocation();
-                    }
-                }
+            else {
+                this.Location = new Point(startX, startY);
             }
 
             isStarted = true;
@@ -237,13 +230,89 @@ namespace WXRobot
         private void Form1_LocationChanged(object sender, EventArgs e)
         {
             if (isStarted) {
-                IniUtil.setValue(Constants.START_LOCATION, Location.X + "," + Location.Y);
+                if (Location.X > 0 && Location.Y > 0) {
+                    DataManager.getInstance().getDataItem().startX = Location.X;
+                    DataManager.getInstance().getDataItem().startY = Location.Y;
+                    DataManager.getInstance().setChanged();
+                }
+  
             }
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ExitMainForm();
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                HideMainForm();
+            }
+        }
+
+        private void HideMainForm()
+        {
+            this.Hide();
+        }
+
+        private void ShowMainForm()
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.Activate();
+        }
+
+        private void menuNotify_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+
+        private void menuExit_Click(object sender, EventArgs e)
+        {
+            ExitMainForm();
+        }
+
+        private void ExitMainForm()
+        {
+            this.notifyIcon1.Visible = false;
+            this.Close();
+            this.Dispose();
             Application.Exit();
         }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Minimized;
+
+                HideMainForm();
+            }
+            else if (this.WindowState == FormWindowState.Minimized)
+            {
+                ShowMainForm();
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.notifyIcon1.Visible = false;
+            DataManager.getInstance().saveIfChanged();
+        }
+
+        private void menuHide_Click_Click(object sender, EventArgs e)
+        {
+            HideMainForm();
+        }
+
+
+        private void menuShow_Click(object sender, EventArgs e)
+        {
+            ShowMainForm();
+        }
+
     }
 }

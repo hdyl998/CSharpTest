@@ -17,10 +17,6 @@ namespace WXRobot
         {
             get; set;
         }
-
-
-
-
         public RemindForm()
         {
             InitializeComponent();
@@ -61,15 +57,11 @@ namespace WXRobot
                     label1.Text = builder.ToString();
                 }
             }
-
-
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }

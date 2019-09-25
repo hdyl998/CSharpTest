@@ -14,16 +14,6 @@ namespace WXRobot
         public static string INI_FILE_PATH =  Application.StartupPath+ "/Setting.ini";
 
         public const string INI_SECTION = "DEFAULT";
-        public const string START_UP = "START_UP";
-
-
-        public const string START_LOCATION = "START_LOCATION";
-
-
-
-
-        public const string REMIND_DATA = "REMIND_DATA";
-
-        public const string STARTUP_DATA = "STARTUP_DATA";
+        public const string APP_CONFIG = "APP_CONFIG";
     }
 }

@@ -66,12 +66,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="EditStartupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="EditStartupForm.Designer.cs">
+      <DependentUpon>EditStartupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IniUtil.cs" />
     <Compile Include="LogUtil.cs" />
@@ -85,11 +91,11 @@
     <Compile Include="RemindForm.Designer.cs">
       <DependentUpon>RemindForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RemindNewForm.cs">
+    <Compile Include="AddRemindForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RemindNewForm.Designer.cs">
-      <DependentUpon>RemindNewForm.cs</DependentUpon>
+    <Compile Include="AddRemindForm.Designer.cs">
+      <DependentUpon>AddRemindForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SettingForm.cs">
       <SubType>Form</SubType>
@@ -98,8 +104,11 @@
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="EditStartupForm.resx">
+      <DependentUpon>EditStartupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -114,8 +123,8 @@
     <EmbeddedResource Include="RemindForm.resx">
       <DependentUpon>RemindForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RemindNewForm.resx">
-      <DependentUpon>RemindNewForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddRemindForm.resx">
+      <DependentUpon>AddRemindForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
