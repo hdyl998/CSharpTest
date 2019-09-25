@@ -150,6 +150,12 @@ namespace WXRobot
                 global::WXRobot.Properties.Resources.space,
                 global::WXRobot.Properties.Resources.line
             };
+
+            //调整大小
+            for (int i = 0; i < bitmaps.Length; i++) {
+                bitmaps[i] = new Bitmap(bitmaps[i], WIDTH, HEIGHT);
+            }
+
             this.ClientSize = new Size(WIDTH * DATA_LEN + PADDING * 2, HEIGHT + PADDING * 2);
 
 

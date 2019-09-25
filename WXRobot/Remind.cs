@@ -16,8 +16,6 @@ namespace WXRobot
 
         public List<StartUpItem> listStartUp;//开机自启动
 
-        public List<ShutdownItem> listShutdown;//关机
-
         internal void defaultConfig()
         {
             startX = -1;
@@ -25,7 +23,6 @@ namespace WXRobot
             startUp = 1;
             listRemind = new List<RemindItem>();
             listStartUp = new List<StartUpItem>();
-            listShutdown = new List<ShutdownItem>();
         }
     }
 
@@ -39,8 +36,6 @@ namespace WXRobot
 
         public int guanjiIndex10 = -1;
         public int guanjiIndex11 = -1;
-
-
     }
 
 
@@ -83,9 +78,7 @@ namespace WXRobot
         }
 
 
-        public List<ShutdownItem> getShutdownData() {
-            return dataItem.listShutdown;
-        }
+    
 
         public List<RemindItem> handleTime(DateTime dateTime) {
 
@@ -100,25 +93,31 @@ namespace WXRobot
             }
 
             handShutdown(dateTime);
-            
             return list1;
         }
 
         private void handShutdown(DateTime dateTime)
         {
-            foreach (ShutdownItem item in getShutdownData())
-            {
-                if (dateTime.Hour == item.hour && dateTime.Minute == item.minute) {
-                    Utils.runCmd("shutdown -s -t " +10);
-                    break;
-                }
-            }
+            //foreach (ShutdownItem item in getShutdownData())
+            //{
+            //    if (dateTime.Hour == item.hour && dateTime.Minute == item.minute) {
+            //        Utils.runCmd("shutdown -s -t " +10);
+            //        break;
+            //    }
+            //}
         }
 
         private void createFromCache() {
             string text = IniUtil.getValue(Constants.APP_CONFIG, null);
-            dataItem = Utils.parseObject<DataItem>(text);
-        
+            try
+            {
+                dataItem = Utils.parseObject<DataItem>(text);
+            }
+            catch (Exception) {
+
+            }
+
+  
             if (dataItem == null) {
                 dataItem = new DataItem();
                 dataItem.defaultConfig();
@@ -188,8 +187,8 @@ namespace WXRobot
     public class RemindItem : BaseItem
     {
 
-        public int hour = 12;//小时 0-23
-        public int minute = 13;//分钟 0-59
+        public int hour;//小时 0-23
+        public int minute;//分钟 0-59
         public int week;//星期几  Sunday = 0,         Saturday = 6
         public int day;//第几天提醒 1-31
         public int month;//第几月提醒 1-12
@@ -197,20 +196,14 @@ namespace WXRobot
 
         public int remindType = RemindType.DAY;//提醒周期
 
+        public int taskType = TaskType.REMIND;
+
         public string content = "提醒内容";//提醒内容
+        public string extra;//参数
 
         public bool isHourMinuteSame(DateTime dateTime) {
             return dateTime.Hour == this.hour && dateTime.Minute == this.minute;
         }
-
-
-   
-
-
-
-
-  
-
 
         public string getShowTime() {
             //string.Format("整数{0:D2},小数｛1:F2｝,16进0x{2:X2}",2,3,4);
@@ -219,7 +212,7 @@ namespace WXRobot
 
 
         public string getRemindTypeString() {
-            return RemindType.remindType2String(remindType);
+            return RemindType.type2String(remindType);
         }
 
         public bool handleTime(DateTime dateTime) {
@@ -257,9 +250,36 @@ namespace WXRobot
 
     }
 
+    public static class TaskType {
+        public const int REMIND = 0;//提醒
+        public const int SHUT_DONW = 1;//关机
+        public const int OPEN_EXE = 2;//打开程序
+
+
+        public static Dictionary<int, string> map = null;
+
+
+
+
+        public static string type2String(int type)
+        {
+            if (map == null)
+            {
+                map = new Dictionary<int, string>();
+                map.Add(REMIND, "提醒");
+                map.Add(SHUT_DONW, "关机");
+                map.Add(OPEN_EXE, "执行程序");
+            }
+            return map[type];
+        }
+    }
+
+
 
     public static class RemindType {
 
+
+  
 
         public const int DAY = 0;
         public const int WEEK = 1;
@@ -273,7 +293,7 @@ namespace WXRobot
 
 
 
-        public static string remindType2String(int type) {
+        public static string type2String(int type) {
             if (map == null) {
                 map = new Dictionary<int, string>();
                 map.Add(DAY,"每天");

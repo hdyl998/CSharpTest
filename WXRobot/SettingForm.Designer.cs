@@ -33,25 +33,20 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageA = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnShutdownCancel = new System.Windows.Forms.Button();
+            this.btnShutdownStart = new System.Windows.Forms.Button();
+            this.cbShutdownMinute = new System.Windows.Forms.ComboBox();
+            this.btnShutdownRightNow = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.cbShutdownHour = new System.Windows.Forms.ComboBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.btnPaint = new System.Windows.Forms.Button();
             this.btnStartPath = new System.Windows.Forms.Button();
             this.btnNotepad = new System.Windows.Forms.Button();
             this.btnCalc = new System.Windows.Forms.Button();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.listGuanji = new System.Windows.Forms.ListBox();
-            this.btnGuanjiAdd = new System.Windows.Forms.Button();
-            this.btnGuanjiRemove = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnShutdownStart = new System.Windows.Forms.Button();
-            this.btnShutdownCancel = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbShutdownMinute = new System.Windows.Forms.ComboBox();
-            this.btnShutdownRightNow = new System.Windows.Forms.Button();
-            this.cbShutdownHour = new System.Windows.Forms.ComboBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tabPageB = new System.Windows.Forms.TabPage();
             this.btnRMTest = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -76,8 +71,6 @@
             this.btnKJAdd = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageA.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPageB.SuspendLayout();
             this.tabPageC.SuspendLayout();
@@ -85,7 +78,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(171, 449);
+            this.button1.Location = new System.Drawing.Point(144, 409);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(256, 37);
             this.button1.TabIndex = 0;
@@ -107,10 +100,9 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPageA);
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPageB);
             this.tabControl1.Controls.Add(this.tabPageC);
-            this.tabControl1.Location = new System.Drawing.Point(30, 51);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(550, 374);
@@ -118,6 +110,7 @@
             // 
             // tabPageA
             // 
+            this.tabPageA.Controls.Add(this.groupBox1);
             this.tabPageA.Controls.Add(this.btnPaint);
             this.tabPageA.Controls.Add(this.btnStartPath);
             this.tabPageA.Controls.Add(this.btnNotepad);
@@ -129,6 +122,145 @@
             this.tabPageA.TabIndex = 2;
             this.tabPageA.Text = "基本功能";
             this.tabPageA.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnShutdownCancel);
+            this.groupBox1.Controls.Add(this.btnShutdownStart);
+            this.groupBox1.Controls.Add(this.cbShutdownMinute);
+            this.groupBox1.Controls.Add(this.btnShutdownRightNow);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.cbShutdownHour);
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Location = new System.Drawing.Point(312, 23);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(216, 184);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "关机";
+            // 
+            // btnShutdownCancel
+            // 
+            this.btnShutdownCancel.Location = new System.Drawing.Point(114, 80);
+            this.btnShutdownCancel.Name = "btnShutdownCancel";
+            this.btnShutdownCancel.Size = new System.Drawing.Size(80, 35);
+            this.btnShutdownCancel.TabIndex = 6;
+            this.btnShutdownCancel.Text = "取消任务";
+            this.btnShutdownCancel.UseVisualStyleBackColor = true;
+            this.btnShutdownCancel.Click += new System.EventHandler(this.btnShutdownCancel_Click);
+            // 
+            // btnShutdownStart
+            // 
+            this.btnShutdownStart.Location = new System.Drawing.Point(114, 27);
+            this.btnShutdownStart.Name = "btnShutdownStart";
+            this.btnShutdownStart.Size = new System.Drawing.Size(80, 35);
+            this.btnShutdownStart.TabIndex = 3;
+            this.btnShutdownStart.Text = "开始任务";
+            this.btnShutdownStart.UseVisualStyleBackColor = true;
+            this.btnShutdownStart.Click += new System.EventHandler(this.btnShutdownStart_Click);
+            // 
+            // cbShutdownMinute
+            // 
+            this.cbShutdownMinute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbShutdownMinute.FormattingEnabled = true;
+            this.cbShutdownMinute.Items.AddRange(new object[] {
+            "0",
+            "5",
+            "10",
+            "20",
+            "30",
+            "40",
+            "50"});
+            this.cbShutdownMinute.Location = new System.Drawing.Point(11, 136);
+            this.cbShutdownMinute.Name = "cbShutdownMinute";
+            this.cbShutdownMinute.Size = new System.Drawing.Size(49, 23);
+            this.cbShutdownMinute.TabIndex = 4;
+            // 
+            // btnShutdownRightNow
+            // 
+            this.btnShutdownRightNow.Location = new System.Drawing.Point(114, 130);
+            this.btnShutdownRightNow.Name = "btnShutdownRightNow";
+            this.btnShutdownRightNow.Size = new System.Drawing.Size(80, 35);
+            this.btnShutdownRightNow.TabIndex = 6;
+            this.btnShutdownRightNow.Text = "立即关机";
+            this.btnShutdownRightNow.UseVisualStyleBackColor = true;
+            this.btnShutdownRightNow.Click += new System.EventHandler(this.btnShutdownRightNow_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(66, 100);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(22, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "时";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(66, 140);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(22, 15);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "分";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(11, 27);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(73, 19);
+            this.radioButton1.TabIndex = 7;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "倒计时";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // cbShutdownHour
+            // 
+            this.cbShutdownHour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbShutdownHour.FormattingEnabled = true;
+            this.cbShutdownHour.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23"});
+            this.cbShutdownHour.Location = new System.Drawing.Point(11, 97);
+            this.cbShutdownHour.Name = "cbShutdownHour";
+            this.cbShutdownHour.Size = new System.Drawing.Size(49, 23);
+            this.cbShutdownHour.TabIndex = 4;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(11, 52);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(73, 19);
+            this.radioButton2.TabIndex = 8;
+            this.radioButton2.Text = "正计时";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // btnPaint
             // 
@@ -170,198 +302,6 @@
             this.btnCalc.UseVisualStyleBackColor = true;
             this.btnCalc.Click += new System.EventHandler(this.btnCalc_Click);
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(542, 345);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "关机任务";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.listGuanji);
-            this.groupBox2.Controls.Add(this.btnGuanjiAdd);
-            this.groupBox2.Controls.Add(this.btnGuanjiRemove);
-            this.groupBox2.Location = new System.Drawing.Point(290, 51);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(233, 209);
-            this.groupBox2.TabIndex = 14;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "计划关机";
-            // 
-            // listGuanji
-            // 
-            this.listGuanji.FormattingEnabled = true;
-            this.listGuanji.ItemHeight = 15;
-            this.listGuanji.Location = new System.Drawing.Point(18, 24);
-            this.listGuanji.Name = "listGuanji";
-            this.listGuanji.Size = new System.Drawing.Size(192, 94);
-            this.listGuanji.TabIndex = 10;
-            // 
-            // btnGuanjiAdd
-            // 
-            this.btnGuanjiAdd.Location = new System.Drawing.Point(18, 145);
-            this.btnGuanjiAdd.Name = "btnGuanjiAdd";
-            this.btnGuanjiAdd.Size = new System.Drawing.Size(80, 35);
-            this.btnGuanjiAdd.TabIndex = 11;
-            this.btnGuanjiAdd.Text = "添加";
-            this.btnGuanjiAdd.UseVisualStyleBackColor = true;
-            this.btnGuanjiAdd.Click += new System.EventHandler(this.btnGuanjiAdd_Click);
-            // 
-            // btnGuanjiRemove
-            // 
-            this.btnGuanjiRemove.Location = new System.Drawing.Point(130, 145);
-            this.btnGuanjiRemove.Name = "btnGuanjiRemove";
-            this.btnGuanjiRemove.Size = new System.Drawing.Size(80, 35);
-            this.btnGuanjiRemove.TabIndex = 12;
-            this.btnGuanjiRemove.Text = "移除";
-            this.btnGuanjiRemove.UseVisualStyleBackColor = true;
-            this.btnGuanjiRemove.Click += new System.EventHandler(this.btnGuanjiRemove_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnShutdownStart);
-            this.groupBox1.Controls.Add(this.btnShutdownCancel);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.cbShutdownMinute);
-            this.groupBox1.Controls.Add(this.btnShutdownRightNow);
-            this.groupBox1.Controls.Add(this.cbShutdownHour);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(26, 51);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(240, 209);
-            this.groupBox1.TabIndex = 13;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "计时关机";
-            // 
-            // btnShutdownStart
-            // 
-            this.btnShutdownStart.Location = new System.Drawing.Point(139, 24);
-            this.btnShutdownStart.Name = "btnShutdownStart";
-            this.btnShutdownStart.Size = new System.Drawing.Size(80, 35);
-            this.btnShutdownStart.TabIndex = 3;
-            this.btnShutdownStart.Text = "定时任务";
-            this.btnShutdownStart.UseVisualStyleBackColor = true;
-            this.btnShutdownStart.Click += new System.EventHandler(this.btnShutdownStart_Click);
-            // 
-            // btnShutdownCancel
-            // 
-            this.btnShutdownCancel.Location = new System.Drawing.Point(139, 85);
-            this.btnShutdownCancel.Name = "btnShutdownCancel";
-            this.btnShutdownCancel.Size = new System.Drawing.Size(80, 35);
-            this.btnShutdownCancel.TabIndex = 6;
-            this.btnShutdownCancel.Text = "取消任务";
-            this.btnShutdownCancel.UseVisualStyleBackColor = true;
-            this.btnShutdownCancel.Click += new System.EventHandler(this.btnShutdownCancel_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 105);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(22, 15);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "时";
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(15, 57);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(73, 19);
-            this.radioButton2.TabIndex = 8;
-            this.radioButton2.Text = "正计时";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(70, 145);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 15);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "分";
-            // 
-            // cbShutdownMinute
-            // 
-            this.cbShutdownMinute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbShutdownMinute.FormattingEnabled = true;
-            this.cbShutdownMinute.Items.AddRange(new object[] {
-            "0",
-            "5",
-            "10",
-            "20",
-            "30",
-            "40",
-            "50"});
-            this.cbShutdownMinute.Location = new System.Drawing.Point(15, 141);
-            this.cbShutdownMinute.Name = "cbShutdownMinute";
-            this.cbShutdownMinute.Size = new System.Drawing.Size(49, 23);
-            this.cbShutdownMinute.TabIndex = 4;
-            // 
-            // btnShutdownRightNow
-            // 
-            this.btnShutdownRightNow.Location = new System.Drawing.Point(139, 145);
-            this.btnShutdownRightNow.Name = "btnShutdownRightNow";
-            this.btnShutdownRightNow.Size = new System.Drawing.Size(80, 35);
-            this.btnShutdownRightNow.TabIndex = 6;
-            this.btnShutdownRightNow.Text = "立即关机";
-            this.btnShutdownRightNow.UseVisualStyleBackColor = true;
-            this.btnShutdownRightNow.Click += new System.EventHandler(this.btnShutdownRightNow_Click);
-            // 
-            // cbShutdownHour
-            // 
-            this.cbShutdownHour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbShutdownHour.FormattingEnabled = true;
-            this.cbShutdownHour.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23"});
-            this.cbShutdownHour.Location = new System.Drawing.Point(15, 102);
-            this.cbShutdownHour.Name = "cbShutdownHour";
-            this.cbShutdownHour.Size = new System.Drawing.Size(49, 23);
-            this.cbShutdownHour.TabIndex = 4;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(15, 32);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(73, 19);
-            this.radioButton1.TabIndex = 7;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "倒计时";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
             // tabPageB
             // 
             this.tabPageB.Controls.Add(this.btnRMTest);
@@ -376,7 +316,7 @@
             this.tabPageB.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageB.Size = new System.Drawing.Size(542, 345);
             this.tabPageB.TabIndex = 0;
-            this.tabPageB.Text = "周期提醒";
+            this.tabPageB.Text = "周期任务";
             this.tabPageB.UseVisualStyleBackColor = true;
             // 
             // btnRMTest
@@ -459,7 +399,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "内容";
-            this.columnHeader1.Width = 160;
+            this.columnHeader1.Width = 158;
             // 
             // columnHeader2
             // 
@@ -577,20 +517,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(612, 498);
+            this.ClientSize = new System.Drawing.Size(579, 472);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Setting";
+            this.Text = "设置";
             this.Load += new System.EventHandler(this.SettingForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPageA.ResumeLayout(false);
             this.tabPageA.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPageB.ResumeLayout(false);
@@ -630,21 +568,16 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.ComboBox cbShutdownHour;
+        private System.Windows.Forms.Button btnStartPath;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnShutdownCancel;
+        private System.Windows.Forms.Button btnShutdownStart;
         private System.Windows.Forms.ComboBox cbShutdownMinute;
+        private System.Windows.Forms.Button btnShutdownRightNow;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Button btnShutdownStart;
-        private System.Windows.Forms.Button btnShutdownRightNow;
-        private System.Windows.Forms.Button btnShutdownCancel;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox listGuanji;
-        private System.Windows.Forms.Button btnGuanjiAdd;
-        private System.Windows.Forms.Button btnGuanjiRemove;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnStartPath;
+        private System.Windows.Forms.ComboBox cbShutdownHour;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }
