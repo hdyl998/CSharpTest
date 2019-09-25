@@ -47,22 +47,14 @@ namespace WXRobot
             cbShutdownHour.SelectedIndex = 0;
             cbShutdownHour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 
-            cbShutdownMinute.SelectedIndex = 0;
+            cbShutdownMinute.SelectedIndex = 3;
             cbShutdownMinute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 
             bindListData();
             bindKJListData();
 
-            bindGuanjiData();
         }
 
-        private void bindGuanjiData()
-        {
-            listGuanji.Items.Clear();
-            foreach (ShutdownItem item in DataManager.getInstance().getShutdownData()) {
-                listGuanji.Items.Add(item.ToString());
-            }
-        }
 
         private void bindKJListData()
         {
@@ -104,7 +96,7 @@ namespace WXRobot
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            RemindNewForm dlg = new RemindNewForm();
+            AddRemindForm dlg = new AddRemindForm();
             dlg.ShowDialog();
 
         }
@@ -117,7 +109,7 @@ namespace WXRobot
             if (index != -1)
             {
                 var var = DataManager.getInstance().getRemindData()[index];
-                RemindNewForm dlg = new RemindNewForm();
+                AddRemindForm dlg = new AddRemindForm();
                 dlg.remindItem = var;
                 dlg.ShowDialog();
             }
@@ -350,28 +342,6 @@ namespace WXRobot
             MessageBox.Show(Application.StartupPath);
         }
 
-        private void btnGuanjiAdd_Click(object sender, EventArgs e)
-        {
-
-            AddGuanjiForm dlg = new AddGuanjiForm();
-            if (dlg.ShowDialog() == DialogResult.OK) { 
-                ShutdownItem item = new ShutdownItem();
-                item.hour = dlg.selHour;
-                item.minute = dlg.selMinute;
-                DataManager.getInstance().getShutdownData().Add(item);
-                
-
-                bindGuanjiData();
-            }
-        }
-
-        private void btnGuanjiRemove_Click(object sender, EventArgs e)
-        {
-
-            if (listGuanji.SelectedIndex != -1) {
-                DataManager.getInstance().getShutdownData().RemoveAt(listGuanji.SelectedIndex);
-                bindGuanjiData();
-            }        
-        }
+   
     }
 }
