@@ -35,7 +35,7 @@ namespace WXRobot
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DataManager.getInstance().saveAll();
+           
             this.Close();
         }
 
@@ -44,17 +44,48 @@ namespace WXRobot
         private void SettingForm_Load(object sender, EventArgs e)
         {
             checkBox1.Checked = Utils.isStartUp();
-            cbShutdownHour.SelectedIndex = 0;
             cbShutdownHour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-
-            cbShutdownMinute.SelectedIndex = 3;
             cbShutdownMinute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 
             bindListData();
             bindKJListData();
 
+            UiItem item = DataManager.getInstance().getUiItem();
+            radioButton1.Checked = item.guanjiRadio == 0;
+            radioButton2.Checked = item.guanjiRadio != 0;
+
+            bindUiConfig();
+            isLoaded = true;
         }
 
+        bool isLoaded = false;
+
+
+        private void bindUiConfig()
+        {
+
+            try
+            {
+                UiItem item = DataManager.getInstance().getUiItem();
+                if (radioButton1.Checked)
+                {
+
+                    cbShutdownHour.SelectedIndex = item.guanjiHour;
+                    cbShutdownMinute.SelectedIndex = item.guanjiMinute;
+                }
+                else
+                {
+                    cbShutdownHour.SelectedIndex = item.guanjiHour2;
+                    cbShutdownMinute.SelectedIndex = item.guanjiMinute2;
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+  
+
+        }
 
         private void bindKJListData()
         {
@@ -68,15 +99,13 @@ namespace WXRobot
                 list.Text = item.getAppName();
                 list.SubItems.Add(item.path);
                 list.SubItems.Add(item.getEnableString());
-                listView1.Items.Add(list);
+                listViewKJ.Items.Add(list);
             }
-
-            //listRemind.EnsureVisible();
         }
 
 
 
-        //string[] titles = { "提醒内容", "时间", "提醒方式" };
+
         private void bindListData()
         {
 
@@ -94,6 +123,8 @@ namespace WXRobot
 
             //listRemind.EnsureVisible();
         }
+
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             AddRemindForm dlg = new AddRemindForm();
@@ -105,7 +136,7 @@ namespace WXRobot
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            int index = getListViewSelectIndex();
+            int index = getListViewSelectIndex(listView1);
             if (index != -1)
             {
                 var var = DataManager.getInstance().getRemindData()[index];
@@ -118,10 +149,10 @@ namespace WXRobot
         private void btnRemove_Click(object sender, EventArgs e)
         {
 
-            int index = getListViewSelectIndex();
+            int index = getListViewSelectIndex(listView1);
             if (index != -1)
             {
-                if (MessageBox.Show("确认删除？", "确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                if (MessageBox.Show("确认移除？", "确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
                     DataManager.getInstance().getRemindData().RemoveAt(index);
                     bindListData();
@@ -141,20 +172,19 @@ namespace WXRobot
         private void btnEnable_Click(object sender, EventArgs e)
         {
 
-            int index = getListViewSelectIndex();
+            int index = getListViewSelectIndex(listView1);
             if (index != -1)
             {
                 var var = DataManager.getInstance().getRemindData()[index];
                 var.isEnable = !var.isEnable;
-                //listView1.Items[index].SubItems[]
                 bindListData();
             }
         }
 
 
-        private int getListViewSelectIndex()
+        private int getListViewSelectIndex(ListView listView)
         {
-            var indexs = listView1.SelectedIndices;
+            var indexs = listView.SelectedIndices;
             if (indexs.Count == 1)
             {
                 return indexs[0];
@@ -211,7 +241,7 @@ namespace WXRobot
         }
 
         private void shutdownWithTime(int time) {
-            LogUtil.print(time);
+            LogUtil.Print(time);
             if (time < 10)
             {
                 time = 10;
@@ -267,44 +297,63 @@ namespace WXRobot
             dialog.FilterIndex = 2;
             dialog.RestoreDirectory = true;
 
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    listBox1.Items.AddRange(dialog.FileNames);
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
 
-            //    foreach (string str in dialog.FileNames)
-            //    {
-            //        StartUpItem item = new StartUpItem();
-            //        item.path = str;
-            //        DataManager.getInstance().getStartUpData().Add(item);
-            //    }
-            //    DataManager.getInstance().saveStartUpData();
-            //}
+                foreach (string str in dialog.FileNames)
+                {
+                    StartUpItem item = new StartUpItem();
+
+                    int indexEnd=str.LastIndexOf(".");
+                    int indexStart=str.LastIndexOf("\\");
+                    if (indexEnd != -1 && indexStart != -1)
+                    {
+                        item.appName = str.Substring(indexStart+1, indexEnd- indexStart-1);
+                    }
+                    else {
+                        item.appName = str;
+                    }
+        
+                    item.path = str;
+                    DataManager.getInstance().getStartUpData().Add(item);
+                }
+                bindKJListData();
+                DataManager.getInstance().saveAll();
+            }
         }
 
 
         private void btnKJRemove_Click(object sender, EventArgs e)
         {
-            //if (listBox1.SelectedIndex != -1) {
 
-            //    DataManager.getInstance().getStartUpData().RemoveAt(listBox1.SelectedIndex);
-            //    DataManager.getInstance().saveStartUpData();
-            //    listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+            int index = getListViewSelectIndex(listViewKJ);
+            if (index != -1)
+            {
+                if (MessageBox.Show("确认移除？", "确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    DataManager.getInstance().getStartUpData().RemoveAt(index);
+                    bindKJListData();
+                    DataManager.getInstance().saveAll();
+                }
+            }
 
-            //}
         }
 
         private void btnKJTest_Click(object sender, EventArgs e)
         {
-            //if (listBox1.SelectedIndex != -1)
-            //{
-            //    Utils.runExe(listBox1.SelectedItem.ToString());
-            //}
+
+            int index = getListViewSelectIndex(listViewKJ);
+            if (index != -1)
+            {
+                string path = DataManager.getInstance().getStartUpData()[index].path;
+                Utils.runExe(path);
+            }
         }
 
         private void btnRMTest_Click(object sender, EventArgs e)
         {
 
-            int index = getListViewSelectIndex();
+            int index = getListViewSelectIndex(listView1);
         
 
             RemindForm dlg = new RemindForm();
@@ -319,29 +368,87 @@ namespace WXRobot
 
         private void btnKJEnable_Click(object sender, EventArgs e)
         {
-
+            int index = getListViewSelectIndex(listViewKJ);
+            if (index != -1)
+            {
+                var var = DataManager.getInstance().getStartUpData()[index];
+                var.isEnable = !var.isEnable;
+                bindKJListData();
+                DataManager.getInstance().saveAll();
+            }
         }
 
-        private void btnKJEdit_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnStartPath_Click(object sender, EventArgs e)
         {
             MessageBox.Show(Application.StartupPath);
         }
 
-   
+ 
+
+        private void recordConfig() {
+            if (!isLoaded) {
+                return;
+            }
+
+            UiItem item = DataManager.getInstance().getUiItem();
+            item.guanjiRadio = radioButton1.Checked ? 0 : 1;
+            if (radioButton1.Checked) { 
+                item.guanjiHour = cbShutdownHour.SelectedIndex;
+                item.guanjiMinute = cbShutdownMinute.SelectedIndex;
+            }
+            else{
+                item.guanjiHour2= cbShutdownHour.SelectedIndex;
+                item.guanjiMinute2= cbShutdownMinute.SelectedIndex;
+            }
+            LogUtil.Print("记录配置", item);
+
+            isUiConfigChanged = true;
+
+        }
+
+        private void SettingForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            if (isUiConfigChanged) {
+                recordConfig();
+                DataManager.getInstance().saveUiItem();
+            }
+
+        }
+
+        bool isCheckChanged = false;
+
+        bool isUiConfigChanged = false;
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!isLoaded) {
+                return;
+            }
+            isCheckChanged = true;
+            bindUiConfig();
+            isCheckChanged = false;
+
+            isUiConfigChanged = true;
+        }
+
+        private void cbShutdownHour_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (!isCheckChanged) {
+                recordConfig();
+            }
+    
+        }
+
+        private void cbShutdownMinute_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isCheckChanged)
+            {
+                recordConfig();
+            }
+        }
     }
 }

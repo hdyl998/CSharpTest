@@ -39,6 +39,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxExtra = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnChoose = new System.Windows.Forms.Button();
             this.comboBoxYear = new System.Windows.Forms.ComboBox();
             this.comboBoxMonth = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -129,17 +130,28 @@
             // 
             this.textBoxExtra.Location = new System.Drawing.Point(88, 19);
             this.textBoxExtra.Name = "textBoxExtra";
-            this.textBoxExtra.Size = new System.Drawing.Size(165, 25);
+            this.textBoxExtra.Size = new System.Drawing.Size(427, 25);
             this.textBoxExtra.TabIndex = 1;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnChoose);
             this.panel1.Controls.Add(this.textBoxExtra);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(1, 280);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(282, 57);
+            this.panel1.Size = new System.Drawing.Size(610, 57);
             this.panel1.TabIndex = 5;
+            // 
+            // btnChoose
+            // 
+            this.btnChoose.Location = new System.Drawing.Point(521, 17);
+            this.btnChoose.Name = "btnChoose";
+            this.btnChoose.Size = new System.Drawing.Size(75, 25);
+            this.btnChoose.TabIndex = 2;
+            this.btnChoose.Text = "选择";
+            this.btnChoose.UseVisualStyleBackColor = true;
+            this.btnChoose.Click += new System.EventHandler(this.btnChoose_Click);
             // 
             // comboBoxYear
             // 
@@ -172,7 +184,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 495);
+            this.ClientSize = new System.Drawing.Size(612, 495);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnComplete);
             this.Controls.Add(this.comboBox3);
@@ -212,5 +224,6 @@
         private System.Windows.Forms.ComboBox comboBoxYear;
         private System.Windows.Forms.ComboBox comboBoxMonth;
         private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Button btnChoose;
     }
 }

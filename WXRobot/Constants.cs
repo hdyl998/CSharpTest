@@ -15,5 +15,8 @@ namespace WXRobot
 
         public const string INI_SECTION = "DEFAULT";
         public const string APP_CONFIG = "APP_CONFIG";
+        public const string APP_UI_CONFIG = "APP_UI_CONFIG";
+
+
     }
 }

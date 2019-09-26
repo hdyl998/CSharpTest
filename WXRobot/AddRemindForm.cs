@@ -74,5 +74,10 @@ namespace WXRobot
                 textBox1.Text = remindItem.content;
             }
         }
+
+        private void btnChoose_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

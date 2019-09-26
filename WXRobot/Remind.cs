@@ -27,15 +27,20 @@ namespace WXRobot
     }
 
     public class UiItem{
-        public int tabIndex = 0;
 
         //关机
-        public int guanjiRadio = 0;
-        public int guanjiIndex0 = 0;
-        public int guanjiIndex1 = 5;
+        public int guanjiRadio;
+        public int guanjiHour;
+        public int guanjiMinute;
 
-        public int guanjiIndex10 = -1;
-        public int guanjiIndex11 = -1;
+        public int guanjiHour2;
+        public int guanjiMinute2;
+
+
+        public void defaultConfig() {
+            guanjiMinute = 5;
+        }
+
     }
 
 
@@ -57,6 +62,14 @@ namespace WXRobot
             return intance;
         }
         DataItem dataItem;
+
+        UiItem uiItem;
+
+
+        public UiItem getUiItem() {
+            return uiItem;
+        }
+
 
         public DataItem getDataItem() {
             return dataItem;
@@ -116,11 +129,24 @@ namespace WXRobot
             catch (Exception) {
 
             }
-
-  
             if (dataItem == null) {
                 dataItem = new DataItem();
                 dataItem.defaultConfig();
+            }
+
+            string uiText = IniUtil.getValue(Constants.APP_UI_CONFIG,null);
+
+            try
+            {
+                uiItem = Utils.parseObject<UiItem>(uiText);
+            }
+            catch (Exception)
+            {
+            }
+            if (uiItem == null)
+            {
+                uiItem = new UiItem();
+                uiItem.defaultConfig();
             }
         }
 
@@ -129,6 +155,11 @@ namespace WXRobot
 
             isChanged = false;
             IniUtil.setValue(Constants.APP_CONFIG, Utils.toJSONString(dataItem));
+        }
+
+
+        public void saveUiItem() {
+            IniUtil.setValue(Constants.APP_UI_CONFIG, Utils.toJSONString(uiItem));
         }
 
 
@@ -174,11 +205,7 @@ namespace WXRobot
 
 
         public string getAppName() {
-            if (appName != null)
-            {
-                return appName;
-            }
-            return appName=path.Substring(path.LastIndexOf("/") + 1);
+            return appName;
         }
         
     }
