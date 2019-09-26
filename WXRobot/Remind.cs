@@ -314,6 +314,7 @@ namespace WXRobot
         public const int YEAR = 3;
         public const int HOUR = 10;
         public const int ONCE = 99;
+        public const int DEFINE = 100;//自定义
 
         public static Dictionary<int, string> map = null;
         
@@ -329,6 +330,7 @@ namespace WXRobot
                 map.Add(YEAR, "每年");
                 map.Add(HOUR, "每小时");
                 map.Add(ONCE, "仅提醒一次");
+                map.Add(DEFINE, "自定义");
             }
             return map[type];
         }

@@ -49,6 +49,7 @@ namespace WXRobot
             listSelType.Add(RemindType.YEAR);
             listSelType.Add(RemindType.HOUR);
             listSelType.Add(RemindType.ONCE);
+            listSelType.Add(RemindType.DEFINE);
 
 
             foreach (int type in listSelType) {
