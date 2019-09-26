@@ -174,11 +174,7 @@ namespace WXRobot
 
 
         public string getAppName() {
-            if (appName != null)
-            {
-                return appName;
-            }
-            return appName=path.Substring(path.LastIndexOf("/") + 1);
+            return appName;
         }
         
     }

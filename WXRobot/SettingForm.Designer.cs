@@ -60,7 +60,6 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPageC = new System.Windows.Forms.TabPage();
-            this.btnKJEdit = new System.Windows.Forms.Button();
             this.listViewKJ = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -82,7 +81,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(256, 37);
             this.button1.TabIndex = 0;
-            this.button1.Text = "保存";
+            this.button1.Text = "关闭";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -417,7 +416,6 @@
             // 
             // tabPageC
             // 
-            this.tabPageC.Controls.Add(this.btnKJEdit);
             this.tabPageC.Controls.Add(this.listViewKJ);
             this.tabPageC.Controls.Add(this.btnKJEnable);
             this.tabPageC.Controls.Add(this.btnKJTest);
@@ -430,16 +428,6 @@
             this.tabPageC.TabIndex = 1;
             this.tabPageC.Text = "开机程序";
             this.tabPageC.UseVisualStyleBackColor = true;
-            // 
-            // btnKJEdit
-            // 
-            this.btnKJEdit.Location = new System.Drawing.Point(419, 64);
-            this.btnKJEdit.Name = "btnKJEdit";
-            this.btnKJEdit.Size = new System.Drawing.Size(90, 23);
-            this.btnKJEdit.TabIndex = 14;
-            this.btnKJEdit.Text = "编辑";
-            this.btnKJEdit.UseVisualStyleBackColor = true;
-            this.btnKJEdit.Click += new System.EventHandler(this.btnKJEdit_Click);
             // 
             // listViewKJ
             // 
@@ -474,7 +462,7 @@
             // 
             // btnKJEnable
             // 
-            this.btnKJEnable.Location = new System.Drawing.Point(419, 93);
+            this.btnKJEnable.Location = new System.Drawing.Point(419, 64);
             this.btnKJEnable.Name = "btnKJEnable";
             this.btnKJEnable.Size = new System.Drawing.Size(90, 23);
             this.btnKJEnable.TabIndex = 12;
@@ -484,7 +472,7 @@
             // 
             // btnKJTest
             // 
-            this.btnKJTest.Location = new System.Drawing.Point(419, 122);
+            this.btnKJTest.Location = new System.Drawing.Point(419, 93);
             this.btnKJTest.Name = "btnKJTest";
             this.btnKJTest.Size = new System.Drawing.Size(90, 23);
             this.btnKJTest.TabIndex = 2;
@@ -563,7 +551,6 @@
         private System.Windows.Forms.Button btnKJTest;
         private System.Windows.Forms.Button btnRMTest;
         private System.Windows.Forms.Button btnKJEnable;
-        private System.Windows.Forms.Button btnKJEdit;
         private System.Windows.Forms.ListView listViewKJ;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;

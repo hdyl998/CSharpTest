@@ -16,7 +16,7 @@ namespace WXRobot
 
 
 
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
 
         Bitmap[] bitmaps;
@@ -34,7 +34,7 @@ namespace WXRobot
         Graphics graphicsControl;
         Bitmap bufferimage;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             System.Diagnostics.Debug.WriteLine("启动完成");
@@ -186,7 +186,7 @@ namespace WXRobot
         private void handleStartUp() {
 
             foreach(StartUpItem item in DataManager.getInstance().getStartUpData()){
-                if (File.Exists(item.path)) {
+                if (item.isEnable &&File.Exists(item.path)) {
                     Utils.runExe(item.path);
                 }
             }
