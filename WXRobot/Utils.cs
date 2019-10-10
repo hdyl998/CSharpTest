@@ -10,13 +10,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WXRobot
+namespace DigitalClockPackge
 {
   public static  class Utils
     {
 
         //注册表名字
-        private const string APP_RIGISTER_NAME = "WXRobot";
+        private const string APP_RIGISTER_NAME = "DigitalClock";
 
         /// <summary>
         /// 判断是否是开机自启动

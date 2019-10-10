@@ -1,4 +1,4 @@
-﻿namespace WXRobot
+﻿namespace DigitalClockPackge
 {
     partial class AddRemindForm
     {
@@ -31,18 +31,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxPeriod = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnComplete = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxExtra = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnChoose = new System.Windows.Forms.Button();
             this.comboBoxYear = new System.Windows.Forms.ComboBox();
             this.comboBoxMonth = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBoxDay = new System.Windows.Forms.ComboBox();
+            this.comboBoxWeek = new System.Windows.Forms.ComboBox();
+            this.comboBoxHour = new System.Windows.Forms.ComboBox();
+            this.comboBoxMinute = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,14 +74,15 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "周期";
             // 
-            // comboBox1
+            // comboBoxPeriod
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(89, 56);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(165, 23);
-            this.comboBox1.TabIndex = 2;
+            this.comboBoxPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPeriod.FormattingEnabled = true;
+            this.comboBoxPeriod.Location = new System.Drawing.Point(89, 56);
+            this.comboBoxPeriod.Name = "comboBoxPeriod";
+            this.comboBoxPeriod.Size = new System.Drawing.Size(165, 23);
+            this.comboBoxPeriod.TabIndex = 2;
+            this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -108,14 +112,14 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "类别";
             // 
-            // comboBox2
+            // comboBoxType
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(89, 101);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(165, 23);
-            this.comboBox2.TabIndex = 2;
+            this.comboBoxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxType.FormattingEnabled = true;
+            this.comboBoxType.Location = new System.Drawing.Point(89, 101);
+            this.comboBoxType.Name = "comboBoxType";
+            this.comboBoxType.Size = new System.Drawing.Size(165, 23);
+            this.comboBoxType.TabIndex = 2;
             // 
             // label5
             // 
@@ -159,26 +163,55 @@
             this.comboBoxYear.FormattingEnabled = true;
             this.comboBoxYear.Location = new System.Drawing.Point(89, 152);
             this.comboBoxYear.Name = "comboBoxYear";
-            this.comboBoxYear.Size = new System.Drawing.Size(47, 23);
+            this.comboBoxYear.Size = new System.Drawing.Size(78, 23);
             this.comboBoxYear.TabIndex = 2;
             // 
             // comboBoxMonth
             // 
             this.comboBoxMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxMonth.FormattingEnabled = true;
-            this.comboBoxMonth.Location = new System.Drawing.Point(89, 181);
+            this.comboBoxMonth.Location = new System.Drawing.Point(180, 152);
             this.comboBoxMonth.Name = "comboBoxMonth";
-            this.comboBoxMonth.Size = new System.Drawing.Size(47, 23);
+            this.comboBoxMonth.Size = new System.Drawing.Size(78, 23);
             this.comboBoxMonth.TabIndex = 2;
             // 
-            // comboBox3
+            // comboBoxDay
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(89, 210);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(47, 23);
-            this.comboBox3.TabIndex = 2;
+            this.comboBoxDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxDay.FormattingEnabled = true;
+            this.comboBoxDay.Location = new System.Drawing.Point(273, 152);
+            this.comboBoxDay.Name = "comboBoxDay";
+            this.comboBoxDay.Size = new System.Drawing.Size(78, 23);
+            this.comboBoxDay.TabIndex = 2;
+            this.comboBoxDay.SelectedIndexChanged += new System.EventHandler(this.comboBoxDay_SelectedIndexChanged);
+            // 
+            // comboBoxWeek
+            // 
+            this.comboBoxWeek.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxWeek.FormattingEnabled = true;
+            this.comboBoxWeek.Location = new System.Drawing.Point(89, 181);
+            this.comboBoxWeek.Name = "comboBoxWeek";
+            this.comboBoxWeek.Size = new System.Drawing.Size(78, 23);
+            this.comboBoxWeek.TabIndex = 2;
+            // 
+            // comboBoxHour
+            // 
+            this.comboBoxHour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxHour.FormattingEnabled = true;
+            this.comboBoxHour.Location = new System.Drawing.Point(180, 181);
+            this.comboBoxHour.Name = "comboBoxHour";
+            this.comboBoxHour.Size = new System.Drawing.Size(78, 23);
+            this.comboBoxHour.TabIndex = 2;
+            this.comboBoxHour.SelectedIndexChanged += new System.EventHandler(this.comboBoxDay_SelectedIndexChanged);
+            // 
+            // comboBoxMinute
+            // 
+            this.comboBoxMinute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxMinute.FormattingEnabled = true;
+            this.comboBoxMinute.Location = new System.Drawing.Point(273, 181);
+            this.comboBoxMinute.Name = "comboBoxMinute";
+            this.comboBoxMinute.Size = new System.Drawing.Size(78, 23);
+            this.comboBoxMinute.TabIndex = 2;
             // 
             // AddRemindForm
             // 
@@ -187,11 +220,14 @@
             this.ClientSize = new System.Drawing.Size(612, 495);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnComplete);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.comboBoxHour);
+            this.Controls.Add(this.comboBoxDay);
+            this.Controls.Add(this.comboBoxMinute);
             this.Controls.Add(this.comboBoxMonth);
+            this.Controls.Add(this.comboBoxWeek);
             this.Controls.Add(this.comboBoxYear);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxType);
+            this.Controls.Add(this.comboBoxPeriod);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -213,17 +249,20 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxPeriod;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnComplete;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBoxType;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxExtra;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox comboBoxYear;
         private System.Windows.Forms.ComboBox comboBoxMonth;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBoxDay;
         private System.Windows.Forms.Button btnChoose;
+        private System.Windows.Forms.ComboBox comboBoxWeek;
+        private System.Windows.Forms.ComboBox comboBoxHour;
+        private System.Windows.Forms.ComboBox comboBoxMinute;
     }
 }

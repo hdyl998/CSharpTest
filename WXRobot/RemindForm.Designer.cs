@@ -1,4 +1,4 @@
-﻿namespace WXRobot
+﻿namespace DigitalClockPackge
 {
     partial class RemindForm
     {
@@ -60,7 +60,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.BackgroundImage = global::WXRobot.Properties.Resources.bg1;
+            this.panel1.BackgroundImage = global::DigitalClock.Properties.Resources.bg1;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.button1);

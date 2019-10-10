@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace WXRobot
+namespace DigitalClockPackge
 {
 
 
@@ -137,18 +137,18 @@ namespace WXRobot
 
 
             bitmaps = new Bitmap[]{
-                global::WXRobot.Properties.Resources.num0,
-                global::WXRobot.Properties.Resources.num1,
-                global::WXRobot.Properties.Resources.num2,
-                global::WXRobot.Properties.Resources.num3,
-                global::WXRobot.Properties.Resources.num4,
-                global::WXRobot.Properties.Resources.num5,
-                global::WXRobot.Properties.Resources.num6,
-                global::WXRobot.Properties.Resources.num7,
-                global::WXRobot.Properties.Resources.num8,
-                global::WXRobot.Properties.Resources.num9,
-                global::WXRobot.Properties.Resources.space,
-                global::WXRobot.Properties.Resources.line
+                global::DigitalClock.Properties.Resources.num0,
+                global::DigitalClock.Properties.Resources.num1,
+                global::DigitalClock.Properties.Resources.num2,
+                global::DigitalClock.Properties.Resources.num3,
+                global::DigitalClock.Properties.Resources.num4,
+                global::DigitalClock.Properties.Resources.num5,
+                global::DigitalClock.Properties.Resources.num6,
+                global::DigitalClock.Properties.Resources.num7,
+                global::DigitalClock.Properties.Resources.num8,
+                global::DigitalClock.Properties.Resources.num9,
+                global::DigitalClock.Properties.Resources.space,
+                global::DigitalClock.Properties.Resources.line
             };
 
             //调整大小

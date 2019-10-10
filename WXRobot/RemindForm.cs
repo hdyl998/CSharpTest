@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WXRobot
+namespace DigitalClockPackge
 {
     public partial class RemindForm : Form
     {
@@ -24,11 +24,11 @@ namespace WXRobot
 
         private void RemindForm_Load(object sender, EventArgs e)
         {
-            Bitmap[] bitmaps = { global::WXRobot.Properties.Resources.bg1
-                ,global::WXRobot.Properties.Resources.bg2
-                      ,global::WXRobot.Properties.Resources.bg3
-                            ,global::WXRobot.Properties.Resources.bg4
-                                  ,global::WXRobot.Properties.Resources.bg5
+            Bitmap[] bitmaps = { global::DigitalClock.Properties.Resources.bg1
+                ,global::DigitalClock.Properties.Resources.bg2
+                      ,global::DigitalClock.Properties.Resources.bg3
+                            ,global::DigitalClock.Properties.Resources.bg4
+                                  ,global::DigitalClock.Properties.Resources.bg5
             };
             int index = new Random().Next(bitmaps.Length);
             Bitmap bitmap=bitmaps[index];

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WXRobot
+namespace DigitalClockPackge
 {
 
     public class DataItem {
@@ -305,16 +305,13 @@ namespace WXRobot
 
     public static class RemindType {
 
-
-  
-
         public const int DAY = 0;
         public const int WEEK = 1;
         public const int MONTH = 2;
         public const int YEAR = 3;
         public const int HOUR = 10;
         public const int ONCE = 99;
-        public const int DEFINE = 100;//自定义
+        public const int USER_DEFINE = 100;//自定义
 
         public static Dictionary<int, string> map = null;
         
@@ -323,14 +320,14 @@ namespace WXRobot
 
         public static string type2String(int type) {
             if (map == null) {
-                map = new Dictionary<int, string>();
+                map = new Dictionary<int, string>(10);
                 map.Add(DAY,"每天");
                 map.Add(WEEK, "每周");
                 map.Add(MONTH, "每月");
                 map.Add(YEAR, "每年");
                 map.Add(HOUR, "每小时");
                 map.Add(ONCE, "仅提醒一次");
-                map.Add(DEFINE, "自定义");
+                map.Add(USER_DEFINE, "自定义");
             }
             return map[type];
         }

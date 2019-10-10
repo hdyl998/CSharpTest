@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WXRobot
+namespace DigitalClockPackge
 {
     public partial class EditStartupForm : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace WXRobot
+﻿namespace DigitalClockPackge
 {
     partial class EditStartupForm
     {

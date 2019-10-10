@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WXRobot", "WXRobot\WXRobot.csproj", "{179B2D06-B7ED-41C3-A930-0991F0971B4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIGITALCLOCK", "WXRobot\DIGITALCLOCK.csproj", "{179B2D06-B7ED-41C3-A930-0991F0971B4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
