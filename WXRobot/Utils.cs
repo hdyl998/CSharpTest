@@ -129,5 +129,19 @@ namespace DigitalClockPackge
         public static T parseObject<T>(string value) {
            return JsonConvert.DeserializeObject<T>(value);
         }
+
+
+        public static int findIndex(List<int>list,int value) {
+            int index = 0;
+            foreach (int i in list) {
+                if (i == value) {
+                    return index;
+                }
+                index++;
+            }
+
+            return index;
+        }
+
     }
 }

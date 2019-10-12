@@ -100,7 +100,7 @@ namespace DigitalClockPackge
             if (dateTime.Second == 0) {
                 var list = DataManager.getInstance().handleTime(dateTime);
                 if (list != null) {
-                    handleShowDialog(list);
+                    handleAction(list);
                 }
             }
             else if (dateTime.Second == 59) {
@@ -117,18 +117,36 @@ namespace DigitalClockPackge
         }
 
         RemindForm dlg;
-        private void handleShowDialog(List<RemindItem> list) {
+        private void handleAction(List<RemindItem> list) {
             closeDialog();
+            List<RemindItem> listReminds=null;
+            foreach (RemindItem item in list) {
+                if (!item.handleWork()) {
+                    if (listReminds == null) {
+                        listReminds = new List<RemindItem>();
+                    }
+                    listReminds.Add(item);
+                }
+            }
+            if (listReminds != null) {
+                showRemindDialog(listReminds);
+            }
+        }
+
+        private void showRemindDialog(List<RemindItem>listReminds) {
+
             dlg = new RemindForm();
-            dlg.items = list;
+            dlg.items = listReminds;
             dlg.ShowDialog();
         }
+
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
             //Utils.runExe("C:\\Windows\\notepad.exe", "C:\\Windows\\notepad.exe");
+
 
 
 

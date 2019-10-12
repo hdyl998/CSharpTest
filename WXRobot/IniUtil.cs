@@ -161,8 +161,8 @@ namespace DigitalClockPackge
             {
                 return null;
             }
-            StringBuilder temp = new StringBuilder(500);
-            int i = GetPrivateProfileString(Section, Key, defValue, temp, 500, this.inipath);
+            StringBuilder temp = new StringBuilder(50000);
+            int i = GetPrivateProfileString(Section, Key, defValue, temp, 50000, this.inipath);
             return temp.ToString();
         }
         /// <summary> 

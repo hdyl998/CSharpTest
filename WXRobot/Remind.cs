@@ -95,39 +95,26 @@ namespace DigitalClockPackge
 
         public List<RemindItem> handleTime(DateTime dateTime) {
 
-            List<RemindItem> list1=null;
+            List<RemindItem> list=null;
             foreach (RemindItem item in dataItem.listRemind) {
-                if (item.handleTime(dateTime)) { 
-                    if (list1 == null) {
-                        list1 = new List<RemindItem>();
+                if (item.isTimeOK(dateTime)) { 
+                    if (list == null) {
+                        list = new List<RemindItem>();
                     }
-                    list1.Add(item);
+                    list.Add(item);
                 }
             }
-
-            handShutdown(dateTime);
-            return list1;
+            return list;
         }
-
-        private void handShutdown(DateTime dateTime)
-        {
-            //foreach (ShutdownItem item in getShutdownData())
-            //{
-            //    if (dateTime.Hour == item.hour && dateTime.Minute == item.minute) {
-            //        Utils.runCmd("shutdown -s -t " +10);
-            //        break;
-            //    }
-            //}
-        }
-
         private void createFromCache() {
             string text = IniUtil.getValue(Constants.APP_CONFIG, null);
+            LogUtil.Print(text);
             try
             {
                 dataItem = Utils.parseObject<DataItem>(text);
             }
-            catch (Exception) {
-
+            catch (Exception e) {
+                LogUtil.Print(e.ToString());
             }
             if (dataItem == null) {
                 dataItem = new DataItem();
@@ -140,7 +127,7 @@ namespace DigitalClockPackge
             {
                 uiItem = Utils.parseObject<UiItem>(uiText);
             }
-            catch (Exception)
+            catch (Exception e)
             {
             }
             if (uiItem == null)
@@ -210,6 +197,28 @@ namespace DigitalClockPackge
         
     }
 
+    //public class OpenExeRemindItem: RemindItem
+    //{
+
+    //    public OpenExeRemindItem()
+    //    {
+
+    //        if (this is RemindItem)
+    //        {
+    //            LogUtil.Print("this is RemindItem" +1 );
+    //        }
+    //        else {
+    //            LogUtil.Print("this is RemindItem" + false);
+    //        }
+
+
+    //        LogUtil.Print("typeof(OpenExeRemindItem)"+ (typeof(OpenExeRemindItem)==GetType()));
+    //        LogUtil.Print("typeof(OpenExeRemindItem)2" + (typeof(RemindItem) == GetType()));
+
+    //    }
+
+    //}
+
 
     public class RemindItem : BaseItem
     {
@@ -221,34 +230,63 @@ namespace DigitalClockPackge
         public int month;//第几月提醒 1-12
         public int year;//仅提醒一次的年
 
-        public int remindType = RemindType.DAY;//提醒周期
+        public int periodType = RemindType.DAY;//提醒周期
 
         public int taskType = TaskType.REMIND;
 
-        public string content = "提醒内容";//提醒内容
+        public string content;//提醒内容
         public string extra;//参数
 
+
+        public RemindItem() {
+
+        }
+       
+
+
+
         public bool isHourMinuteSame(DateTime dateTime) {
+
+            
+
             return dateTime.Hour == this.hour && dateTime.Minute == this.minute;
         }
 
-        public string getShowTime() {
-            //string.Format("整数{0:D2},小数｛1:F2｝,16进0x{2:X2}",2,3,4);
-            return string.Format("{0:D2}:{1:D2}", hour, minute);
+   
+
+        public string getPeriodString() {
+            return RemindType.type2String(periodType);
+        }
+
+        public string getRemindTypeString()
+        {
+            return TaskType.type2String(taskType);
         }
 
 
-        public string getRemindTypeString() {
-            return RemindType.type2String(remindType);
+
+        public bool handleWork()
+        {
+            switch (taskType) {
+                case TaskType.SHUT_DONW:
+                    //关机
+                    Utils.runCmd("shutdown -s -t " + 10);
+                    return true;
+                case TaskType.OPEN_EXE:
+                    Utils.runExe(extra);
+                    return true;
+            }
+            return false;
         }
 
-        public bool handleTime(DateTime dateTime) {
+
+        public bool isTimeOK(DateTime dateTime) {
             if (!isEnable) {
                 return false;
             }
 
             bool result = false;
-            switch (remindType) {
+            switch (periodType) {
                 case RemindType.DAY:
                     result = isHourMinuteSame(dateTime);
                     break;
@@ -271,9 +309,44 @@ namespace DigitalClockPackge
                     break;
             }
             return result;
-
-
         }
+
+
+
+        public string getShowTime()
+        {
+
+
+            string info = null;
+
+            switch (periodType)
+            {
+                case RemindType.DAY:
+                case RemindType.USER_DEFINE:
+                    info = string.Format("{0:D2}:{1:D2}", hour, minute);
+                    break;
+                case RemindType.WEEK:
+                    info = string.Format("周{0:C} {1:D2}:{2:D2}", Constants.weekString[week], hour, minute);
+                    break;
+                case RemindType.MONTH:
+                    info = string.Format("{0:D}日 {1:D2}:{2:D2}",day, hour, minute);
+                    break;
+                case RemindType.YEAR:
+                    info = string.Format("{0:D}-{1:D} {2:D2}:{3:D2}", month,day, hour, minute);
+                    break;
+                case RemindType.HOUR:
+                    info = string.Format("{0:D}分", minute);
+                    break;
+                case RemindType.ONCE:
+                    info = string.Format("{0:D}-{1:D}-{2:D} {3:D2}:{4:D2}",year, month, day, hour, minute);
+                    break;
+                   
+            }
+
+            //string.Format("整数{0:D2},小数｛1:F2｝,16进0x{2:X2}",2,3,4);
+            return info;
+        }
+
 
     }
 
@@ -326,7 +399,7 @@ namespace DigitalClockPackge
                 map.Add(MONTH, "每月");
                 map.Add(YEAR, "每年");
                 map.Add(HOUR, "每小时");
-                map.Add(ONCE, "仅提醒一次");
+                map.Add(ONCE, "仅一次");
                 map.Add(USER_DEFINE, "自定义");
             }
             return map[type];

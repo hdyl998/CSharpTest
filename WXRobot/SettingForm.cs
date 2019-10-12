@@ -116,8 +116,10 @@ namespace DigitalClockPackge
                 ListViewItem list = new ListViewItem();
                 list.Text = item.content;
                 list.SubItems.Add(item.getShowTime());
+                list.SubItems.Add(item.getPeriodString());
                 list.SubItems.Add(item.getRemindTypeString());
                 list.SubItems.Add(item.getEnableString());
+
                 listView1.Items.Add(list);
             }
 
@@ -128,7 +130,10 @@ namespace DigitalClockPackge
         private void btnAdd_Click(object sender, EventArgs e)
         {
             AddRemindForm dlg = new AddRemindForm();
-            dlg.ShowDialog();
+            if (dlg.ShowDialog() == DialogResult.OK) {
+
+                bindListData();
+}
 
         }
 
@@ -165,6 +170,7 @@ namespace DigitalClockPackge
             if (MessageBox.Show("确认清空？", "确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 DataManager.getInstance().getRemindData().Clear();
+                DataManager.getInstance().saveAll();
                 bindListData();
             }
         }

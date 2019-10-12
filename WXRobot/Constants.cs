@@ -9,6 +9,8 @@ namespace DigitalClockPackge
     public  class Constants
     {
 
+        public static string[] weekString = { "日", "一", "二", "三", "四", "五", "六" };
+
         public const bool isDebug = true;
 
         public static string INI_FILE_PATH =  Application.StartupPath+ "/Setting.ini";

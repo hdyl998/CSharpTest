@@ -38,7 +38,7 @@
             this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxExtra = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelOpenExe = new System.Windows.Forms.Panel();
             this.btnChoose = new System.Windows.Forms.Button();
             this.comboBoxYear = new System.Windows.Forms.ComboBox();
             this.comboBoxMonth = new System.Windows.Forms.ComboBox();
@@ -46,7 +46,8 @@
             this.comboBoxWeek = new System.Windows.Forms.ComboBox();
             this.comboBoxHour = new System.Windows.Forms.ComboBox();
             this.comboBoxMinute = new System.Windows.Forms.ComboBox();
-            this.panel1.SuspendLayout();
+            this.labelTime = new System.Windows.Forms.Label();
+            this.panelOpenExe.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -56,7 +57,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "说明";
+            this.label1.Text = "主题";
             // 
             // textBox1
             // 
@@ -95,11 +96,11 @@
             // 
             // btnComplete
             // 
-            this.btnComplete.Location = new System.Drawing.Point(89, 433);
+            this.btnComplete.Location = new System.Drawing.Point(148, 442);
             this.btnComplete.Name = "btnComplete";
             this.btnComplete.Size = new System.Drawing.Size(169, 41);
             this.btnComplete.TabIndex = 4;
-            this.btnComplete.Text = "完成";
+            this.btnComplete.Text = "添加";
             this.btnComplete.UseVisualStyleBackColor = true;
             this.btnComplete.Click += new System.EventHandler(this.btnComplete_Click);
             // 
@@ -120,36 +121,37 @@
             this.comboBoxType.Name = "comboBoxType";
             this.comboBoxType.Size = new System.Drawing.Size(165, 23);
             this.comboBoxType.TabIndex = 2;
+            this.comboBoxType.SelectedIndexChanged += new System.EventHandler(this.comboBoxType_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(11, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 15);
+            this.label5.Size = new System.Drawing.Size(37, 15);
             this.label5.TabIndex = 0;
-            this.label5.Text = "程序路径";
+            this.label5.Text = "程序";
             // 
             // textBoxExtra
             // 
-            this.textBoxExtra.Location = new System.Drawing.Point(88, 19);
+            this.textBoxExtra.Location = new System.Drawing.Point(54, 19);
             this.textBoxExtra.Name = "textBoxExtra";
-            this.textBoxExtra.Size = new System.Drawing.Size(427, 25);
+            this.textBoxExtra.Size = new System.Drawing.Size(453, 25);
             this.textBoxExtra.TabIndex = 1;
             // 
-            // panel1
+            // panelOpenExe
             // 
-            this.panel1.Controls.Add(this.btnChoose);
-            this.panel1.Controls.Add(this.textBoxExtra);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(1, 280);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(610, 57);
-            this.panel1.TabIndex = 5;
+            this.panelOpenExe.Controls.Add(this.btnChoose);
+            this.panelOpenExe.Controls.Add(this.textBoxExtra);
+            this.panelOpenExe.Controls.Add(this.label5);
+            this.panelOpenExe.Location = new System.Drawing.Point(1, 280);
+            this.panelOpenExe.Name = "panelOpenExe";
+            this.panelOpenExe.Size = new System.Drawing.Size(612, 57);
+            this.panelOpenExe.TabIndex = 5;
             // 
             // btnChoose
             // 
-            this.btnChoose.Location = new System.Drawing.Point(521, 17);
+            this.btnChoose.Location = new System.Drawing.Point(525, 19);
             this.btnChoose.Name = "btnChoose";
             this.btnChoose.Size = new System.Drawing.Size(75, 25);
             this.btnChoose.TabIndex = 2;
@@ -165,6 +167,7 @@
             this.comboBoxYear.Name = "comboBoxYear";
             this.comboBoxYear.Size = new System.Drawing.Size(78, 23);
             this.comboBoxYear.TabIndex = 2;
+            this.comboBoxYear.SelectedIndexChanged += new System.EventHandler(this.comboBoxYear_SelectedIndexChanged);
             // 
             // comboBoxMonth
             // 
@@ -174,6 +177,7 @@
             this.comboBoxMonth.Name = "comboBoxMonth";
             this.comboBoxMonth.Size = new System.Drawing.Size(78, 23);
             this.comboBoxMonth.TabIndex = 2;
+            this.comboBoxMonth.SelectedIndexChanged += new System.EventHandler(this.comboBoxMonth_SelectedIndexChanged);
             // 
             // comboBoxDay
             // 
@@ -193,6 +197,7 @@
             this.comboBoxWeek.Name = "comboBoxWeek";
             this.comboBoxWeek.Size = new System.Drawing.Size(78, 23);
             this.comboBoxWeek.TabIndex = 2;
+            this.comboBoxWeek.SelectedIndexChanged += new System.EventHandler(this.comboBoxWeek_SelectedIndexChanged);
             // 
             // comboBoxHour
             // 
@@ -212,13 +217,24 @@
             this.comboBoxMinute.Name = "comboBoxMinute";
             this.comboBoxMinute.Size = new System.Drawing.Size(78, 23);
             this.comboBoxMinute.TabIndex = 2;
+            this.comboBoxMinute.SelectedIndexChanged += new System.EventHandler(this.comboBoxMinute_SelectedIndexChanged);
+            // 
+            // labelTime
+            // 
+            this.labelTime.AutoSize = true;
+            this.labelTime.Location = new System.Drawing.Point(89, 229);
+            this.labelTime.Name = "labelTime";
+            this.labelTime.Size = new System.Drawing.Size(55, 15);
+            this.labelTime.TabIndex = 6;
+            this.labelTime.Text = "label6";
             // 
             // AddRemindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 495);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(625, 495);
+            this.Controls.Add(this.labelTime);
+            this.Controls.Add(this.panelOpenExe);
             this.Controls.Add(this.btnComplete);
             this.Controls.Add(this.comboBoxHour);
             this.Controls.Add(this.comboBoxDay);
@@ -237,8 +253,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "新增周期任务";
             this.Load += new System.EventHandler(this.RemindNewForm_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelOpenExe.ResumeLayout(false);
+            this.panelOpenExe.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,7 +272,7 @@
         private System.Windows.Forms.ComboBox comboBoxType;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxExtra;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelOpenExe;
         private System.Windows.Forms.ComboBox comboBoxYear;
         private System.Windows.Forms.ComboBox comboBoxMonth;
         private System.Windows.Forms.ComboBox comboBoxDay;
@@ -264,5 +280,6 @@
         private System.Windows.Forms.ComboBox comboBoxWeek;
         private System.Windows.Forms.ComboBox comboBoxHour;
         private System.Windows.Forms.ComboBox comboBoxMinute;
+        private System.Windows.Forms.Label labelTime;
     }
 }

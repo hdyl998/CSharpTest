@@ -68,6 +68,7 @@
             this.btnKJTest = new System.Windows.Forms.Button();
             this.btnKJRemove = new System.Windows.Forms.Button();
             this.btnKJAdd = new System.Windows.Forms.Button();
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPageA.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -387,6 +388,7 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
+            this.columnHeader8,
             this.columnHeader4});
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
@@ -401,21 +403,23 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "内容";
-            this.columnHeader1.Width = 158;
+            this.columnHeader1.Width = 85;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "时间";
-            this.columnHeader2.Width = 104;
+            this.columnHeader2.Width = 107;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "周期";
-            this.columnHeader3.Width = 74;
+            this.columnHeader3.Width = 75;
             // 
             // columnHeader4
             // 
+            this.columnHeader4.DisplayIndex = 3;
             this.columnHeader4.Text = "可用";
+            this.columnHeader4.Width = 48;
             // 
             // tabPageC
             // 
@@ -503,6 +507,12 @@
             this.btnKJAdd.UseVisualStyleBackColor = true;
             this.btnKJAdd.Click += new System.EventHandler(this.btnKJAdd_Click);
             // 
+            // columnHeader8
+            // 
+            this.columnHeader8.DisplayIndex = 4;
+            this.columnHeader8.Text = "类型";
+            this.columnHeader8.Width = 86;
+            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -570,5 +580,6 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.ComboBox cbShutdownHour;
         private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
     }
 }
