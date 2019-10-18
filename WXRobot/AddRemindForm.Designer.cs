@@ -96,11 +96,11 @@
             // 
             // btnComplete
             // 
-            this.btnComplete.Location = new System.Drawing.Point(148, 442);
+            this.btnComplete.Location = new System.Drawing.Point(223, 368);
             this.btnComplete.Name = "btnComplete";
             this.btnComplete.Size = new System.Drawing.Size(169, 41);
             this.btnComplete.TabIndex = 4;
-            this.btnComplete.Text = "添加";
+            this.btnComplete.Text = "完成";
             this.btnComplete.UseVisualStyleBackColor = true;
             this.btnComplete.Click += new System.EventHandler(this.btnComplete_Click);
             // 
@@ -232,7 +232,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 495);
+            this.ClientSize = new System.Drawing.Size(625, 438);
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.panelOpenExe);
             this.Controls.Add(this.btnComplete);

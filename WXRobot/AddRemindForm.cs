@@ -59,8 +59,7 @@ namespace DigitalClockPackge
                     item.extra = textBoxExtra.Text;
                     break;
             }
-            DataManager.getInstance().getRemindData().Add(item);
-            DataManager.getInstance().saveAll();
+            this.remindItem = item;
             this.DialogResult = DialogResult.OK;
 
             this.Close();

@@ -127,7 +127,7 @@ namespace DigitalClockPackge
             {
                 uiItem = Utils.parseObject<UiItem>(uiText);
             }
-            catch (Exception e)
+            catch (Exception)
             {
             }
             if (uiItem == null)
@@ -270,7 +270,7 @@ namespace DigitalClockPackge
             switch (taskType) {
                 case TaskType.SHUT_DONW:
                     //关机
-                    Utils.runCmd("shutdown -s -t " + 10);
+                    Utils.runCmd("shutdown -s -t " + 15);
                     return true;
                 case TaskType.OPEN_EXE:
                     Utils.runExe(extra);

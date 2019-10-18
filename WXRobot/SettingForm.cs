@@ -114,7 +114,7 @@ namespace DigitalClockPackge
             {
 
                 ListViewItem list = new ListViewItem();
-                list.Text = item.content;
+                list.Text = item.content==null?"": item.content;
                 list.SubItems.Add(item.getShowTime());
                 list.SubItems.Add(item.getPeriodString());
                 list.SubItems.Add(item.getRemindTypeString());
@@ -131,7 +131,8 @@ namespace DigitalClockPackge
         {
             AddRemindForm dlg = new AddRemindForm();
             if (dlg.ShowDialog() == DialogResult.OK) {
-
+                DataManager.getInstance().getRemindData().Add(dlg.remindItem);
+                DataManager.getInstance().saveAll();
                 bindListData();
 }
 
@@ -147,7 +148,11 @@ namespace DigitalClockPackge
                 var var = DataManager.getInstance().getRemindData()[index];
                 AddRemindForm dlg = new AddRemindForm();
                 dlg.remindItem = var;
-                dlg.ShowDialog();
+                if (dlg.ShowDialog() == DialogResult.OK) {
+                    DataManager.getInstance().getRemindData()[index] = dlg.remindItem;
+                    DataManager.getInstance().saveAll();
+                    bindListData();
+                }
             }
         }
 
