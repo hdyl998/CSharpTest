@@ -146,11 +146,6 @@ namespace DigitalClockPackge
         {
 
             //Utils.runExe("C:\\Windows\\notepad.exe", "C:\\Windows\\notepad.exe");
-
-
-
-
-
             LogUtil.Print(Application.StartupPath);
 
 
@@ -199,6 +194,15 @@ namespace DigitalClockPackge
 
 
             handleStartUp();
+
+
+   
+
+
+
+ 
+
+
         }
 
         private void handleStartUp() {

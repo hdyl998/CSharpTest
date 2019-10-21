@@ -20,5 +20,7 @@ namespace DigitalClockPackge
         public const string APP_UI_CONFIG = "APP_UI_CONFIG";
 
 
+        public const string APP_ROBOT_PATH = "ROBOT_CONFIG";
+
     }
 }

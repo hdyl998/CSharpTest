@@ -461,5 +461,11 @@ namespace DigitalClockPackge
                 recordConfig();
             }
         }
+
+        private void btnRobot_Click(object sender, EventArgs e)
+        {
+            WxRobotForm dlg = new WxRobotForm();
+            dlg.ShowDialog();
+        }
     }
 }

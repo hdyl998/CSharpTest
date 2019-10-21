@@ -143,5 +143,14 @@ namespace DigitalClockPackge
             return index;
         }
 
+
+        public static void Dispose(params IDisposable []closes) {
+            if (closes != null && closes.Length>0) {
+                foreach(IDisposable close in closes){
+                    close.Dispose();
+                }
+            }
+        }
+
     }
 }

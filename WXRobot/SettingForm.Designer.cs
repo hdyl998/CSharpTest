@@ -58,6 +58,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPageC = new System.Windows.Forms.TabPage();
             this.listViewKJ = new System.Windows.Forms.ListView();
@@ -68,7 +69,7 @@
             this.btnKJTest = new System.Windows.Forms.Button();
             this.btnKJRemove = new System.Windows.Forms.Button();
             this.btnKJAdd = new System.Windows.Forms.Button();
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnRobot = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageA.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -112,6 +113,7 @@
             // 
             this.tabPageA.Controls.Add(this.groupBox1);
             this.tabPageA.Controls.Add(this.btnPaint);
+            this.tabPageA.Controls.Add(this.btnRobot);
             this.tabPageA.Controls.Add(this.btnStartPath);
             this.tabPageA.Controls.Add(this.btnNotepad);
             this.tabPageA.Controls.Add(this.btnCalc);
@@ -415,6 +417,12 @@
             this.columnHeader3.Text = "周期";
             this.columnHeader3.Width = 75;
             // 
+            // columnHeader8
+            // 
+            this.columnHeader8.DisplayIndex = 4;
+            this.columnHeader8.Text = "类型";
+            this.columnHeader8.Width = 86;
+            // 
             // columnHeader4
             // 
             this.columnHeader4.DisplayIndex = 3;
@@ -507,11 +515,15 @@
             this.btnKJAdd.UseVisualStyleBackColor = true;
             this.btnKJAdd.Click += new System.EventHandler(this.btnKJAdd_Click);
             // 
-            // columnHeader8
+            // btnRobot
             // 
-            this.columnHeader8.DisplayIndex = 4;
-            this.columnHeader8.Text = "类型";
-            this.columnHeader8.Width = 86;
+            this.btnRobot.Location = new System.Drawing.Point(128, 247);
+            this.btnRobot.Name = "btnRobot";
+            this.btnRobot.Size = new System.Drawing.Size(123, 37);
+            this.btnRobot.TabIndex = 3;
+            this.btnRobot.Text = "企业微信机器人";
+            this.btnRobot.UseVisualStyleBackColor = true;
+            this.btnRobot.Click += new System.EventHandler(this.btnRobot_Click);
             // 
             // SettingForm
             // 
@@ -581,5 +593,6 @@
         private System.Windows.Forms.ComboBox cbShutdownHour;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.Button btnRobot;
     }
 }

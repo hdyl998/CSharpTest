@@ -73,6 +73,7 @@
       <DependentUpon>EditStartupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
+    <Compile Include="HttpRequest.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +110,12 @@
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
+    <Compile Include="WxRobotForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WxRobotForm.Designer.cs">
+      <DependentUpon>WxRobotForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="EditStartupForm.resx">
       <DependentUpon>EditStartupForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WxRobotForm.resx">
+      <DependentUpon>WxRobotForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
