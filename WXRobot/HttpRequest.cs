@@ -36,11 +36,19 @@ namespace DigitalClockPackge
                     else {
                         response = PostHttpUrl(builder.url, builder.postData);
                     }
-                    if(builder.form!=null&& builder.success!=null)
-                    builder.form.Invoke((MethodInvoker)(() =>//子线程中操作UI
-                    {
-                        builder.success.Invoke(response);
-                    }));
+                    if (builder.success != null) {
+                        if (builder.form != null)
+                        {
+                            builder.form.Invoke((MethodInvoker)(() =>//子线程中操作UI
+                            {
+                                builder.success.Invoke(response);
+                            }));
+                        }
+                        else
+                        {
+                            builder.success.Invoke(response);
+                        }
+                    }
                 }
                 catch (Exception e) {
                     if (builder.form != null)

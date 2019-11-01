@@ -362,7 +362,7 @@ namespace DigitalClockPackge
                         NetBuilder.create(null).setUrl(extra).setPostData(extra2).start(null);
                     }
                     else {
-
+                        LogUtil.Print("开始获取天气"+ datas[3]);
                         NetBuilder.create(null).asGet().setUrl(datas[3]).start((data) =>
                         {
                             LogUtil.Print(data);
@@ -374,8 +374,9 @@ namespace DigitalClockPackge
                                 item2.text.content = item.ToString();
                                 NetBuilder.create(null).setUrl(extra).setPostData(Utils.toJSONString(item2)).start(null);
                             }
-                            catch (Exception)
+                            catch (Exception e)
                             {
+                                LogUtil.Print(e.Message);
                             }
                         });
                     }
