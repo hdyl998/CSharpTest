@@ -25,9 +25,9 @@ namespace DigitalClockPackge
 
         private void RemindForm_Load(object sender, EventArgs e)
         {
-            Bitmap[] bitmaps = { global::DigitalClock.Properties.Resources.bg1
-                      ,global::DigitalClock.Properties.Resources.bg3
-                            ,global::DigitalClock.Properties.Resources.bg4
+            Bitmap[] bitmaps = { global::DigitalClockPackge.Properties.Resources.bg1
+                      ,global::DigitalClockPackge.Properties.Resources.bg3
+                            ,global::DigitalClockPackge.Properties.Resources.bg4
   
             };
             int index = new Random().Next(bitmaps.Length);
@@ -80,20 +80,19 @@ namespace DigitalClockPackge
             Action<int,int> action = changeLocationUi;
 
             while (isShowing) {
-                
-                Thread.Sleep(10);
-                this.Invoke(action, x, y);
-                Thread.Sleep(10);
-                this.Invoke(action, x, y);
+                Thread.Sleep(300);
+                for (int i = 0; isShowing&&i < 10; i++) {
+                    Thread.Sleep(10);
+                    this.Invoke(action, x, y);
+                }
 
-                Thread.Sleep(200);
             }
         }
         Random random = new Random();
         private void changeLocationUi(int x,int y) {
 
-            x = x + random.Next(10)-5;
-            y = y + random.Next(10)-5;
+            x = x + random.Next(10)-10;
+            y = y + random.Next(10)- 10;
             this.Location = new Point(x,y );
         }
 

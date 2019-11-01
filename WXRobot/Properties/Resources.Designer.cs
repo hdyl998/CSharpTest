@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DigitalClock.Properties {
+namespace DigitalClockPackge.Properties {
     using System;
     
     

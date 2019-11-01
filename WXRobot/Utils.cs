@@ -152,5 +152,42 @@ namespace DigitalClockPackge
             }
         }
 
+        public static string getClipBoardText() {
+            string text = Clipboard.GetText();
+            if (string.IsNullOrEmpty(text)) {
+                return "";
+            }
+            return text;
+        }
+
+
+        public static void setRadioButtonCheckedIndex(int index,params RadioButton []buttons) {
+            if (index == -1)
+            {
+                if (buttons.Length > 0) {
+                    buttons[0].Checked = true;
+                }
+            }
+            else {
+                buttons[index].Checked = true;
+            }
+
+
+        }
+
+
+        public static int getRadioButtonCheckedIndex(params RadioButton[] buttons) {
+            int index = 0;
+            foreach (RadioButton button in buttons) {
+                if (button.Checked) {
+                    return index;
+                }
+                index++;
+            }
+
+            return -1;
+
+        }
+
     }
 }

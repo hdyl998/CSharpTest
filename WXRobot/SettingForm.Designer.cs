@@ -33,6 +33,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageA = new System.Windows.Forms.TabPage();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnShutdownCancel = new System.Windows.Forms.Button();
             this.btnShutdownStart = new System.Windows.Forms.Button();
@@ -44,6 +45,8 @@
             this.cbShutdownHour = new System.Windows.Forms.ComboBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.btnPaint = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.btnRobot = new System.Windows.Forms.Button();
             this.btnStartPath = new System.Windows.Forms.Button();
             this.btnNotepad = new System.Windows.Forms.Button();
             this.btnCalc = new System.Windows.Forms.Button();
@@ -69,7 +72,6 @@
             this.btnKJTest = new System.Windows.Forms.Button();
             this.btnKJRemove = new System.Windows.Forms.Button();
             this.btnKJAdd = new System.Windows.Forms.Button();
-            this.btnRobot = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageA.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -79,7 +81,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(144, 409);
+            this.button1.Location = new System.Drawing.Point(208, 513);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(256, 37);
             this.button1.TabIndex = 0;
@@ -106,13 +108,15 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(550, 374);
+            this.tabControl1.Size = new System.Drawing.Size(676, 484);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPageA
             // 
+            this.tabPageA.Controls.Add(this.checkBox2);
             this.tabPageA.Controls.Add(this.groupBox1);
             this.tabPageA.Controls.Add(this.btnPaint);
+            this.tabPageA.Controls.Add(this.button3);
             this.tabPageA.Controls.Add(this.btnRobot);
             this.tabPageA.Controls.Add(this.btnStartPath);
             this.tabPageA.Controls.Add(this.btnNotepad);
@@ -120,10 +124,21 @@
             this.tabPageA.Controls.Add(this.checkBox1);
             this.tabPageA.Location = new System.Drawing.Point(4, 25);
             this.tabPageA.Name = "tabPageA";
-            this.tabPageA.Size = new System.Drawing.Size(542, 345);
+            this.tabPageA.Size = new System.Drawing.Size(668, 455);
             this.tabPageA.TabIndex = 2;
             this.tabPageA.Text = "基本功能";
             this.tabPageA.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(140, 23);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(104, 19);
+            this.checkBox2.TabIndex = 11;
+            this.checkBox2.Text = "启动最小化";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -136,7 +151,7 @@
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.cbShutdownHour);
             this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Location = new System.Drawing.Point(312, 23);
+            this.groupBox1.Location = new System.Drawing.Point(449, 23);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(216, 184);
             this.groupBox1.TabIndex = 10;
@@ -277,6 +292,26 @@
             this.btnPaint.UseVisualStyleBackColor = true;
             this.btnPaint.Click += new System.EventHandler(this.btnPaint_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(19, 375);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(123, 37);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "查询天气";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // btnRobot
+            // 
+            this.btnRobot.Location = new System.Drawing.Point(19, 314);
+            this.btnRobot.Name = "btnRobot";
+            this.btnRobot.Size = new System.Drawing.Size(123, 37);
+            this.btnRobot.TabIndex = 3;
+            this.btnRobot.Text = "企业微信机器人";
+            this.btnRobot.UseVisualStyleBackColor = true;
+            this.btnRobot.Click += new System.EventHandler(this.btnRobot_Click);
+            // 
             // btnStartPath
             // 
             this.btnStartPath.Location = new System.Drawing.Point(19, 247);
@@ -319,14 +354,14 @@
             this.tabPageB.Location = new System.Drawing.Point(4, 25);
             this.tabPageB.Name = "tabPageB";
             this.tabPageB.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageB.Size = new System.Drawing.Size(542, 345);
+            this.tabPageB.Size = new System.Drawing.Size(668, 455);
             this.tabPageB.TabIndex = 0;
             this.tabPageB.Text = "周期任务";
             this.tabPageB.UseVisualStyleBackColor = true;
             // 
             // btnRMTest
             // 
-            this.btnRMTest.Location = new System.Drawing.Point(420, 154);
+            this.btnRMTest.Location = new System.Drawing.Point(572, 154);
             this.btnRMTest.Name = "btnRMTest";
             this.btnRMTest.Size = new System.Drawing.Size(90, 23);
             this.btnRMTest.TabIndex = 13;
@@ -336,7 +371,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(420, 125);
+            this.button2.Location = new System.Drawing.Point(572, 125);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(90, 23);
             this.button2.TabIndex = 12;
@@ -346,7 +381,7 @@
             // 
             // btnEnable
             // 
-            this.btnEnable.Location = new System.Drawing.Point(420, 95);
+            this.btnEnable.Location = new System.Drawing.Point(572, 95);
             this.btnEnable.Name = "btnEnable";
             this.btnEnable.Size = new System.Drawing.Size(90, 23);
             this.btnEnable.TabIndex = 11;
@@ -356,7 +391,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(420, 65);
+            this.btnEdit.Location = new System.Drawing.Point(572, 65);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(90, 23);
             this.btnEdit.TabIndex = 10;
@@ -366,7 +401,7 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(420, 36);
+            this.btnRemove.Location = new System.Drawing.Point(572, 36);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(90, 23);
             this.btnRemove.TabIndex = 9;
@@ -376,7 +411,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(419, 6);
+            this.btnAdd.Location = new System.Drawing.Point(571, 6);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(91, 23);
             this.btnAdd.TabIndex = 8;
@@ -397,7 +432,7 @@
             this.listView1.Location = new System.Drawing.Point(6, 6);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(407, 293);
+            this.listView1.Size = new System.Drawing.Size(559, 443);
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -405,17 +440,17 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "内容";
-            this.columnHeader1.Width = 85;
+            this.columnHeader1.Width = 126;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "时间";
-            this.columnHeader2.Width = 107;
+            this.columnHeader2.Width = 149;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "周期";
-            this.columnHeader3.Width = 75;
+            this.columnHeader3.Width = 140;
             // 
             // columnHeader8
             // 
@@ -439,7 +474,7 @@
             this.tabPageC.Location = new System.Drawing.Point(4, 25);
             this.tabPageC.Name = "tabPageC";
             this.tabPageC.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageC.Size = new System.Drawing.Size(542, 345);
+            this.tabPageC.Size = new System.Drawing.Size(668, 455);
             this.tabPageC.TabIndex = 1;
             this.tabPageC.Text = "开机程序";
             this.tabPageC.UseVisualStyleBackColor = true;
@@ -455,7 +490,7 @@
             this.listViewKJ.Location = new System.Drawing.Point(6, 6);
             this.listViewKJ.MultiSelect = false;
             this.listViewKJ.Name = "listViewKJ";
-            this.listViewKJ.Size = new System.Drawing.Size(407, 293);
+            this.listViewKJ.Size = new System.Drawing.Size(560, 443);
             this.listViewKJ.TabIndex = 13;
             this.listViewKJ.UseCompatibleStateImageBehavior = false;
             this.listViewKJ.View = System.Windows.Forms.View.Details;
@@ -463,7 +498,7 @@
             // columnHeader5
             // 
             this.columnHeader5.Text = "应用名";
-            this.columnHeader5.Width = 89;
+            this.columnHeader5.Width = 231;
             // 
             // columnHeader6
             // 
@@ -477,7 +512,7 @@
             // 
             // btnKJEnable
             // 
-            this.btnKJEnable.Location = new System.Drawing.Point(419, 64);
+            this.btnKJEnable.Location = new System.Drawing.Point(572, 64);
             this.btnKJEnable.Name = "btnKJEnable";
             this.btnKJEnable.Size = new System.Drawing.Size(90, 23);
             this.btnKJEnable.TabIndex = 12;
@@ -487,7 +522,7 @@
             // 
             // btnKJTest
             // 
-            this.btnKJTest.Location = new System.Drawing.Point(419, 93);
+            this.btnKJTest.Location = new System.Drawing.Point(572, 93);
             this.btnKJTest.Name = "btnKJTest";
             this.btnKJTest.Size = new System.Drawing.Size(90, 23);
             this.btnKJTest.TabIndex = 2;
@@ -497,7 +532,7 @@
             // 
             // btnKJRemove
             // 
-            this.btnKJRemove.Location = new System.Drawing.Point(419, 35);
+            this.btnKJRemove.Location = new System.Drawing.Point(572, 35);
             this.btnKJRemove.Name = "btnKJRemove";
             this.btnKJRemove.Size = new System.Drawing.Size(90, 23);
             this.btnKJRemove.TabIndex = 2;
@@ -507,7 +542,7 @@
             // 
             // btnKJAdd
             // 
-            this.btnKJAdd.Location = new System.Drawing.Point(419, 6);
+            this.btnKJAdd.Location = new System.Drawing.Point(572, 6);
             this.btnKJAdd.Name = "btnKJAdd";
             this.btnKJAdd.Size = new System.Drawing.Size(90, 23);
             this.btnKJAdd.TabIndex = 1;
@@ -515,22 +550,12 @@
             this.btnKJAdd.UseVisualStyleBackColor = true;
             this.btnKJAdd.Click += new System.EventHandler(this.btnKJAdd_Click);
             // 
-            // btnRobot
-            // 
-            this.btnRobot.Location = new System.Drawing.Point(128, 247);
-            this.btnRobot.Name = "btnRobot";
-            this.btnRobot.Size = new System.Drawing.Size(123, 37);
-            this.btnRobot.TabIndex = 3;
-            this.btnRobot.Text = "企业微信机器人";
-            this.btnRobot.UseVisualStyleBackColor = true;
-            this.btnRobot.Click += new System.EventHandler(this.btnRobot_Click);
-            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(579, 472);
+            this.ClientSize = new System.Drawing.Size(700, 562);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -594,5 +619,7 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Button btnRobot;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Button button3;
     }
 }

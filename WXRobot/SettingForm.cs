@@ -44,6 +44,8 @@ namespace DigitalClockPackge
         private void SettingForm_Load(object sender, EventArgs e)
         {
             checkBox1.Checked = Utils.isStartUp();
+        
+            checkBox2.Checked = DataManager.getInstance().getDataItem().startMin==1;
             cbShutdownHour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cbShutdownMinute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 
@@ -465,6 +467,18 @@ namespace DigitalClockPackge
         private void btnRobot_Click(object sender, EventArgs e)
         {
             WxRobotForm dlg = new WxRobotForm();
+            dlg.ShowDialog();
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            DataManager.getInstance().getDataItem().startMin = checkBox2.Checked ? 1 : 0;
+            DataManager.getInstance().saveAll();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            WeatherForm dlg = new WeatherForm();
             dlg.ShowDialog();
         }
     }

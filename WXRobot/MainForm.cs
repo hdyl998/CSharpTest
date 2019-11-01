@@ -150,18 +150,18 @@ namespace DigitalClockPackge
 
 
             bitmaps = new Bitmap[]{
-                global::DigitalClock.Properties.Resources.num0,
-                global::DigitalClock.Properties.Resources.num1,
-                global::DigitalClock.Properties.Resources.num2,
-                global::DigitalClock.Properties.Resources.num3,
-                global::DigitalClock.Properties.Resources.num4,
-                global::DigitalClock.Properties.Resources.num5,
-                global::DigitalClock.Properties.Resources.num6,
-                global::DigitalClock.Properties.Resources.num7,
-                global::DigitalClock.Properties.Resources.num8,
-                global::DigitalClock.Properties.Resources.num9,
-                global::DigitalClock.Properties.Resources.space,
-                global::DigitalClock.Properties.Resources.line
+                global::DigitalClockPackge.Properties.Resources.num0,
+                global::DigitalClockPackge.Properties.Resources.num1,
+                global::DigitalClockPackge.Properties.Resources.num2,
+                global::DigitalClockPackge.Properties.Resources.num3,
+                global::DigitalClockPackge.Properties.Resources.num4,
+                global::DigitalClockPackge.Properties.Resources.num5,
+                global::DigitalClockPackge.Properties.Resources.num6,
+                global::DigitalClockPackge.Properties.Resources.num7,
+                global::DigitalClockPackge.Properties.Resources.num8,
+                global::DigitalClockPackge.Properties.Resources.num9,
+                global::DigitalClockPackge.Properties.Resources.space,
+                global::DigitalClockPackge.Properties.Resources.line
             };
 
             //调整大小
@@ -194,13 +194,16 @@ namespace DigitalClockPackge
 
 
             handleStartUp();
+      
 
 
-   
+            //NetBuilder.create(this).asGet().setUrl("http://www.weather.com.cn/data/sk/101010100.html").start((data) =>
+            //{
+            //    LogUtil.Print(data);
+            //});
 
 
 
- 
 
 
         }
@@ -233,8 +236,16 @@ namespace DigitalClockPackge
                 this.Location = new Point(startX, startY);
             }
 
+
+
             isStarted = true;
+
+            if (DataManager.getInstance().getDataItem().startMin == 1) {
+                new Thread(new ThreadStart(HideMainForm)).Start();
+            }
         }
+
+
 
         bool isStarted = false;
 
@@ -279,7 +290,10 @@ namespace DigitalClockPackge
 
         private void HideMainForm()
         {
-            this.Hide();
+            this.Invoke((MethodInvoker)(() =>//子线程中操作UI
+            {
+                Hide();
+            }));
         }
 
         private void ShowMainForm()

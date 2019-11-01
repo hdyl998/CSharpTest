@@ -21,6 +21,6 @@ namespace DigitalClockPackge
 
 
         public const string APP_ROBOT_PATH = "ROBOT_CONFIG";
-
+        public const string APP_WEATHER_CITY = "WEATHER_CITY";
     }
 }

@@ -12,8 +12,8 @@ namespace DigitalClockPackge
     public partial class AddRemindForm : Form
     {
 
-        List<int> listPeriod = new List<int>();
-        List<int> listType = new List<int>();
+        List<int> listPeriod = RemindType.listPeriod;
+        List<int> listType = TaskType.listType;
 
         public RemindItem remindItem {
             get;set;
@@ -36,7 +36,7 @@ namespace DigitalClockPackge
         {
             RemindItem item = new RemindItem();
             item.createTime = DateTime.Now.ToString();
-  
+
 
             int selType = listType[comboBoxType.SelectedIndex];
             item.periodType = listPeriod[comboBoxPeriod.SelectedIndex];
@@ -57,6 +57,14 @@ namespace DigitalClockPackge
                     }
                     item.extra = textBoxExtra.Text;
                     break;
+                case TaskType.WX_SEND_MSG:
+                    if (textBox2.Text.Length ==0|| textBox3.Text.Length==0) {
+                        LogUtil.showMessageBox("必填参数不能为空");
+                    }
+                    item.extra = textBox2.Text;
+                    item.extra2 = textBox3.Text;
+                    break;
+
             }
             this.remindItem = item;
             this.DialogResult = DialogResult.OK;
@@ -68,22 +76,12 @@ namespace DigitalClockPackge
 
 
         private void initComboBox() {
-            listPeriod.Add(RemindType.DAY);
-            listPeriod.Add(RemindType.WEEK);
-            listPeriod.Add(RemindType.MONTH);
-            listPeriod.Add(RemindType.YEAR);
-            listPeriod.Add(RemindType.HOUR);
-            listPeriod.Add(RemindType.ONCE);
-            listPeriod.Add(RemindType.USER_DEFINE);
 
 
             foreach (int type in listPeriod)
             {
                 comboBoxPeriod.Items.Add(RemindType.type2String(type));
             }
-            listType.Add(TaskType.REMIND);
-            listType.Add(TaskType.SHUT_DONW);
-            listType.Add(TaskType.OPEN_EXE);
 
             foreach (int type in listType)
             {
@@ -195,10 +193,6 @@ namespace DigitalClockPackge
                 textBox1.Text = remindItem.content;
                 comboBoxPeriod.SelectedIndex = Utils.findIndex(listPeriod, remindItem.periodType);
                 comboBoxType.SelectedIndex = Utils.findIndex(listType, remindItem.taskType);
-
-
-              
-
                 comboBoxYear.SelectedItem = remindItem.year + "年";
                 comboBoxMonth.SelectedItem = remindItem.month + "月";
                 comboBoxDay.SelectedItem = remindItem.day + "日";
@@ -207,6 +201,17 @@ namespace DigitalClockPackge
                 comboBoxMinute.SelectedItem = remindItem.minute + "分";
 
                 comboBoxWeek.SelectedItem = "星期" + Constants.weekString[remindItem.week];
+
+
+                if (remindItem.taskType == TaskType.SHUT_DONW)
+                {
+                    textBoxExtra.Text = remindItem.extra;
+                }
+                else if (remindItem.taskType == TaskType.WX_SEND_MSG) {
+
+                    textBox2.Text = remindItem.extra;
+                    textBox3.Text = remindItem.extra2;
+                }
             }
             else {
 
@@ -349,6 +354,20 @@ namespace DigitalClockPackge
 
         private void updateOpenExeUi() {
             panelOpenExe.Enabled = listType[comboBoxType.SelectedIndex] == TaskType.OPEN_EXE;
+
+            panelSendMsg.Enabled= listType[comboBoxType.SelectedIndex] == TaskType.WX_SEND_MSG;
+        }
+
+        private void buttonRobotSel_Click(object sender, EventArgs e)
+        {
+            WxRobotForm dlg = new WxRobotForm();
+            dlg.hookUrl = textBox2.Text;
+            dlg.isEditMode = true;
+            dlg.sendData = textBox3.Text;
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                textBox2.Text = dlg.hookUrl;
+                textBox3.Text = dlg.sendData;
+            }
         }
     }
 }

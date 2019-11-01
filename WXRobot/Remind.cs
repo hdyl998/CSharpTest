@@ -12,6 +12,8 @@ namespace DigitalClockPackge
 
         public int startUp;
 
+        public int startMin;
+
         public List<RemindItem> listRemind;//提醒
 
         public List<StartUpItem> listStartUp;//开机自启动
@@ -21,6 +23,7 @@ namespace DigitalClockPackge
             startX = -1;
             startY = -1;
             startUp = 1;
+            startMin = 0;
             listRemind = new List<RemindItem>();
             listStartUp = new List<StartUpItem>();
         }
@@ -236,19 +239,24 @@ namespace DigitalClockPackge
 
         public string content;//提醒内容
         public string extra;//参数
-
+        public string extra2;//参数2
 
         public RemindItem() {
 
         }
-       
+
+
+        public static string[] parseExtraData(string text) {
+            //":fun,weather,{0:d},{1}"
+            if (!text.StartsWith(":fun")) {
+                return null;
+            }
+            return text.Split(',');
+        }
 
 
 
         public bool isHourMinuteSame(DateTime dateTime) {
-
-            
-
             return dateTime.Hour == this.hour && dateTime.Minute == this.minute;
         }
 
@@ -265,19 +273,7 @@ namespace DigitalClockPackge
 
 
 
-        public bool handleWork()
-        {
-            switch (taskType) {
-                case TaskType.SHUT_DONW:
-                    //关机
-                    Utils.runCmd("shutdown -s -t " + 15);
-                    return true;
-                case TaskType.OPEN_EXE:
-                    Utils.runExe(extra);
-                    return true;
-            }
-            return false;
-        }
+
 
 
         public bool isTimeOK(DateTime dateTime) {
@@ -347,6 +343,66 @@ namespace DigitalClockPackge
             return info;
         }
 
+        public bool handleWork()
+        {
+            switch (taskType)
+            {
+                case TaskType.SHUT_DONW:
+                    //关机
+                    Utils.runCmd("shutdown -s -t " + 15);
+                    return true;
+                case TaskType.OPEN_EXE:
+                    Utils.runExe(extra);
+                    return true;
+                case TaskType.WX_SEND_MSG:
+
+                    string []datas=RemindItem.parseExtraData(extra2);
+                    if (datas == null)
+                    {
+                        NetBuilder.create(null).setUrl(extra).setPostData(extra2).start(null);
+                    }
+                    else {
+
+                        NetBuilder.create(null).asGet().setUrl(datas[3]).start((data) =>
+                        {
+                            LogUtil.Print(data);
+                            try
+                            {
+                                Weather.WealthNowItem item = Utils.parseObject<Weather.WealthNowItem>(data);
+
+                                WxRobotForm.MessageItem item2 = new WxRobotForm.MessageItem();
+                                item2.text.content = item.ToString();
+                                NetBuilder.create(null).setUrl(extra).setPostData(Utils.toJSONString(item2)).start(null);
+                            }
+                            catch (Exception)
+                            {
+                            }
+                        });
+                    }
+
+
+                    return true;
+                //case TaskType.WX_SEND_WEATHER_NOW:
+                //    NetBuilder.create(null).asGet().setUrl(Weather.getUrl(extra2, Weather.TYPE_NOW)).start((data) =>
+                //    {
+                //        LogUtil.Print(data);
+                //        try
+                //        {
+                //            Weather.WealthNowItem item = Utils.parseObject<Weather.WealthNowItem>(data);
+                //            NetBuilder.create(null).setUrl(extra).setPostData(item.ToString()).start(null);
+                //        }
+                //        catch (Exception)
+                //        {
+
+                //        }
+                //    });
+
+                //    break;
+                    
+            }
+            return false;
+        }
+
 
     }
 
@@ -355,21 +411,32 @@ namespace DigitalClockPackge
         public const int SHUT_DONW = 1;//关机
         public const int OPEN_EXE = 2;//打开程序
 
+        public const int WX_SEND_MSG = 3;//发送消息
 
-        public static Dictionary<int, string> map = null;
 
 
+
+        public static Dictionary<int, string> map = new Dictionary<int, string>();
+
+        public static List<int> listType = new List<int>();
+
+        static TaskType() {
+            listType.Add(TaskType.REMIND);
+            listType.Add(TaskType.SHUT_DONW);
+            listType.Add(TaskType.OPEN_EXE);
+            listType.Add(TaskType.WX_SEND_MSG);
+
+
+            map.Add(REMIND, "提醒");
+            map.Add(SHUT_DONW, "关机");
+            map.Add(OPEN_EXE, "执行程序");
+            map.Add(WX_SEND_MSG, "发送企业微信消息");
+
+        }
 
 
         public static string type2String(int type)
         {
-            if (map == null)
-            {
-                map = new Dictionary<int, string>();
-                map.Add(REMIND, "提醒");
-                map.Add(SHUT_DONW, "关机");
-                map.Add(OPEN_EXE, "执行程序");
-            }
             return map[type];
         }
     }
@@ -386,22 +453,35 @@ namespace DigitalClockPackge
         public const int ONCE = 99;
         public const int USER_DEFINE = 100;//自定义
 
-        public static Dictionary<int, string> map = null;
-        
+        public static Dictionary<int, string> map  = new Dictionary<int, string>(10);
+
+
+        public static List<int> listPeriod = new List<int>();
+
+        static RemindType() {
+            listPeriod.Add(RemindType.DAY);
+            listPeriod.Add(RemindType.WEEK);
+            listPeriod.Add(RemindType.MONTH);
+            listPeriod.Add(RemindType.YEAR);
+            listPeriod.Add(RemindType.HOUR);
+            listPeriod.Add(RemindType.ONCE);
+            //listPeriod.Add(RemindType.USER_DEFINE);
+
+            map.Add(DAY, "每天");
+            map.Add(WEEK, "每周");
+            map.Add(MONTH, "每月");
+            map.Add(YEAR, "每年");
+            map.Add(HOUR, "每小时");
+            map.Add(ONCE, "仅一次");
+            map.Add(USER_DEFINE, "自定义");
+
+        }
+
+
 
 
 
         public static string type2String(int type) {
-            if (map == null) {
-                map = new Dictionary<int, string>(10);
-                map.Add(DAY,"每天");
-                map.Add(WEEK, "每周");
-                map.Add(MONTH, "每月");
-                map.Add(YEAR, "每年");
-                map.Add(HOUR, "每小时");
-                map.Add(ONCE, "仅一次");
-                map.Add(USER_DEFINE, "自定义");
-            }
             return map[type];
         }
 

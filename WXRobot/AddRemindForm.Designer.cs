@@ -47,7 +47,14 @@
             this.comboBoxHour = new System.Windows.Forms.ComboBox();
             this.comboBoxMinute = new System.Windows.Forms.ComboBox();
             this.labelTime = new System.Windows.Forms.Label();
+            this.panelSendMsg = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.buttonRobotSel = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.panelOpenExe.SuspendLayout();
+            this.panelSendMsg.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -96,7 +103,7 @@
             // 
             // btnComplete
             // 
-            this.btnComplete.Location = new System.Drawing.Point(223, 368);
+            this.btnComplete.Location = new System.Drawing.Point(221, 436);
             this.btnComplete.Name = "btnComplete";
             this.btnComplete.Size = new System.Drawing.Size(169, 41);
             this.btnComplete.TabIndex = 4;
@@ -144,7 +151,7 @@
             this.panelOpenExe.Controls.Add(this.btnChoose);
             this.panelOpenExe.Controls.Add(this.textBoxExtra);
             this.panelOpenExe.Controls.Add(this.label5);
-            this.panelOpenExe.Location = new System.Drawing.Point(1, 280);
+            this.panelOpenExe.Location = new System.Drawing.Point(1, 262);
             this.panelOpenExe.Name = "panelOpenExe";
             this.panelOpenExe.Size = new System.Drawing.Size(612, 57);
             this.panelOpenExe.TabIndex = 5;
@@ -228,11 +235,66 @@
             this.labelTime.TabIndex = 6;
             this.labelTime.Text = "label6";
             // 
+            // panelSendMsg
+            // 
+            this.panelSendMsg.Controls.Add(this.textBox3);
+            this.panelSendMsg.Controls.Add(this.textBox2);
+            this.panelSendMsg.Controls.Add(this.buttonRobotSel);
+            this.panelSendMsg.Controls.Add(this.label7);
+            this.panelSendMsg.Controls.Add(this.label6);
+            this.panelSendMsg.Location = new System.Drawing.Point(1, 325);
+            this.panelSendMsg.Name = "panelSendMsg";
+            this.panelSendMsg.Size = new System.Drawing.Size(612, 100);
+            this.panelSendMsg.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 17);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(69, 15);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Hook地址";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(11, 57);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(67, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "发送内容";
+            // 
+            // buttonRobotSel
+            // 
+            this.buttonRobotSel.Location = new System.Drawing.Point(525, 33);
+            this.buttonRobotSel.Name = "buttonRobotSel";
+            this.buttonRobotSel.Size = new System.Drawing.Size(75, 25);
+            this.buttonRobotSel.TabIndex = 2;
+            this.buttonRobotSel.Text = "选择";
+            this.buttonRobotSel.UseVisualStyleBackColor = true;
+            this.buttonRobotSel.Click += new System.EventHandler(this.buttonRobotSel_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(86, 14);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(421, 25);
+            this.textBox2.TabIndex = 3;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(86, 54);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(421, 25);
+            this.textBox3.TabIndex = 3;
+            // 
             // AddRemindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 438);
+            this.ClientSize = new System.Drawing.Size(625, 489);
+            this.Controls.Add(this.panelSendMsg);
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.panelOpenExe);
             this.Controls.Add(this.btnComplete);
@@ -255,6 +317,8 @@
             this.Load += new System.EventHandler(this.RemindNewForm_Load);
             this.panelOpenExe.ResumeLayout(false);
             this.panelOpenExe.PerformLayout();
+            this.panelSendMsg.ResumeLayout(false);
+            this.panelSendMsg.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,5 +345,11 @@
         private System.Windows.Forms.ComboBox comboBoxHour;
         private System.Windows.Forms.ComboBox comboBoxMinute;
         private System.Windows.Forms.Label labelTime;
+        private System.Windows.Forms.Panel panelSendMsg;
+        private System.Windows.Forms.Button buttonRobotSel;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
