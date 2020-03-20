@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="IniUtil.cs" />
     <Compile Include="LogUtil.cs" />
+    <Compile Include="News.cs" />
     <Compile Include="NumberUtil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

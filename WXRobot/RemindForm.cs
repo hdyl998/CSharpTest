@@ -33,9 +33,12 @@ namespace DigitalClockPackge
             int index = new Random().Next(bitmaps.Length);
             Bitmap bitmap=bitmaps[index];
             panel1.BackgroundImage = bitmap;
-            this.ClientSize = new Size(bitmap.Width,bitmap.Height);
 
-            button1.Location = new Point((bitmap.Width-button1.Width) / 2, bitmap.Height-button1.Height-10);
+            int sizeWidth = (int)(bitmap.Width * 1.5);
+            int sizeHeight = (int)(bitmap.Height * 1.5);
+
+            this.ClientSize = new Size(sizeWidth, sizeHeight);
+            button1.Location = new Point((sizeWidth - button1.Width) / 2, sizeHeight - button1.Height-10);
             if (items == null)
             {
                 label1.Text = "测试提示文本";
@@ -82,7 +85,7 @@ namespace DigitalClockPackge
             while (isShowing) {
                 Thread.Sleep(300);
                 for (int i = 0; isShowing&&i < 10; i++) {
-                    Thread.Sleep(10);
+                    Thread.Sleep(40);
                     this.Invoke(action, x, y);
                 }
 

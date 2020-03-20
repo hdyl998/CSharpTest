@@ -52,6 +52,8 @@ namespace DigitalClockPackge
             bindListData();
             bindKJListData();
 
+            updateListViewEnable();
+
             UiItem item = DataManager.getInstance().getUiItem();
             radioButton1.Checked = item.guanjiRadio == 0;
             radioButton2.Checked = item.guanjiRadio != 0;
@@ -197,6 +199,9 @@ namespace DigitalClockPackge
 
         private int getListViewSelectIndex(ListView listView)
         {
+            if (!listView1.Enabled) {
+                return -1;
+            }
             var indexs = listView.SelectedIndices;
             if (indexs.Count == 1)
             {
@@ -255,9 +260,9 @@ namespace DigitalClockPackge
 
         private void shutdownWithTime(int time) {
             LogUtil.Print(time);
-            if (time < 10)
+            if (time < 60)
             {
-                time = 10;
+                time = 60;
             }
             int hour = time / 3600;
             int minute = time / 60%60;
@@ -480,6 +485,28 @@ namespace DigitalClockPackge
         {
             WeatherForm dlg = new WeatherForm();
             dlg.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DataManager.getInstance().getDataItem().isRemindEnable = !DataManager.getInstance().getDataItem().isRemindEnable;
+            updateListViewEnable();
+
+            DataManager.getInstance().saveAll();
+        }
+
+
+        private void updateListViewEnable() {
+           
+            if (DataManager.getInstance().getDataItem().isRemindEnable)
+            {
+                listView1.Enabled = true;
+            }
+            else
+            {
+                listView1.FocusedItem = null;
+                listView1.Enabled = false;
+            }
         }
     }
 }

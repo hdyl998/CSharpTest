@@ -54,25 +54,28 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(217, 11);
+            this.textBox1.Location = new System.Drawing.Point(163, 9);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(403, 25);
+            this.textBox1.Size = new System.Drawing.Size(303, 21);
             this.textBox1.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 14);
+            this.label1.Location = new System.Drawing.Point(11, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(187, 15);
+            this.label1.Size = new System.Drawing.Size(149, 12);
             this.label1.TabIndex = 2;
             this.label1.Text = "请输入城市名，如（北京）";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(644, 144);
+            this.button2.Location = new System.Drawing.Point(483, 115);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(116, 46);
+            this.button2.Size = new System.Drawing.Size(87, 37);
             this.button2.TabIndex = 3;
             this.button2.Text = "获取数据";
             this.button2.UseVisualStyleBackColor = true;
@@ -81,18 +84,20 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 213);
+            this.label2.Location = new System.Drawing.Point(11, 170);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 15);
+            this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 4;
             this.label2.Text = "天气信息";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(644, 12);
+            this.button4.Location = new System.Drawing.Point(483, 10);
+            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(116, 46);
+            this.button4.Size = new System.Drawing.Size(87, 37);
             this.button4.TabIndex = 5;
             this.button4.Text = "保存";
             this.button4.UseVisualStyleBackColor = true;
@@ -101,17 +106,19 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 66);
+            this.label3.Location = new System.Drawing.Point(11, 53);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 15);
+            this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 6;
             this.label3.Text = "热门城市";
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(88, 62);
+            this.button5.Location = new System.Drawing.Point(66, 50);
+            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.Size = new System.Drawing.Size(56, 26);
             this.button5.TabIndex = 7;
             this.button5.Text = "北京";
             this.button5.UseVisualStyleBackColor = true;
@@ -119,9 +126,10 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(169, 62);
+            this.button6.Location = new System.Drawing.Point(127, 50);
+            this.button6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.Size = new System.Drawing.Size(56, 26);
             this.button6.TabIndex = 7;
             this.button6.Text = "上海";
             this.button6.UseVisualStyleBackColor = true;
@@ -129,9 +137,10 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(250, 62);
+            this.button7.Location = new System.Drawing.Point(188, 50);
+            this.button7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.Size = new System.Drawing.Size(56, 26);
             this.button7.TabIndex = 7;
             this.button7.Text = "广州";
             this.button7.UseVisualStyleBackColor = true;
@@ -139,9 +148,10 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(331, 62);
+            this.button8.Location = new System.Drawing.Point(248, 50);
+            this.button8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.Size = new System.Drawing.Size(56, 26);
             this.button8.TabIndex = 7;
             this.button8.Text = "深圳";
             this.button8.UseVisualStyleBackColor = true;
@@ -149,9 +159,10 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(88, 91);
+            this.button9.Location = new System.Drawing.Point(66, 80);
+            this.button9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.Size = new System.Drawing.Size(56, 26);
             this.button9.TabIndex = 7;
             this.button9.Text = "成都";
             this.button9.UseVisualStyleBackColor = true;
@@ -159,9 +170,10 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(169, 91);
+            this.button10.Location = new System.Drawing.Point(127, 80);
+            this.button10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.Size = new System.Drawing.Size(56, 26);
             this.button10.TabIndex = 7;
             this.button10.Text = "武汉";
             this.button10.UseVisualStyleBackColor = true;
@@ -169,9 +181,10 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(250, 91);
+            this.button11.Location = new System.Drawing.Point(188, 80);
+            this.button11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.Size = new System.Drawing.Size(56, 26);
             this.button11.TabIndex = 7;
             this.button11.Text = "长沙";
             this.button11.UseVisualStyleBackColor = true;
@@ -179,9 +192,10 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(331, 91);
+            this.button12.Location = new System.Drawing.Point(248, 80);
+            this.button12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.Size = new System.Drawing.Size(56, 26);
             this.button12.TabIndex = 7;
             this.button12.Text = "南京";
             this.button12.UseVisualStyleBackColor = true;
@@ -189,9 +203,10 @@
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(644, 213);
+            this.button13.Location = new System.Drawing.Point(483, 170);
+            this.button13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(116, 46);
+            this.button13.Size = new System.Drawing.Size(87, 37);
             this.button13.TabIndex = 8;
             this.button13.Text = "发送到企业微信";
             this.button13.UseVisualStyleBackColor = true;
@@ -200,25 +215,28 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 147);
+            this.label4.Location = new System.Drawing.Point(11, 118);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 15);
+            this.label4.Size = new System.Drawing.Size(59, 12);
             this.label4.TabIndex = 6;
             this.label4.Text = "请求地址*";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(96, 144);
+            this.textBox2.Location = new System.Drawing.Point(72, 115);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(515, 25);
+            this.textBox2.Size = new System.Drawing.Size(387, 21);
             this.textBox2.TabIndex = 1;
             // 
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(284, 185);
+            this.radioButton3.Location = new System.Drawing.Point(213, 148);
+            this.radioButton3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(88, 19);
+            this.radioButton3.Size = new System.Drawing.Size(71, 16);
             this.radioButton3.TabIndex = 11;
             this.radioButton3.Text = "生活指数";
             this.radioButton3.UseVisualStyleBackColor = true;
@@ -227,9 +245,10 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(190, 185);
+            this.radioButton2.Location = new System.Drawing.Point(142, 148);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(88, 19);
+            this.radioButton2.Size = new System.Drawing.Size(71, 16);
             this.radioButton2.TabIndex = 10;
             this.radioButton2.Text = "天气预报";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -239,9 +258,10 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(96, 185);
+            this.radioButton1.Location = new System.Drawing.Point(72, 148);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(88, 19);
+            this.radioButton1.Size = new System.Drawing.Size(71, 16);
             this.radioButton1.TabIndex = 9;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "现在天气";
@@ -250,9 +270,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(644, 289);
+            this.button1.Location = new System.Drawing.Point(483, 231);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 46);
+            this.button1.Size = new System.Drawing.Size(87, 37);
             this.button1.TabIndex = 12;
             this.button1.Text = "完成";
             this.button1.UseVisualStyleBackColor = true;
@@ -261,18 +282,19 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 185);
+            this.label5.Location = new System.Drawing.Point(11, 148);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 15);
+            this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 4;
             this.label5.Text = "信息类别";
             this.label5.Click += new System.EventHandler(this.label2_Click);
             // 
             // WeatherForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 501);
+            this.ClientSize = new System.Drawing.Size(585, 401);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
@@ -295,6 +317,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MinimizeBox = false;
             this.Name = "WeatherForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
