@@ -12,9 +12,13 @@ namespace DigitalClockPackge
 
         public int startUp;
 
-        public int startMin;
+        public int startMin;//启动时最小化
 
         public List<RemindItem> listRemind;//提醒
+
+        public bool isRemindEnable;
+
+
 
         public List<StartUpItem> listStartUp;//开机自启动
 
@@ -24,6 +28,7 @@ namespace DigitalClockPackge
             startY = -1;
             startUp = 1;
             startMin = 0;
+            isRemindEnable = true;
             listRemind = new List<RemindItem>();
             listStartUp = new List<StartUpItem>();
         }
@@ -98,6 +103,9 @@ namespace DigitalClockPackge
 
         public List<RemindItem> handleTime(DateTime dateTime) {
 
+            if (!dataItem.isRemindEnable) {
+                return null;
+            }
             List<RemindItem> list=null;
             foreach (RemindItem item in dataItem.listRemind) {
                 if (item.isTimeOK(dateTime)) { 
@@ -222,6 +230,93 @@ namespace DigitalClockPackge
 
     //}
 
+    public class WxSendHelper {
+
+        public const string EXTRA_FUN_WEATHER = "weather";
+        public const string EXTRA_FUN_NEWS = "news";
+
+     
+        private string hookUrl;
+        private string cmd;
+
+        private string extra;
+
+        private string []cmdArray;
+
+
+        public WxSendHelper(string hookUrl,string extra) {
+            this.hookUrl = hookUrl;
+
+            this.extra = extra;
+
+            cmdArray = parseExtraData(extra);
+
+            if (cmdArray != null) {
+                this.cmd =cmdArray[1];
+            }
+
+        }
+
+
+        public string getHookUrl() {
+            return hookUrl;
+        }
+
+        public string getExtra() {
+            return extra;
+        }
+
+
+        public string[] parseExtraData(string text)
+        {
+            //":fun,weather,{0:d},{1}"
+            if (string.IsNullOrEmpty(text) ||!text.StartsWith(":fun"))
+            {
+                return null;
+            }
+            return text.Split(',');
+        }
+
+
+        public static string getCommonExtra(string cmd,string extra) {
+
+           return string.Format(":fun,{0},{1}", cmd, extra);
+        }
+
+
+        //是否是普通消息
+        public bool isNormalMsg() {
+            return cmdArray == null;
+        }
+
+
+
+
+        public bool isWeather() {
+            return EXTRA_FUN_WEATHER.Equals(cmd);
+        }
+
+        public bool isNews() {
+            return EXTRA_FUN_NEWS.Equals(cmd);
+        }
+
+
+        public int getExtraAsInt(int index) {
+            return NumberUtil.convertToInt(getExtra(index));
+        } 
+
+        public string getExtra(int index)
+        {
+            if (index + 2 >= cmdArray.Length) {
+                return "";
+            }
+            return cmdArray[index + 2];
+        }
+
+
+   
+    }
+
 
     public class RemindItem : BaseItem
     {
@@ -246,13 +341,7 @@ namespace DigitalClockPackge
         }
 
 
-        public static string[] parseExtraData(string text) {
-            //":fun,weather,{0:d},{1}"
-            if (!text.StartsWith(":fun")) {
-                return null;
-            }
-            return text.Split(',');
-        }
+
 
 
 
@@ -356,27 +445,49 @@ namespace DigitalClockPackge
                     return true;
                 case TaskType.WX_SEND_MSG:
 
-                    string []datas=RemindItem.parseExtraData(extra2);
-                    if (datas == null)
+                    WxSendHelper helper = new WxSendHelper(extra,extra2);
+
+
+                    if (helper.isNormalMsg())
                     {
-                        NetBuilder.create(null).setUrl(extra).setPostData(extra2).start(null);
+                        NetBuilder.create(null).setUrl(helper.getHookUrl()).setPostData(helper.getExtra()).start(null);
                     }
-                    else {
-                        LogUtil.Print("开始获取天气"+ datas[3]);
-                        NetBuilder.create(null).asGet().setUrl(datas[3]).start((data) =>
+                    else if (helper.isWeather())
+                    {
+                        LogUtil.Print("开始获取天气" + helper.getExtra(1));
+                        NetBuilder.create(null).asGet().setUrl(helper.getExtra(1)).start((data) =>
                         {
                             LogUtil.Print(data);
                             try
                             {
                                 Weather.WealthNowItem item = Utils.parseObject<Weather.WealthNowItem>(data);
 
-                                WxRobotForm.MessageItem item2 = new WxRobotForm.MessageItem();
-                                item2.text.content = item.ToString();
-                                NetBuilder.create(null).setUrl(extra).setPostData(Utils.toJSONString(item2)).start(null);
+                                
+                                NetBuilder.create(null).setUrl(helper.getHookUrl()).setPostData(item.toSendString()).start(null);
                             }
                             catch (Exception e)
                             {
                                 LogUtil.Print(e.Message);
+                            }
+                        });
+                    }
+                    else if (helper.isNews()) {
+                        LogUtil.Print("开始获新闻" + News.URL);
+
+
+                        NetBuilder.create(null).asGet().setUrl(News.URL).start((data) =>
+                        {
+                            LogUtil.Print(data);
+                            try
+                            {
+                                News.NewsItem item = Utils.parseObject<News.NewsItem>(data);
+                                string sendString = item.toSendString(helper.getExtraAsInt(0));
+                                NetBuilder.create(null).setUrl(extra).setPostData(sendString).start(null);
+                                
+                            }
+                            catch (Exception e1)
+                            {
+                                LogUtil.Print(e1.Message);
                             }
                         });
                     }
@@ -413,6 +524,8 @@ namespace DigitalClockPackge
         public const int OPEN_EXE = 2;//打开程序
 
         public const int WX_SEND_MSG = 3;//发送消息
+
+       
 
 
 

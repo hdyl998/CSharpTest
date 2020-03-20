@@ -56,21 +56,41 @@ namespace DigitalClockPackge
             if (!string.IsNullOrEmpty(sendData))
             {
 
-                string[] datas = RemindItem.parseExtraData(sendData);
+                WxSendHelper helper = new WxSendHelper(hookUrl, sendData);
 
-                if (datas == null)
+
+                if (helper.isNormalMsg())
                 {
                     textBox2.Text = sendData;
                     textBoxRich.Text = sendData;
+                    try
+                    {
+                        PicTextItem dataItem = Utils.parseObject<PicTextItem>(sendData);
+                        NewsItem news = dataItem.news.articles[0];
+                        textBoxTWTitle.Text = news.title;
+                        textBoxTWDescription.Text = news.description;
+                        textBoxTWUrl.Text = news.url;
+                        textBoxTWPicUrl.Text = news.picurl;
+                        tabControl1.SelectedIndex = 2;
+                    }
+                    catch (Exception)
+                    {
+                    }
+
                 }
-                else {
+                else if (helper.isWeather())
+                {
                     tabControl1.SelectedIndex = 3;
-                    textBox1.Text = datas[3];
-                    int initSel = NumberUtil.convertToInt(datas[2]);
+
+                    int initSel = helper.getExtraAsInt(0);
+                    textBox1.Text = helper.getExtra(1);
                     Utils.setRadioButtonCheckedIndex(initSel, radioButton41, radioButton42, radioButton43);
-
                 }
-
+                else if (helper.isNews()) {
+                    tabControl1.SelectedIndex = 4;
+                    int initSel = helper.getExtraAsInt(0);
+                    Utils.setRadioButtonCheckedIndex(initSel, radioButton51, radioButton52);
+                }
    
             }
  
@@ -141,10 +161,7 @@ namespace DigitalClockPackge
                     {
                         Weather.WealthNowItem item = Utils.parseObject<Weather.WealthNowItem>(data);
 
-                        MessageItem item2 = new MessageItem();
-                        item2.text.content= item.ToString();
-
-                        sendDataConfirm(Utils.toJSONString(item2));
+                        sendDataConfirm(item.toSendString());
                     }
                     catch (Exception e1)
                     {
@@ -152,7 +169,25 @@ namespace DigitalClockPackge
                     }
                 });
             }
-            else {
+            else if (tabControl1.SelectedIndex == 4) {
+                NetBuilder.create(this).asGet().setUrl(News.URL).start((data) =>
+                {
+                    LogUtil.Print(data);
+
+                    try
+                    {
+                        News.NewsItem item = Utils.parseObject<News.NewsItem>(data);
+                        int selIndex = Utils.getRadioButtonCheckedIndex(radioButton51, radioButton52);
+                        sendDataConfirm(item.toSendString(selIndex));
+                    }
+                    catch (Exception e1)
+                    {
+                        MessageBox.Show("查询新闻失败！" + e1.Message);
+                    }
+                });
+            }
+            else
+            {
                 sendDataConfirm(text);
             }
         }
@@ -254,8 +289,17 @@ namespace DigitalClockPackge
                     return null;
                 }
                 int selIndex = Utils.getRadioButtonCheckedIndex(radioButton41, radioButton42, radioButton43);
-                return string.Format(":fun,weather,{0:d},{1}", selIndex,textBox1.Text);
+                string extra = string.Format("{0:d},{1}", selIndex, textBox1.Text);
+                return WxSendHelper.getCommonExtra(WxSendHelper.EXTRA_FUN_WEATHER, extra);
             }
+            else if (tabControl1.SelectedIndex == 4)
+            {
+                int selIndex = Utils.getRadioButtonCheckedIndex(radioButton51, radioButton52);
+                string extra = string.Format("{0:d}", selIndex);//0文字，1图片
+                return WxSendHelper.getCommonExtra(WxSendHelper.EXTRA_FUN_NEWS, extra);
+            }
+
+
             if (obj == null) {
                 return null;
             }

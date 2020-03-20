@@ -23,9 +23,23 @@ namespace DigitalClockPackge
         }
 
 
+
+
         public class WealthNowItem
         {
             public List<HeWeather6Item> HeWeather6;
+
+
+
+            public string toSendString()
+            {
+
+                WxRobotForm.MessageItem item2 = new WxRobotForm.MessageItem();
+                item2.text.content = ToString();
+
+                return Utils.toJSONString(item2);
+            }
+
 
             public override string ToString()
             {
