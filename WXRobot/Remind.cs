@@ -19,6 +19,9 @@ namespace DigitalClockPackge
         public bool isRemindEnable;
 
 
+     
+
+
 
         public List<StartUpItem> listStartUp;//开机自启动
 
@@ -44,9 +47,14 @@ namespace DigitalClockPackge
         public int guanjiHour2;
         public int guanjiMinute2;
 
+        public int uiBorderStyleIndex=0;
+
+        public int uiScale =20;
 
         public void defaultConfig() {
             guanjiMinute = 5;
+            uiBorderStyleIndex = 0;//FormBorderStyle.FixedDialog, FormBorderStyle.FixedSingle, FormBorderStyle.FixedToolWindow, FormBorderStyle.None
+            uiScale = 20;//最终除以10
         }
 
     }
@@ -436,10 +444,10 @@ namespace DigitalClockPackge
         {
             switch (taskType)
             {
-                case TaskType.SHUT_DONW:
-                    //关机
-                    Utils.runCmd("shutdown -s -t " + 15);
-                    return true;
+                //case TaskType.SHUT_DONW:
+                //    //关机
+                
+                //    return true;
                 case TaskType.OPEN_EXE:
                     Utils.runExe(extra);
                     return true;

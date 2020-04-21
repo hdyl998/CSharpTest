@@ -57,19 +57,19 @@
             this.SettingToolStripMenuItem,
             this.ExitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(115, 56);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 48);
             // 
             // SettingToolStripMenuItem
             // 
             this.SettingToolStripMenuItem.Name = "SettingToolStripMenuItem";
-            this.SettingToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.SettingToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.SettingToolStripMenuItem.Text = "设置";
             this.SettingToolStripMenuItem.Click += new System.EventHandler(this.SettingToolStripMenuItem_Click);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.ExitToolStripMenuItem.Text = "退出";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -90,46 +90,47 @@
             this.menuShow,
             this.menuExit});
             this.menuNotify.Name = "menuNotify";
-            this.menuNotify.Size = new System.Drawing.Size(115, 108);
+            this.menuNotify.Size = new System.Drawing.Size(101, 92);
             this.menuNotify.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.menuNotify_MouseDoubleClick);
             // 
             // 设置ToolStripMenuItem
             // 
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.设置ToolStripMenuItem.Text = "设置";
             this.设置ToolStripMenuItem.Click += new System.EventHandler(this.SettingToolStripMenuItem_Click);
             // 
             // menuHide_Click
             // 
             this.menuHide_Click.Name = "menuHide_Click";
-            this.menuHide_Click.Size = new System.Drawing.Size(114, 26);
+            this.menuHide_Click.Size = new System.Drawing.Size(100, 22);
             this.menuHide_Click.Text = "隐藏";
             this.menuHide_Click.Click += new System.EventHandler(this.menuHide_Click_Click);
             // 
             // menuShow
             // 
             this.menuShow.Name = "menuShow";
-            this.menuShow.Size = new System.Drawing.Size(114, 26);
+            this.menuShow.Size = new System.Drawing.Size(100, 22);
             this.menuShow.Text = "显示";
             this.menuShow.Click += new System.EventHandler(this.menuShow_Click);
             // 
             // menuExit
             // 
             this.menuExit.Name = "menuExit";
-            this.menuExit.Size = new System.Drawing.Size(114, 26);
+            this.menuExit.Size = new System.Drawing.Size(100, 22);
             this.menuExit.Text = "退出";
             this.menuExit.Click += new System.EventHandler(this.menuExit_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(553, 85);
+            this.ClientSize = new System.Drawing.Size(415, 68);
             this.ContextMenuStrip = this.contextMenuStrip1;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.ShowInTaskbar = false;

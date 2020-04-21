@@ -20,9 +20,9 @@ namespace DigitalClockPackge
     {
 
         Bitmap[] bitmaps;
-   
-        const int HEIGHT = (int)(23 * 2);
-        const int WIDTH = (int)(13 * 2) ;
+
+        int HEIGHT = (int)(23 * 2);
+        int WIDTH = (int)(13 * 2) ;
 
         const int PADDING = 2;//起始绘制位置
         const int DATA_LEN = 8;
@@ -114,18 +114,38 @@ namespace DigitalClockPackge
                 dlg.Close();
                 dlg = null;
             }
+
+            if (dlgShutDown != null)
+            {
+                dlgShutDown.Close();
+                dlgShutDown = null;
+            }
+           
         }
 
         RemindForm dlg;
+        ShutDownForm dlgShutDown;
+
         private void handleAction(List<RemindItem> list) {
             closeDialog();
             List<RemindItem> listReminds=null;
             foreach (RemindItem item in list) {
-                if (!item.handleWork()) {
-                    if (listReminds == null) {
-                        listReminds = new List<RemindItem>();
-                    }
-                    listReminds.Add(item);
+
+                switch (item.taskType) {
+                    case TaskType.SHUT_DONW:
+                        dlgShutDown = new ShutDownForm();
+                        dlgShutDown.Show();
+                        return;//只能出现一个关机的对话框
+                    case TaskType.REMIND:
+                        if (listReminds == null)
+                        {
+                            listReminds = new List<RemindItem>();
+                        }
+                        listReminds.Add(item);
+                        break;
+                    default:
+                        item.handleWork();
+                        break;
                 }
             }
             if (listReminds != null) {
@@ -148,7 +168,7 @@ namespace DigitalClockPackge
             //Utils.runExe("C:\\Windows\\notepad.exe", "C:\\Windows\\notepad.exe");
             LogUtil.Print(Application.StartupPath);
 
-
+   
             bitmaps = new Bitmap[]{
                 global::DigitalClockPackge.Properties.Resources.num0,
                 global::DigitalClockPackge.Properties.Resources.num1,
@@ -169,7 +189,7 @@ namespace DigitalClockPackge
                 bitmaps[i] = new Bitmap(bitmaps[i], WIDTH, HEIGHT);
             }
 
-            this.ClientSize = new Size(WIDTH * DATA_LEN + PADDING * 2, HEIGHT + PADDING * 2);
+       
 
 
 
@@ -177,17 +197,10 @@ namespace DigitalClockPackge
             //const int SPACE_INDEX = 10;
             map[5] = map[2] = LINE_INDEX;
             mapTemp[5] = mapTemp[2] = LINE_INDEX;
-            
+
 
             //map[8] = SPACE_INDEX;
-
-            bufferimage = new Bitmap(this.Width, this.Height);
-            g = Graphics.FromImage(bufferimage);
-            g.SmoothingMode = SmoothingMode.HighQuality; //高质量
-            g.PixelOffsetMode = PixelOffsetMode.HighQuality; //高像素偏移质量
-            g.Clear(this.BackColor);
-            graphicsControl = this.CreateGraphics();
-            timer1_Tick(null, null);
+          
 
 
             defaultConfig();
@@ -208,6 +221,24 @@ namespace DigitalClockPackge
 
         }
 
+        private void setScaleSize(int var)
+        {
+
+            float scale = var / 10f;
+            HEIGHT = (int)(23 * scale);
+            WIDTH = (int)(13 * scale);
+
+            this.ClientSize = new Size(WIDTH * DATA_LEN + PADDING * 2, HEIGHT + PADDING * 2);
+            bufferimage = new Bitmap(this.Width, this.Height);
+            g = Graphics.FromImage(bufferimage);
+            g.SmoothingMode = SmoothingMode.HighQuality; //高质量
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality; //高像素偏移质量
+            g.Clear(this.BackColor);
+            graphicsControl = this.CreateGraphics();
+            timer1_Tick(null, null);
+            this.Invalidate();
+        }
+
         private void handleStartUp() {
 
             foreach(StartUpItem item in DataManager.getInstance().getStartUpData()){
@@ -220,7 +251,12 @@ namespace DigitalClockPackge
         private void defaultConfig()
         {
 
-           int startX= DataManager.getInstance().getDataItem().startX;
+
+            setScaleSize(DataManager.getInstance().getUiItem().uiScale);
+            setFormBoderStyle(DataManager.getInstance().getUiItem().uiBorderStyleIndex);
+
+
+            int startX= DataManager.getInstance().getDataItem().startX;
 
            int startY = DataManager.getInstance().getDataItem().startY;
 
@@ -259,6 +295,7 @@ namespace DigitalClockPackge
         {
             if (setting == null|| setting.IsDisposed) {
                 setting = new SettingForm();
+                setting.deleHandler = new DelegateDone(onStyleChange);
             }
             setting.Show();
             setting.Activate();
@@ -353,5 +390,31 @@ namespace DigitalClockPackge
             ShowMainForm();
         }
 
+
+
+
+        public void onStyleChange(int type, object vaule)
+        {
+            if (type == SettingForm.UI_SETTING_TYPE_BORDER)
+            {
+                setFormBoderStyle( (int)vaule);
+            }
+            else if (type == SettingForm.UI_SETTING_TYPE_SIZE)
+            {
+                setScaleSize((int)vaule);
+            }
+        }
+        public  void setFormBoderStyle( int index)
+        {
+            try
+            {
+                FormBorderStyle[] objects = { FormBorderStyle.FixedDialog, FormBorderStyle.FixedToolWindow, FormBorderStyle.None };
+                this.FormBorderStyle = objects[index];
+            }
+            catch (Exception)
+            {
+            }
+
+        }
     }
 }

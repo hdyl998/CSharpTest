@@ -33,6 +33,12 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageA = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBoxBorder = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnShutdownCancel = new System.Windows.Forms.Button();
@@ -51,6 +57,7 @@
             this.btnNotepad = new System.Windows.Forms.Button();
             this.btnCalc = new System.Windows.Forms.Button();
             this.tabPageB = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
             this.btnRMTest = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnEnable = new System.Windows.Forms.Button();
@@ -72,9 +79,10 @@
             this.btnKJTest = new System.Windows.Forms.Button();
             this.btnKJRemove = new System.Windows.Forms.Button();
             this.btnKJAdd = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageA.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabPageB.SuspendLayout();
             this.tabPageC.SuspendLayout();
@@ -117,6 +125,7 @@
             // 
             // tabPageA
             // 
+            this.tabPageA.Controls.Add(this.groupBox2);
             this.tabPageA.Controls.Add(this.checkBox2);
             this.tabPageA.Controls.Add(this.groupBox1);
             this.tabPageA.Controls.Add(this.btnPaint);
@@ -133,6 +142,73 @@
             this.tabPageA.TabIndex = 2;
             this.tabPageA.Text = "基本功能";
             this.tabPageA.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.comboBoxBorder);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.trackBar1);
+            this.groupBox2.Location = new System.Drawing.Point(316, 199);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(179, 130);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "外观调节";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(148, 29);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(17, 12);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "x2";
+            // 
+            // comboBoxBorder
+            // 
+            this.comboBoxBorder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxBorder.FormattingEnabled = true;
+            this.comboBoxBorder.Items.AddRange(new object[] {
+            "默认（FixedDialog）",
+            "FixedToolWindow",
+            "None"});
+            this.comboBoxBorder.Location = new System.Drawing.Point(41, 85);
+            this.comboBoxBorder.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxBorder.Name = "comboBoxBorder";
+            this.comboBoxBorder.Size = new System.Drawing.Size(101, 20);
+            this.comboBoxBorder.TabIndex = 15;
+            this.comboBoxBorder.SelectedIndexChanged += new System.EventHandler(this.comboBoxBorder_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 88);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 12);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "边框";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 12);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "大小";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(41, 20);
+            this.trackBar1.Maximum = 50;
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(101, 45);
+            this.trackBar1.TabIndex = 12;
+            this.trackBar1.Value = 2;
+            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // checkBox2
             // 
@@ -157,11 +233,11 @@
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.cbShutdownHour);
             this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Location = new System.Drawing.Point(337, 18);
+            this.groupBox1.Location = new System.Drawing.Point(316, 18);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(162, 147);
+            this.groupBox1.Size = new System.Drawing.Size(183, 147);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "关机";
@@ -384,6 +460,17 @@
             this.tabPageB.Text = "周期任务";
             this.tabPageB.UseVisualStyleBackColor = true;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(428, 100);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(68, 20);
+            this.button4.TabIndex = 13;
+            this.button4.Text = "全禁/启用";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // btnRMTest
             // 
             this.btnRMTest.Location = new System.Drawing.Point(428, 148);
@@ -588,17 +675,6 @@
             this.btnKJAdd.UseVisualStyleBackColor = true;
             this.btnKJAdd.Click += new System.EventHandler(this.btnKJAdd_Click);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(428, 100);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(68, 20);
-            this.button4.TabIndex = 13;
-            this.button4.Text = "全禁/启用";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -618,6 +694,9 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPageA.ResumeLayout(false);
             this.tabPageA.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPageB.ResumeLayout(false);
@@ -672,5 +751,11 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBoxBorder;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TrackBar trackBar1;
     }
 }
