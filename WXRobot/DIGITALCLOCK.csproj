@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DelegateClass.cs" />
     <Compile Include="EditStartupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +111,12 @@
     <Compile Include="SettingForm.Designer.cs">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShutDownForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShutDownForm.Designer.cs">
+      <DependentUpon>ShutDownForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="Weather.cs" />
     <Compile Include="WeatherForm.cs">
@@ -143,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShutDownForm.resx">
+      <DependentUpon>ShutDownForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WeatherForm.resx">
       <DependentUpon>WeatherForm.cs</DependentUpon>

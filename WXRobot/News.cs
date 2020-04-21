@@ -79,9 +79,19 @@ namespace DigitalClockPackge
                         PicTextItem item2 = new PicTextItem();
                         obj = item2;
 
+ 
+
+
+                        List<DataItem> listAll = new List<DataItem>();
+                        result.data.ForEach((aa)=> {
+                            if (aa.author_name.Contains("网") || aa.author_name.Contains("新闻"))
+                            {
+                                listAll.Add(aa);
+                            }
+                        });
                         WxRobotForm.NewsItem news = new WxRobotForm.NewsItem();
 
-                        DataItem dateItem= result.data[new Random().Next(result.data.Count)];
+                        DataItem dateItem= listAll[new Random().Next(listAll.Count)];
 
                         news.title = dateItem.title;
                         news.description = "新闻头条";

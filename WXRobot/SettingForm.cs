@@ -14,6 +14,11 @@ namespace DigitalClockPackge
     public partial class SettingForm : Form
     {
 
+    public    DelegateDone deleHandler;
+
+
+        
+
         public SettingForm()
         {
             InitializeComponent();
@@ -36,6 +41,7 @@ namespace DigitalClockPackge
         private void button1_Click(object sender, EventArgs e)
         {
            
+     
             this.Close();
         }
 
@@ -57,9 +63,16 @@ namespace DigitalClockPackge
             UiItem item = DataManager.getInstance().getUiItem();
             radioButton1.Checked = item.guanjiRadio == 0;
             radioButton2.Checked = item.guanjiRadio != 0;
+           
 
+            if (item.uiBorderStyleIndex < comboBoxBorder.Items.Count) {
+                comboBoxBorder.SelectedIndex = item.uiBorderStyleIndex;
+            }
+            trackBar1.Value = item.uiScale;
+            updateUiTrackBarText();
             bindUiConfig();
             isLoaded = true;
+
         }
 
         bool isLoaded = false;
@@ -400,7 +413,9 @@ namespace DigitalClockPackge
 
         private void btnStartPath_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Application.StartupPath);
+            if (MessageBox.Show(Application.StartupPath) == DialogResult.OK) {
+                Clipboard.SetText(Application.StartupPath);
+            }
         }
 
  
@@ -508,5 +523,58 @@ namespace DigitalClockPackge
                 listView1.Enabled = false;
             }
         }
+
+        private void updateUiTrackBarText() {
+            float uiSize = trackBar1.Value / 10f;
+            label5.Text = string.Format("x{0:F2}", uiSize);
+        }
+    
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+
+            if (!isLoaded)
+            {
+                return;
+            }
+
+            UiItem item = DataManager.getInstance().getUiItem();
+            item.uiScale = trackBar1.Value;
+
+            isUiConfigChanged = true;
+
+            updateUiTrackBarText();
+
+
+
+            deleHandler?.Invoke(UI_SETTING_TYPE_SIZE, trackBar1.Value);
+
+        }
+
+        private void comboBoxBorder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (!isLoaded)
+            {
+                return;
+            }
+
+
+            //默认（FixedDialog）
+            //FixedSingle
+            //FixedToolWindow
+            //None
+            // this.FormBorderStyle = ;
+
+            UiItem item = DataManager.getInstance().getUiItem();
+            item.uiBorderStyleIndex = comboBoxBorder.SelectedIndex;
+
+            isUiConfigChanged = true;
+            deleHandler?.Invoke(UI_SETTING_TYPE_BORDER, item.uiBorderStyleIndex);
+        }
+
+
+        public const int UI_SETTING_TYPE_BORDER = 0;
+        public const int UI_SETTING_TYPE_SIZE = 1;
     }
 }

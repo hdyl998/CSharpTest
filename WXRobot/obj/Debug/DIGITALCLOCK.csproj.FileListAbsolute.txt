@@ -15,3 +15,4 @@ D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\DigitalClock
 D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\DigitalClock.pdb
 D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\DigitalClockPackge.WeatherForm.resources
 D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\DIGITALCLOCK.csprojResolveAssemblyReference.cache
+D:\HanDong\visual studio 2015\Projects\CSharpTest\WXRobot\obj\Debug\DigitalClockPackge.ShutDownForm.resources

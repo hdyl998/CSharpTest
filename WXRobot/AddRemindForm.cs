@@ -193,6 +193,7 @@ namespace DigitalClockPackge
                 textBox1.Text = remindItem.content;
                 comboBoxPeriod.SelectedIndex = Utils.findIndex(listPeriod, remindItem.periodType);
                 comboBoxType.SelectedIndex = Utils.findIndex(listType, remindItem.taskType);
+                comboBoxYear.SelectedIndex = 0;//默认选0
                 comboBoxYear.SelectedItem = remindItem.year + "年";
                 comboBoxMonth.SelectedItem = remindItem.month + "月";
                 comboBoxDay.SelectedItem = remindItem.day + "日";
