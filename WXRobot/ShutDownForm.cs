@@ -42,6 +42,7 @@ namespace DigitalClockPackge
         private void startCount()
         {
             int count = REST_TIME;
+            this.Invoke((Action<int>)updateText, count);
             while (isRunning&& count>0) {
                 Thread.Sleep(1000);
                 count--;
@@ -63,7 +64,7 @@ namespace DigitalClockPackge
                 label2.Text = "即将关机...";
             }
             else {
-                label2.Text = a + "秒";
+                label2.Text = a + "秒后执行";
             }
         }
 

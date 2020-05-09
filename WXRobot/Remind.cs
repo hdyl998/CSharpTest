@@ -452,10 +452,7 @@ namespace DigitalClockPackge
                     Utils.runExe(extra);
                     return true;
                 case TaskType.WX_SEND_MSG:
-
                     WxSendHelper helper = new WxSendHelper(extra,extra2);
-
-
                     if (helper.isNormalMsg())
                     {
                         NetBuilder.create(null).setUrl(helper.getHookUrl()).setPostData(helper.getExtra()).start(null);
