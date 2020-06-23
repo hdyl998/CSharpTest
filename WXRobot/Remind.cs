@@ -16,14 +16,10 @@ namespace DigitalClockPackge
 
         public List<RemindItem> listRemind;//提醒
 
-        public bool isRemindEnable;
-
-
-     
-
-
 
         public List<StartUpItem> listStartUp;//开机自启动
+
+        public List<QuickMenuItem> listQuickMenu;//快捷菜单
 
         internal void defaultConfig()
         {
@@ -31,9 +27,20 @@ namespace DigitalClockPackge
             startY = -1;
             startUp = 1;
             startMin = 0;
-            isRemindEnable = true;
+     
             listRemind = new List<RemindItem>();
             listStartUp = new List<StartUpItem>();
+
+            listQuickMenu = new List<QuickMenuItem>();
+        }
+
+        public void checkNotNull() {
+            if(listRemind==null)
+                listRemind = new List<RemindItem>();
+            if (listStartUp == null)
+                listStartUp = new List<StartUpItem>();
+            if (listQuickMenu == null)
+                listQuickMenu = new List<QuickMenuItem>();
         }
     }
 
@@ -56,6 +63,7 @@ namespace DigitalClockPackge
             uiBorderStyleIndex = 0;//FormBorderStyle.FixedDialog, FormBorderStyle.FixedSingle, FormBorderStyle.FixedToolWindow, FormBorderStyle.None
             uiScale = 20;//最终除以10
         }
+
 
     }
 
@@ -98,6 +106,11 @@ namespace DigitalClockPackge
         }
 
 
+        public List<QuickMenuItem> getQuickMenuItems() {
+            return dataItem.listQuickMenu;
+        }
+
+
         private DataManager() {
             createFromCache();
         }
@@ -111,9 +124,6 @@ namespace DigitalClockPackge
 
         public List<RemindItem> handleTime(DateTime dateTime) {
 
-            if (!dataItem.isRemindEnable) {
-                return null;
-            }
             List<RemindItem> list=null;
             foreach (RemindItem item in dataItem.listRemind) {
                 if (item.isTimeOK(dateTime)) { 
@@ -139,7 +149,7 @@ namespace DigitalClockPackge
                 dataItem = new DataItem();
                 dataItem.defaultConfig();
             }
-
+            dataItem.checkNotNull();
             string uiText = IniUtil.getValue(Constants.APP_UI_CONFIG,null);
 
             try
@@ -154,7 +164,13 @@ namespace DigitalClockPackge
                 uiItem = new UiItem();
                 uiItem.defaultConfig();
             }
-        }
+
+           
+
+
+     
+
+    }
 
 
         public void saveAll() {
@@ -187,7 +203,7 @@ namespace DigitalClockPackge
 
         public string getEnableString()
         {
-            return isEnable ? "是" : "否";
+            return Utils.boolean2ShowString(isEnable);
         }
     }
 
@@ -215,6 +231,13 @@ namespace DigitalClockPackge
         }
         
     }
+
+    public class QuickMenuItem : BaseItem {
+        public string name;
+        public string action;
+    }
+
+
 
     //public class OpenExeRemindItem: RemindItem
     //{

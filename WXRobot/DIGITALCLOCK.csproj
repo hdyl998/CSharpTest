@@ -66,7 +66,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddQMForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddQMForm.Designer.cs">
+      <DependentUpon>AddQMForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DelegateClass.cs" />
+    <Compile Include="DigitalClockPackge\Properties\Resources.cs" />
+    <Compile Include="EditMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditMenuForm.Designer.cs">
+      <DependentUpon>EditMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditQuickMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditQuickMenuForm.Designer.cs">
+      <DependentUpon>EditQuickMenuForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditStartupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +150,15 @@
     <Compile Include="WxRobotForm.Designer.cs">
       <DependentUpon>WxRobotForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddQMForm.resx">
+      <DependentUpon>AddQMForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditMenuForm.resx">
+      <DependentUpon>EditMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditQuickMenuForm.resx">
+      <DependentUpon>EditQuickMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditStartupForm.resx">
       <DependentUpon>EditStartupForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +242,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\23585.ico" />
+    <None Include="Resources\33078.ico" />
+    <None Include="Resources\38133.ico" />
     <Content Include="Resources\bg1.jpg" />
     <Content Include="Resources\bg3.jpg" />
     <Content Include="Resources\bg4.jpg" />

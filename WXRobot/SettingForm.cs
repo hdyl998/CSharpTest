@@ -57,8 +57,7 @@ namespace DigitalClockPackge
 
             bindListData();
             bindKJListData();
-
-            updateListViewEnable();
+            bindQuickMenuListData();
 
             UiItem item = DataManager.getInstance().getUiItem();
             radioButton1.Checked = item.guanjiRadio == 0;
@@ -120,7 +119,21 @@ namespace DigitalClockPackge
             }
         }
 
+        private void bindQuickMenuListData()
+        {
 
+
+            listViewQM.Items.Clear();
+            foreach (var item in DataManager.getInstance().getQuickMenuItems())
+            {
+
+                ListViewItem list = new ListViewItem();
+                list.Text = item.name;
+                list.SubItems.Add(item.action);
+                list.SubItems.Add(item.getEnableString());
+                listViewQM.Items.Add(list);
+            }
+        }
 
 
         private void bindListData()
@@ -504,25 +517,24 @@ namespace DigitalClockPackge
 
         private void button4_Click(object sender, EventArgs e)
         {
-            DataManager.getInstance().getDataItem().isRemindEnable = !DataManager.getInstance().getDataItem().isRemindEnable;
-            updateListViewEnable();
+
+            var data = DataManager.getInstance().getDataItem().listRemind;
+
+            if (data.Count == 0) {
+                return;
+            }
+            bool isEnable=!data[0].isEnable;
+            foreach (var v in data) {
+                v.isEnable = isEnable;
+            }
+
+            bindListData();
 
             DataManager.getInstance().saveAll();
         }
 
 
-        private void updateListViewEnable() {
-           
-            if (DataManager.getInstance().getDataItem().isRemindEnable)
-            {
-                listView1.Enabled = true;
-            }
-            else
-            {
-                listView1.FocusedItem = null;
-                listView1.Enabled = false;
-            }
-        }
+  
 
         private void updateUiTrackBarText() {
             float uiSize = trackBar1.Value / 10f;
@@ -576,5 +588,132 @@ namespace DigitalClockPackge
 
         public const int UI_SETTING_TYPE_BORDER = 0;
         public const int UI_SETTING_TYPE_SIZE = 1;
+        public const int UI_SETTING_MENUCHANGE = 2;
+
+        private void buttonKJEdit_Click(object sender, EventArgs e)
+        {
+            
+
+
+            int index = getListViewSelectIndex(listViewKJ);
+            if (index != -1)
+            {
+
+                EditStartupForm dlg = new EditStartupForm();
+                dlg.editIndex = index;
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    bindKJListData();
+                    DataManager.getInstance().saveAll();
+                }
+            }
+        }
+
+        private void buttonQMAdd_Click(object sender, EventArgs e)
+        {
+            AddQMForm dlg = new AddQMForm();
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                bindQuickMenuListData();
+                DataManager.getInstance().saveAll();
+            }
+        }
+
+     
+
+        private void buttonQMEdit_Click(object sender, EventArgs e)
+        {
+
+            int index = getListViewSelectIndex(listViewQM);
+            if (index != -1)
+            {
+                AddQMForm dlg = new AddQMForm();
+                dlg.editIndex = index;
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    bindQuickMenuListData();
+                    DataManager.getInstance().saveAll();
+                }
+            }
+        }
+
+        private void buttonQMRemove_Click(object sender, EventArgs e)
+        {
+            int index = getListViewSelectIndex(listViewQM);
+            if (index != -1)
+            {
+                if (MessageBox.Show("确认移除？", "确认", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    DataManager.getInstance().getQuickMenuItems().RemoveAt(index);
+                    bindQuickMenuListData();
+                    DataManager.getInstance().saveAll();
+                }
+            }
+        }
+        private void buttonQMEnable_Click(object sender, EventArgs e)
+        {
+            int index = getListViewSelectIndex(listViewQM);
+            if (index != -1)
+            {
+                var var = DataManager.getInstance().getQuickMenuItems()[index];
+                var.isEnable = !var.isEnable;
+                bindQuickMenuListData();
+                DataManager.getInstance().saveAll();
+            }
+        }
+
+        private void buttonQMUp_Click(object sender, EventArgs e)
+        {
+            int index = getListViewSelectIndex(listViewQM);
+            if (index != -1)
+            {
+
+                if (index > 0) {
+
+                    var list = DataManager.getInstance().getQuickMenuItems();
+
+
+                    var varTemp = list[index];
+                    list[index] = list[index-1];
+
+                    list[index - 1] = varTemp;
+
+                    bindQuickMenuListData();
+                    DataManager.getInstance().saveAll();
+                }
+            }
+        }
+
+        private void buttonQMDown_Click(object sender, EventArgs e)
+        {
+            int index = getListViewSelectIndex(listViewQM);
+            if (index != -1)
+            {
+
+                if (index+1 < listViewQM.Items.Count)
+                {
+
+                    var list = DataManager.getInstance().getQuickMenuItems();
+
+
+                    var varTemp = list[index];
+                    list[index] = list[index + 1];
+
+                    list[index + 1] = varTemp;
+
+
+
+                    bindQuickMenuListData();
+                    DataManager.getInstance().saveAll();
+                }
+            }
+        }
+
+        private void buttonQMUpdateMenu_Click(object sender, EventArgs e)
+        {
+            deleHandler?.Invoke(UI_SETTING_MENUCHANGE, 0);
+
+        }
     }
 }

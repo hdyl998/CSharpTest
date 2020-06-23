@@ -96,14 +96,29 @@ namespace DigitalClockPackge
             return false;
         }
 
-        public static void runExe(params string[]listExePath) { 
-            foreach(string str in listExePath){
-                Process pr = new Process();//声明一个进程类对象
-                pr.StartInfo.FileName = str;
-                pr.Start();
+      
+       
+        /**
+         * 允许带空格
+         * **/   
+        public static void runExe(params string[]listExePath) {
+
+            try
+            {
+                foreach (string str in listExePath)
+                {
+                    Process pr = new Process();//声明一个进程类对象
+                    pr.StartInfo.FileName = str;
+                    pr.Start();
+                }
+            }
+            catch (Exception e) {
+                
             }
         }
-
+        /**
+      * CMD输入
+      * **/
         public static void runCmd(params string []cmds) {
             var startInfo = new System.Diagnostics.ProcessStartInfo("cmd.exe");
             startInfo.UseShellExecute = false;
@@ -189,6 +204,9 @@ namespace DigitalClockPackge
 
         }
 
-  
+        public static string boolean2ShowString(bool isOK)
+        {
+            return isOK ? "√" : "×";
+        }
     }
 }

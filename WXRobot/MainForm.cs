@@ -164,24 +164,23 @@ namespace DigitalClockPackge
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //new EditQuickMenuForm().ShowDialog();
 
             //Utils.runExe("C:\\Windows\\notepad.exe", "C:\\Windows\\notepad.exe");
             LogUtil.Print(Application.StartupPath);
-
-   
             bitmaps = new Bitmap[]{
-                global::DigitalClockPackge.Properties.Resources.num0,
-                global::DigitalClockPackge.Properties.Resources.num1,
-                global::DigitalClockPackge.Properties.Resources.num2,
-                global::DigitalClockPackge.Properties.Resources.num3,
-                global::DigitalClockPackge.Properties.Resources.num4,
-                global::DigitalClockPackge.Properties.Resources.num5,
-                global::DigitalClockPackge.Properties.Resources.num6,
-                global::DigitalClockPackge.Properties.Resources.num7,
-                global::DigitalClockPackge.Properties.Resources.num8,
-                global::DigitalClockPackge.Properties.Resources.num9,
-                global::DigitalClockPackge.Properties.Resources.space,
-                global::DigitalClockPackge.Properties.Resources.line
+                Properties.Resources.num0,
+                Properties.Resources.num1,
+                Properties.Resources.num2,
+                Properties.Resources.num3,
+                Properties.Resources.num4,
+                Properties.Resources.num5,
+                Properties.Resources.num6,
+                Properties.Resources.num7,
+                Properties.Resources.num8,
+                Properties.Resources.num9,
+                Properties.Resources.space,
+                Properties.Resources.line
             };
 
             //调整大小
@@ -207,8 +206,8 @@ namespace DigitalClockPackge
 
 
             handleStartUp();
-      
 
+            createUserDefineMenuItems();
 
             //NetBuilder.create(this).asGet().setUrl("http://www.weather.com.cn/data/sk/101010100.html").start((data) =>
             //{
@@ -240,6 +239,12 @@ namespace DigitalClockPackge
         }
 
         private void handleStartUp() {
+
+ 
+
+            if (Constants.isDebug) {
+                return;
+            }
 
             foreach(StartUpItem item in DataManager.getInstance().getStartUpData()){
                 if (item.isEnable &&File.Exists(item.path)) {
@@ -397,13 +402,70 @@ namespace DigitalClockPackge
         {
             if (type == SettingForm.UI_SETTING_TYPE_BORDER)
             {
-                setFormBoderStyle( (int)vaule);
+                setFormBoderStyle((int)vaule);
             }
             else if (type == SettingForm.UI_SETTING_TYPE_SIZE)
             {
                 setScaleSize((int)vaule);
             }
+            else if (type == SettingForm.UI_SETTING_MENUCHANGE) {
+                createUserDefineMenuItems();
+
+            }
         }
+
+        private void createUserDefineMenuItems() {
+            toolStripMenuItemUser.DropDownItems.Clear();
+
+            var list = DataManager.getInstance().getQuickMenuItems();
+
+            int realCount = 0;
+            foreach (var v in list)
+            {
+                if (v.isEnable)
+                {
+                    realCount++;
+                }
+            }
+
+            if (realCount == 0)
+            {
+                return;
+            }
+
+            ToolStripItem[] items = new ToolStripItem[realCount];
+
+
+            int index = 0;
+            foreach (var v in list)
+            {
+
+                if (!v.isEnable)
+                {
+                    continue;
+                }
+                ToolStripMenuItem item = new ToolStripMenuItem();
+                item.Tag = v.action;
+                item.Text = v.name;
+                item.Size = new System.Drawing.Size(152, 22);
+                item.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
+                items[index++] = item;
+
+
+            }
+
+            toolStripMenuItemUser.DropDownItems.AddRange(items);
+        }
+
+        private void userToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+           string action= item.Tag.ToString();
+
+            if(!Utils.isTextEmpty(action))
+            Utils.runCmd(action);
+        }
+
         public  void setFormBoderStyle( int index)
         {
             try
@@ -415,6 +477,43 @@ namespace DigitalClockPackge
             {
             }
 
+        }
+
+        private void 启动项ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           Utils.runExe("msconfig");
+        }
+
+        private void 记事本ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.runExe("notepad");
+        }
+
+        private void 计算器ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.runExe("calc");
+        }
+
+        private void 画图ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.runExe("mspaint");
+        }
+
+     
+
+        private void 任务管理器ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.runExe("taskmgr");
+        }
+
+        private void 资源管理器ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.runExe("explorer");
+        }
+
+        private void 计算机管理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.runExe("compmgmt.msc");
         }
     }
 }
