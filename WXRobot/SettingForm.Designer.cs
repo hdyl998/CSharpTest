@@ -91,7 +91,6 @@
             this.btnCalc = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.buttonQMUpdateMenu = new System.Windows.Forms.Button();
             this.tabPageD.SuspendLayout();
             this.tabPageC.SuspendLayout();
             this.tabPageB.SuspendLayout();
@@ -115,7 +114,6 @@
             // 
             // tabPageD
             // 
-            this.tabPageD.Controls.Add(this.buttonQMUpdateMenu);
             this.tabPageD.Controls.Add(this.listViewQM);
             this.tabPageD.Controls.Add(this.buttonQMEnable);
             this.tabPageD.Controls.Add(this.buttonQMDown);
@@ -818,16 +816,6 @@
             this.tabControl1.Size = new System.Drawing.Size(507, 387);
             this.tabControl1.TabIndex = 3;
             // 
-            // buttonQMUpdateMenu
-            // 
-            this.buttonQMUpdateMenu.Location = new System.Drawing.Point(428, 156);
-            this.buttonQMUpdateMenu.Name = "buttonQMUpdateMenu";
-            this.buttonQMUpdateMenu.Size = new System.Drawing.Size(68, 21);
-            this.buttonQMUpdateMenu.TabIndex = 14;
-            this.buttonQMUpdateMenu.Text = "创建菜单";
-            this.buttonQMUpdateMenu.UseVisualStyleBackColor = true;
-            this.buttonQMUpdateMenu.Click += new System.EventHandler(this.buttonQMUpdateMenu_Click);
-            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -923,6 +911,5 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.Button buttonQMDown;
-        private System.Windows.Forms.Button buttonQMUpdateMenu;
     }
 }

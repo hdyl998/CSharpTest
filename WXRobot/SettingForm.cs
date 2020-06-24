@@ -58,6 +58,7 @@ namespace DigitalClockPackge
             bindListData();
             bindKJListData();
             bindQuickMenuListData();
+            
 
             UiItem item = DataManager.getInstance().getUiItem();
             radioButton1.Checked = item.guanjiRadio == 0;
@@ -71,6 +72,7 @@ namespace DigitalClockPackge
             updateUiTrackBarText();
             bindUiConfig();
             isLoaded = true;
+            isMenuChanged = false;
 
         }
 
@@ -133,6 +135,7 @@ namespace DigitalClockPackge
                 list.SubItems.Add(item.getEnableString());
                 listViewQM.Items.Add(list);
             }
+            isMenuChanged = true;
         }
 
 
@@ -461,6 +464,11 @@ namespace DigitalClockPackge
                 recordConfig();
                 DataManager.getInstance().saveUiItem();
             }
+            if (isMenuChanged) {
+                deleHandler?.Invoke(UI_SETTING_MENUCHANGE, 0);
+
+                DataManager.getInstance().saveAll();
+            }
 
         }
 
@@ -616,10 +624,13 @@ namespace DigitalClockPackge
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 bindQuickMenuListData();
-                DataManager.getInstance().saveAll();
+
+                
             }
         }
 
+
+        private bool isMenuChanged = false;
      
 
         private void buttonQMEdit_Click(object sender, EventArgs e)
@@ -633,7 +644,8 @@ namespace DigitalClockPackge
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     bindQuickMenuListData();
-                    DataManager.getInstance().saveAll();
+                    
+                  
                 }
             }
         }
@@ -647,7 +659,7 @@ namespace DigitalClockPackge
                 {
                     DataManager.getInstance().getQuickMenuItems().RemoveAt(index);
                     bindQuickMenuListData();
-                    DataManager.getInstance().saveAll();
+                   
                 }
             }
         }
@@ -659,7 +671,7 @@ namespace DigitalClockPackge
                 var var = DataManager.getInstance().getQuickMenuItems()[index];
                 var.isEnable = !var.isEnable;
                 bindQuickMenuListData();
-                DataManager.getInstance().saveAll();
+              
             }
         }
 
@@ -680,7 +692,7 @@ namespace DigitalClockPackge
                     list[index - 1] = varTemp;
 
                     bindQuickMenuListData();
-                    DataManager.getInstance().saveAll();
+                    
                 }
             }
         }
@@ -705,15 +717,11 @@ namespace DigitalClockPackge
 
 
                     bindQuickMenuListData();
-                    DataManager.getInstance().saveAll();
+                   
                 }
             }
         }
 
-        private void buttonQMUpdateMenu_Click(object sender, EventArgs e)
-        {
-            deleHandler?.Invoke(UI_SETTING_MENUCHANGE, 0);
-
-        }
+ 
     }
 }

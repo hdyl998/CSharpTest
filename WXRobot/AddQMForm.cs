@@ -38,7 +38,7 @@ namespace DigitalClockPackge
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (textBox1.Text.Length == 0)
+            if (textBox1.Text.Length == 0||textBox2.Text.Length==0)
             {
                 MessageBox.Show("数据不能为空");
                 return;
@@ -63,6 +63,50 @@ namespace DigitalClockPackge
         private void button2_Click(object sender, EventArgs e)
         {
             Utils.runCmd(textBox2.Text);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Utils.runExe("cmd");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "选择程序或快捷方式";
+            dialog.Multiselect = true;
+            dialog.InitialDirectory = Application.StartupPath;
+            dialog.Filter = "All files(*.*)|*.*|可执行程序|*.exe|快捷方式|*.lnk";
+            dialog.FilterIndex = 2;
+            dialog.RestoreDirectory = true;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+
+                foreach (string str in dialog.FileNames)
+                {
+                    string name;
+                    string path;
+
+                    int indexEnd = str.LastIndexOf(".");
+                    int indexStart = str.LastIndexOf("\\");
+                    if (indexEnd != -1 && indexStart != -1)
+                    {
+                        name = str.Substring(indexStart + 1, indexEnd - indexStart - 1);
+                    }
+                    else
+                    {
+                        name = str;
+                    }
+
+                    path = str;
+
+                    textBox1.Text = name;
+                    textBox2.Text = string.Format("\"{0}\"", path);
+                }
+ 
+               
+            }
         }
     }
 }

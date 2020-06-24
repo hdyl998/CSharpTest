@@ -103,17 +103,18 @@ namespace DigitalClockPackge
          * **/   
         public static void runExe(params string[]listExePath) {
 
-            try
+
+            foreach (string str in listExePath)
             {
-                foreach (string str in listExePath)
+                Process pr = new Process();//声明一个进程类对象
+                pr.StartInfo.FileName = str;
+                try
                 {
-                    Process pr = new Process();//声明一个进程类对象
-                    pr.StartInfo.FileName = str;
                     pr.Start();
                 }
-            }
-            catch (Exception e) {
-                
+                catch (Exception e)
+                {
+                }
             }
         }
         /**
