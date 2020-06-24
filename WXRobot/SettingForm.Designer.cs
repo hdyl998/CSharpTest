@@ -765,7 +765,7 @@
             this.btnStartPath.Name = "btnStartPath";
             this.btnStartPath.Size = new System.Drawing.Size(111, 30);
             this.btnStartPath.TabIndex = 3;
-            this.btnStartPath.Text = "应用路径";
+            this.btnStartPath.Text = "应用位置";
             this.btnStartPath.UseVisualStyleBackColor = true;
             this.btnStartPath.Click += new System.EventHandler(this.btnStartPath_Click);
             // 

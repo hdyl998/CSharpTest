@@ -429,9 +429,8 @@ namespace DigitalClockPackge
 
         private void btnStartPath_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Application.StartupPath) == DialogResult.OK) {
-                Clipboard.SetText(Application.StartupPath);
-            }
+
+            Utils.runCmd(string.Format("explorer {0}", Application.StartupPath));
         }
 
  
