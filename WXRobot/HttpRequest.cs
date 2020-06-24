@@ -128,7 +128,7 @@ namespace DigitalClockPackge
 
         public NetBuilder setPostData(string postData)
         {
-            this.postData = postData;
+            this.postData = Utils.replaceText(postData);
             isGet = false;
             return this;
         }

@@ -63,7 +63,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPageA = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -433,11 +432,10 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader8,
             this.columnHeader4});
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(4, 5);
+            this.listView1.Location = new System.Drawing.Point(2, 4);
             this.listView1.Margin = new System.Windows.Forms.Padding(2);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -449,29 +447,22 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "内容";
-            this.columnHeader1.Width = 96;
+            this.columnHeader1.Width = 71;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "时间";
-            this.columnHeader2.Width = 121;
+            this.columnHeader2.Width = 206;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "周期";
-            this.columnHeader3.Width = 62;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.DisplayIndex = 4;
-            this.columnHeader8.Text = "类型";
-            this.columnHeader8.Width = 72;
+            this.columnHeader3.Text = "类型";
+            this.columnHeader3.Width = 73;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.DisplayIndex = 3;
             this.columnHeader4.Text = "启用";
-            this.columnHeader4.Width = 48;
+            this.columnHeader4.Width = 41;
             // 
             // tabPageA
             // 
@@ -765,7 +756,7 @@
             this.btnStartPath.Name = "btnStartPath";
             this.btnStartPath.Size = new System.Drawing.Size(111, 30);
             this.btnStartPath.TabIndex = 3;
-            this.btnStartPath.Text = "应用路径";
+            this.btnStartPath.Text = "应用位置";
             this.btnStartPath.UseVisualStyleBackColor = true;
             this.btnStartPath.Click += new System.EventHandler(this.btnStartPath_Click);
             // 
@@ -827,6 +818,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "SettingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "设置";
@@ -881,7 +873,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.TabPage tabPageA;
         private System.Windows.Forms.GroupBox groupBox2;

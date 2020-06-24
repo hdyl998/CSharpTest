@@ -8,6 +8,7 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -22,7 +23,7 @@ namespace DigitalClockPackge
         Bitmap[] bitmaps;
 
         int HEIGHT = (int)(23 * 2);
-        int WIDTH = (int)(13 * 2) ;
+        int WIDTH = (int)(13 * 2);
 
         const int PADDING = 2;//起始绘制位置
         const int DATA_LEN = 8;
@@ -47,16 +48,20 @@ namespace DigitalClockPackge
 
             LogUtil.Print("Form1_Paint");
         }
-        private bool isMapSame() {
-            for (int i = 0; i < mapTemp.Length; i++) {
-                if (map[i] != mapTemp[i]) {
+        private bool isMapSame()
+        {
+            for (int i = 0; i < mapTemp.Length; i++)
+            {
+                if (map[i] != mapTemp[i])
+                {
                     return false;
                 }
             }
             return true;
         }
 
-        private void copyMap() {
+        private void copyMap()
+        {
             //交换地址
             var temp = map;
             map = mapTemp;
@@ -81,7 +86,8 @@ namespace DigitalClockPackge
             mapTemp[6] = dateTime.Second / 10;
             mapTemp[7] = dateTime.Second % 10;
 
-            if (isMapSame()) {
+            if (isMapSame())
+            {
                 return;
             }
             copyMap();
@@ -92,23 +98,27 @@ namespace DigitalClockPackge
             {
 
                 int mapIndex = map[i];
-                int x = PADDING+ i * WIDTH;
+                int x = PADDING + i * WIDTH;
                 int y = PADDING;
                 g.DrawImage(bitmaps[mapIndex], x, y, WIDTH, HEIGHT);
             }
             graphicsControl.DrawImage(bufferimage, 0, 0);
-            if (dateTime.Second == 0) {
+            if (dateTime.Second == 0)
+            {
                 var list = DataManager.getInstance().handleTime(dateTime);
-                if (list != null) {
+                if (list != null)
+                {
                     handleAction(list);
                 }
             }
-            else if (dateTime.Second == 59) {
+            else if (dateTime.Second == 59)
+            {
                 closeDialog();
             }
         }
 
-        private void closeDialog() {
+        private void closeDialog()
+        {
             if (dlg != null)
             {
                 dlg.Close();
@@ -120,18 +130,21 @@ namespace DigitalClockPackge
                 dlgShutDown.Close();
                 dlgShutDown = null;
             }
-           
+
         }
 
         RemindForm dlg;
         ShutDownForm dlgShutDown;
 
-        private void handleAction(List<RemindItem> list) {
+        private void handleAction(List<RemindItem> list)
+        {
             closeDialog();
-            List<RemindItem> listReminds=null;
-            foreach (RemindItem item in list) {
+            List<RemindItem> listReminds = null;
+            foreach (RemindItem item in list)
+            {
 
-                switch (item.taskType) {
+                switch (item.taskType)
+                {
                     case TaskType.SHUT_DONW:
                         dlgShutDown = new ShutDownForm();
                         dlgShutDown.Show();
@@ -148,26 +161,51 @@ namespace DigitalClockPackge
                         break;
                 }
             }
-            if (listReminds != null) {
+            if (listReminds != null)
+            {
                 showRemindDialog(listReminds);
             }
         }
 
-        private void showRemindDialog(List<RemindItem>listReminds) {
+        private void showRemindDialog(List<RemindItem> listReminds)
+        {
 
             dlg = new RemindForm();
             dlg.items = listReminds;
             dlg.ShowDialog();
         }
 
-
+        private const string PATTON_RANDOM = "#{random|A:80,B:20,C:20}";
+        private const string PATTON_RANDOM2 = "1233";
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //new EditQuickMenuForm().ShowDialog();
 
+
+            String patton = @"\\#\\{random\\|^[A-Za-z0-9,:]+$\\}";
+
+
+
+            bool isFind = false;
+
+            foreach (Match match in Regex.Matches(PATTON_RANDOM, patton))
+            {
+                LogUtil.Print(match.Value);
+
+                isFind = true;
+            }
+
+            Console.WriteLine();
+            LogUtil.Print(isFind + " isFind ");
+
+
+
             //Utils.runExe("C:\\Windows\\notepad.exe", "C:\\Windows\\notepad.exe");
-            LogUtil.Print(Application.StartupPath);
+            LogUtil.Print(DateTime.Now.ToShortDateString());
+            LogUtil.Print(DateTime.Now.ToString());
+            LogUtil.Print(DateTime.Now.Date.ToString());
+            LogUtil.Print(DateTime.Now.ToShortTimeString());
             bitmaps = new Bitmap[]{
                 Properties.Resources.num0,
                 Properties.Resources.num1,
@@ -184,11 +222,12 @@ namespace DigitalClockPackge
             };
 
             //调整大小
-            for (int i = 0; i < bitmaps.Length; i++) {
+            for (int i = 0; i < bitmaps.Length; i++)
+            {
                 bitmaps[i] = new Bitmap(bitmaps[i], WIDTH, HEIGHT);
             }
 
-       
+
 
 
 
@@ -199,7 +238,7 @@ namespace DigitalClockPackge
 
 
             //map[8] = SPACE_INDEX;
-          
+
 
 
             defaultConfig();
@@ -238,16 +277,20 @@ namespace DigitalClockPackge
             this.Invalidate();
         }
 
-        private void handleStartUp() {
+        private void handleStartUp()
+        {
 
- 
 
-            if (Constants.isDebug) {
+
+            if (Constants.isDebug)
+            {
                 return;
             }
 
-            foreach(StartUpItem item in DataManager.getInstance().getStartUpData()){
-                if (item.isEnable &&File.Exists(item.path)) {
+            foreach (StartUpItem item in DataManager.getInstance().getStartUpData())
+            {
+                if (item.isEnable && File.Exists(item.path))
+                {
                     Utils.runExe(item.path);
                 }
             }
@@ -261,19 +304,20 @@ namespace DigitalClockPackge
             setFormBoderStyle(DataManager.getInstance().getUiItem().uiBorderStyleIndex);
 
 
-            int startX= DataManager.getInstance().getDataItem().startX;
+            int startX = DataManager.getInstance().getDataItem().startX;
 
-           int startY = DataManager.getInstance().getDataItem().startY;
+            int startY = DataManager.getInstance().getDataItem().startY;
 
-           int startUp = DataManager.getInstance().getDataItem().startUp;
+            int startUp = DataManager.getInstance().getDataItem().startUp;
 
-            Utils.enableStartUp(startUp==1);
+            Utils.enableStartUp(startUp == 1);
 
             if (startX < 0 || startY < 0)
             {
                 defaultLocation();
             }
-            else {
+            else
+            {
                 this.Location = new Point(startX, startY);
             }
 
@@ -281,7 +325,8 @@ namespace DigitalClockPackge
 
             isStarted = true;
 
-            if (DataManager.getInstance().getDataItem().startMin == 1) {
+            if (DataManager.getInstance().getDataItem().startMin == 1)
+            {
                 new Thread(new ThreadStart(HideMainForm)).Start();
             }
         }
@@ -290,7 +335,8 @@ namespace DigitalClockPackge
 
         bool isStarted = false;
 
-        private void defaultLocation() {
+        private void defaultLocation()
+        {
             Rectangle rec = Screen.GetWorkingArea(this);
             this.Location = new Point(rec.Width - this.Width - 5, 5);
         }
@@ -298,7 +344,8 @@ namespace DigitalClockPackge
         SettingForm setting;
         private void SettingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (setting == null|| setting.IsDisposed) {
+            if (setting == null || setting.IsDisposed)
+            {
                 setting = new SettingForm();
                 setting.deleHandler = new DelegateDone(onStyleChange);
             }
@@ -307,13 +354,15 @@ namespace DigitalClockPackge
         }
         private void Form1_LocationChanged(object sender, EventArgs e)
         {
-            if (isStarted) {
-                if (Location.X > 0 && Location.Y > 0) {
+            if (isStarted)
+            {
+                if (Location.X > 0 && Location.Y > 0)
+                {
                     DataManager.getInstance().getDataItem().startX = Location.X;
                     DataManager.getInstance().getDataItem().startY = Location.Y;
                     DataManager.getInstance().setChanged();
                 }
-  
+
             }
         }
 
@@ -347,7 +396,12 @@ namespace DigitalClockPackge
 
         private void menuNotify_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
+            //if (toolStripMenuItemUser.IsOnDropDown)
+            //    toolStripMenuItemUser.HideDropDown();
+            //else
+            //{
+            //    toolStripMenuItemUser.ShowDropDown();
+            //}
         }
 
 
@@ -408,13 +462,15 @@ namespace DigitalClockPackge
             {
                 setScaleSize((int)vaule);
             }
-            else if (type == SettingForm.UI_SETTING_MENUCHANGE) {
+            else if (type == SettingForm.UI_SETTING_MENUCHANGE)
+            {
                 createUserDefineMenuItems();
 
             }
         }
 
-        private void createUserDefineMenuItems() {
+        private void createUserDefineMenuItems()
+        {
             toolStripMenuItemUser.DropDownItems.Clear();
 
             var list = DataManager.getInstance().getQuickMenuItems();
@@ -460,13 +516,13 @@ namespace DigitalClockPackge
         private void userToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
-           string action= item.Tag.ToString();
+            string action = item.Tag.ToString();
 
-            if(!Utils.isTextEmpty(action))
-            Utils.runCmd(action);
+            if (!Utils.isTextEmpty(action))
+                Utils.runCmd(action);
         }
 
-        public  void setFormBoderStyle( int index)
+        public void setFormBoderStyle(int index)
         {
             try
             {
@@ -481,7 +537,7 @@ namespace DigitalClockPackge
 
         private void 启动项ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           Utils.runExe("msconfig");
+            Utils.runExe("msconfig");
         }
 
         private void 记事本ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -499,7 +555,7 @@ namespace DigitalClockPackge
             Utils.runExe("mspaint");
         }
 
-     
+
 
         private void 任务管理器ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -514,6 +570,18 @@ namespace DigitalClockPackge
         private void 计算机管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Utils.runExe("compmgmt.msc");
+        }
+
+        private void MainForm_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.contextMenuStrip1.Show();
+        }
+
+        private void 计数器ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CountNumForm dlg = new CountNumForm();
+
+            dlg.Show();
         }
     }
 }

@@ -6,7 +6,11 @@ using System.Text;
 namespace DigitalClockPackge
 {
 
-    public class DataItem {
+    public class DataItem
+    {
+
+        public int version;
+
         public int startX;
         public int startY;
 
@@ -27,15 +31,16 @@ namespace DigitalClockPackge
             startY = -1;
             startUp = 1;
             startMin = 0;
-     
+
             listRemind = new List<RemindItem>();
             listStartUp = new List<StartUpItem>();
 
             listQuickMenu = new List<QuickMenuItem>();
         }
 
-        public void checkNotNull() {
-            if(listRemind==null)
+        public void checkNotNull()
+        {
+            if (listRemind == null)
                 listRemind = new List<RemindItem>();
             if (listStartUp == null)
                 listStartUp = new List<StartUpItem>();
@@ -44,7 +49,8 @@ namespace DigitalClockPackge
         }
     }
 
-    public class UiItem{
+    public class UiItem
+    {
 
         //关机
         public int guanjiRadio;
@@ -54,11 +60,12 @@ namespace DigitalClockPackge
         public int guanjiHour2;
         public int guanjiMinute2;
 
-        public int uiBorderStyleIndex=0;
+        public int uiBorderStyleIndex = 0;
 
-        public int uiScale =20;
+        public int uiScale = 20;
 
-        public void defaultConfig() {
+        public void defaultConfig()
+        {
             guanjiMinute = 5;
             uiBorderStyleIndex = 0;//FormBorderStyle.FixedDialog, FormBorderStyle.FixedSingle, FormBorderStyle.FixedToolWindow, FormBorderStyle.None
             uiScale = 20;//最终除以10
@@ -70,19 +77,22 @@ namespace DigitalClockPackge
 
 
 
-    public class DataManager {
+    public class DataManager
+    {
 
-        private static DataManager intance=new DataManager();
+        private static DataManager intance = new DataManager();
 
         public bool isChanged = false;
 
 
-        public void setChanged() {
+        public void setChanged()
+        {
             isChanged = true;
         }
 
 
-        public static DataManager getInstance() {
+        public static DataManager getInstance()
+        {
             return intance;
         }
         DataItem dataItem;
@@ -90,12 +100,14 @@ namespace DigitalClockPackge
         UiItem uiItem;
 
 
-        public UiItem getUiItem() {
+        public UiItem getUiItem()
+        {
             return uiItem;
         }
 
 
-        public DataItem getDataItem() {
+        public DataItem getDataItem()
+        {
             return dataItem;
         }
 
@@ -106,28 +118,35 @@ namespace DigitalClockPackge
         }
 
 
-        public List<QuickMenuItem> getQuickMenuItems() {
+        public List<QuickMenuItem> getQuickMenuItems()
+        {
             return dataItem.listQuickMenu;
         }
 
 
-        private DataManager() {
+        private DataManager()
+        {
             createFromCache();
         }
 
-        public List<RemindItem> getRemindData() {
+        public List<RemindItem> getRemindData()
+        {
             return dataItem.listRemind;
         }
 
 
-    
 
-        public List<RemindItem> handleTime(DateTime dateTime) {
 
-            List<RemindItem> list=null;
-            foreach (RemindItem item in dataItem.listRemind) {
-                if (item.isTimeOK(dateTime)) { 
-                    if (list == null) {
+        public List<RemindItem> handleTime(DateTime dateTime)
+        {
+
+            List<RemindItem> list = null;
+            foreach (RemindItem item in dataItem.listRemind)
+            {
+                if (item.isTimeOK(dateTime))
+                {
+                    if (list == null)
+                    {
                         list = new List<RemindItem>();
                     }
                     list.Add(item);
@@ -135,22 +154,78 @@ namespace DigitalClockPackge
             }
             return list;
         }
-        private void createFromCache() {
+
+        public const int DAY = 0;
+        public const int WEEK = 1;
+        public const int MONTH = 2;
+        public const int YEAR = 3;
+        public const int HOUR = 10;
+        public const int ONCE = 99;
+        public const int USER_DEFINE = 100;//自定义
+
+        private void createFromCache()
+        {
             string text = IniUtil.getValue(Constants.APP_CONFIG, null);
             LogUtil.Print(text);
             try
             {
                 dataItem = Utils.parseObject<DataItem>(text);
+
+
+
+                foreach (var vv in dataItem.listRemind)
+                {
+                    if (vv.periodType >= 0) {
+                        switch (vv.periodType) {
+                            case DAY:
+                                vv._hour = vv.hour+"" ;
+                                vv._min = vv.minute + "";
+                                break;
+                            case WEEK:
+                                vv._week = vv.week + "";
+                                vv._hour = vv.hour + "";
+                                vv._min = vv.minute + "";
+                                break;
+                            case MONTH:
+                                vv._day = vv._day + "";
+                                vv._hour = vv.hour + "";
+                                vv._min = vv.minute + "";
+                                break;
+                            case YEAR:
+                                vv._month = vv.month + "";
+                                vv._day = vv._day + "";
+                                vv._hour = vv.hour + "";
+                                vv._min = vv.minute + "";
+                                break;
+                            case HOUR:
+                                vv._min = vv.minute + "";
+                                break;
+                            case ONCE:
+                                vv._year = vv.year + "";
+                                vv._month = vv.month + "";
+                                vv._day = vv._day + "";
+                                vv._hour = vv.hour + "";
+                                vv._min = vv.minute + "";
+                                break;
+                        }
+                        vv.year = vv.month = vv.week = vv.day = vv.minute = vv.day = 0;
+                        vv.periodType = -1;
+                        isChanged = true;
+                    }
+                    vv.buildInfos();
+                }
             }
-            catch (Exception e) {
-                LogUtil.Print(e.ToString());
+            catch (Exception e)
+            {
+                LogUtil.Print("ttttt" + e.ToString());
             }
-            if (dataItem == null) {
+            if (dataItem == null)
+            {
                 dataItem = new DataItem();
                 dataItem.defaultConfig();
             }
             dataItem.checkNotNull();
-            string uiText = IniUtil.getValue(Constants.APP_UI_CONFIG,null);
+            string uiText = IniUtil.getValue(Constants.APP_UI_CONFIG, null);
 
             try
             {
@@ -165,22 +240,24 @@ namespace DigitalClockPackge
                 uiItem.defaultConfig();
             }
 
-           
 
 
-     
-
-    }
 
 
-        public void saveAll() {
+
+        }
+
+
+        public void saveAll()
+        {
 
             isChanged = false;
             IniUtil.setValue(Constants.APP_CONFIG, Utils.toJSONString(dataItem));
         }
 
 
-        public void saveUiItem() {
+        public void saveUiItem()
+        {
             IniUtil.setValue(Constants.APP_UI_CONFIG, Utils.toJSONString(uiItem));
         }
 
@@ -188,7 +265,8 @@ namespace DigitalClockPackge
         public void saveIfChanged()
         {
 
-            if (isChanged) {
+            if (isChanged)
+            {
                 saveAll();
             }
 
@@ -197,8 +275,9 @@ namespace DigitalClockPackge
 
     }
 
-    public class BaseItem {
-        public string createTime=DateTime.Now.ToString();//创建时间
+    public class BaseItem
+    {
+        public string createTime = DateTime.Now.ToString();//创建时间
         public bool isEnable = true;//是否可用
 
         public string getEnableString()
@@ -221,18 +300,21 @@ namespace DigitalClockPackge
 
 
 
-    public class StartUpItem :BaseItem{
+    public class StartUpItem : BaseItem
+    {
         public string path;
         public string appName;
 
 
-        public string getAppName() {
+        public string getAppName()
+        {
             return appName;
         }
-        
+
     }
 
-    public class QuickMenuItem : BaseItem {
+    public class QuickMenuItem : BaseItem
+    {
         public string name;
         public string action;
     }
@@ -261,39 +343,44 @@ namespace DigitalClockPackge
 
     //}
 
-    public class WxSendHelper {
+    public class WxSendHelper
+    {
 
         public const string EXTRA_FUN_WEATHER = "weather";
         public const string EXTRA_FUN_NEWS = "news";
 
-     
+
         private string hookUrl;
         private string cmd;
 
         private string extra;
 
-        private string []cmdArray;
+        private string[] cmdArray;
 
 
-        public WxSendHelper(string hookUrl,string extra) {
+        public WxSendHelper(string hookUrl, string extra)
+        {
             this.hookUrl = hookUrl;
 
             this.extra = extra;
 
             cmdArray = parseExtraData(extra);
 
-            if (cmdArray != null) {
-                this.cmd =cmdArray[1];
+            if (cmdArray != null)
+            {
+                this.cmd = cmdArray[1];
             }
 
         }
 
 
-        public string getHookUrl() {
+        public string getHookUrl()
+        {
             return hookUrl;
         }
 
-        public string getExtra() {
+        public string getExtra()
+        {
             return extra;
         }
 
@@ -301,7 +388,7 @@ namespace DigitalClockPackge
         public string[] parseExtraData(string text)
         {
             //":fun,weather,{0:d},{1}"
-            if (string.IsNullOrEmpty(text) ||!text.StartsWith(":fun"))
+            if (string.IsNullOrEmpty(text) || !text.StartsWith(":fun"))
             {
                 return null;
             }
@@ -309,82 +396,152 @@ namespace DigitalClockPackge
         }
 
 
-        public static string getCommonExtra(string cmd,string extra) {
+        public static string getCommonExtra(string cmd, string extra)
+        {
 
-           return string.Format(":fun,{0},{1}", cmd, extra);
+            return string.Format(":fun,{0},{1}", cmd, extra);
         }
 
 
         //是否是普通消息
-        public bool isNormalMsg() {
+        public bool isNormalMsg()
+        {
             return cmdArray == null;
         }
 
 
 
 
-        public bool isWeather() {
+        public bool isWeather()
+        {
             return EXTRA_FUN_WEATHER.Equals(cmd);
         }
 
-        public bool isNews() {
+        public bool isNews()
+        {
             return EXTRA_FUN_NEWS.Equals(cmd);
         }
 
 
-        public int getExtraAsInt(int index) {
+        public int getExtraAsInt(int index)
+        {
             return NumberUtil.convertToInt(getExtra(index));
-        } 
+        }
 
         public string getExtra(int index)
         {
-            if (index + 2 >= cmdArray.Length) {
+            if (index + 2 >= cmdArray.Length)
+            {
                 return "";
             }
             return cmdArray[index + 2];
         }
 
 
-   
+
     }
 
 
     public class RemindItem : BaseItem
     {
 
+
+
+        public int taskType = TaskType.REMIND;
+
+
+
+
+
+        public string content;//提醒内容
+        public string extra;//参数
+        public string extra2;//参数2
+
+        public RemindItem()
+        {
+
+        }
+
+        //tobedelete
+        public int periodType;
         public int hour;//小时 0-23
         public int minute;//分钟 0-59
         public int week;//星期几  Sunday = 0,         Saturday = 6
         public int day;//第几天提醒 1-31
         public int month;//第几月提醒 1-12
         public int year;//仅提醒一次的年
+        //tobedelete
 
-        public int periodType = RemindType.DAY;//提醒周期
+        public string _year;
+        public string _month;
+        public string _week;
+        public string _day;
+        public string _hour;
+        public string _min;
 
-        public int taskType = TaskType.REMIND;
 
-        public string content;//提醒内容
-        public string extra;//参数
-        public string extra2;//参数2
+        public string getDateInfo()
+        {
 
-        public RemindItem() {
+            StringBuilder builder = new StringBuilder();
+            if (!Utils.isTextEmpty(_year))
+            {
+                builder.Append(string.Format("{0}年", _year));
+            }
+            if (!Utils.isTextEmpty(_month))
+            {
+                builder.Append(string.Format("{0}月", _month));
+            }
+            if (!Utils.isTextEmpty(_week))
+            {
+                builder.Append(string.Format("周{0} ", _week));
+            }
+            if (!Utils.isTextEmpty(_day))
+            {
+                builder.Append(string.Format("{0}日", _day));
+            }
+            if (!Utils.isTextEmpty(_hour))
+            {
+                builder.Append(string.Format("{0}时", _hour));
+            }
+            if (!Utils.isTextEmpty(_min))
+            {
+                builder.Append(string.Format("{0}分", _min));
+            }
+            return builder.ToString();
+        }
 
+
+        [Newtonsoft.Json.JsonIgnore]
+        public List<int> mYear;
+        [Newtonsoft.Json.JsonIgnore]
+        public List<int> mMonth;
+        [Newtonsoft.Json.JsonIgnore]
+        public List<int> mDay;
+        [Newtonsoft.Json.JsonIgnore]
+        public List<int> mWeek;
+        [Newtonsoft.Json.JsonIgnore]
+        public List<int> mHour;
+
+        [Newtonsoft.Json.JsonIgnore]
+        public List<int> mMin;
+
+
+
+        public void buildInfos()
+        {
+            mYear = Utils.parseList(_year);
+            mMonth = Utils.parseList(_month);
+            mDay = Utils.parseList(_day);
+            mWeek = Utils.parseList(_week);
+            mHour = Utils.parseList(_hour);
+            mMin = Utils.parseList(_min);
+
+     
         }
 
 
 
-
-
-
-        public bool isHourMinuteSame(DateTime dateTime) {
-            return dateTime.Hour == this.hour && dateTime.Minute == this.minute;
-        }
-
-   
-
-        public string getPeriodString() {
-            return RemindType.type2String(periodType);
-        }
 
         public string getRemindTypeString()
         {
@@ -396,35 +553,83 @@ namespace DigitalClockPackge
 
 
 
-        public bool isTimeOK(DateTime dateTime) {
-            if (!isEnable) {
+        public bool isTimeOK(DateTime dateTime)
+        {
+            if (!isEnable)
+            {
                 return false;
             }
-
-            bool result = false;
-            switch (periodType) {
-                case RemindType.DAY:
-                    result = isHourMinuteSame(dateTime);
-                    break;
-                case RemindType.WEEK:
-                    int week = (int)dateTime.DayOfWeek;
-                    result =this.week== week && isHourMinuteSame(dateTime);
-                    break;
-                case RemindType.MONTH:
-                    //1 和 31 之间的一个值。
-                    result = this.day == dateTime.Day && isHourMinuteSame(dateTime);
-                    break;
-                case RemindType.YEAR:
-                    result = this.month==dateTime.Month && this.day == dateTime.Day && isHourMinuteSame(dateTime);
-                    break;
-                case RemindType.HOUR:
-                    result = minute== dateTime.Minute;
-                    break;
-                case RemindType.ONCE:
-                    result =this.year== dateTime.Year&& this.month == dateTime.Month && this.day == dateTime.Day && isHourMinuteSame(dateTime);
-                    break;
+            if (mYear.Count != 0)
+            {
+                if (!mYear.Contains(dateTime.Year))
+                {
+                    return false;
+                }
             }
-            return result;
+            if (mMonth.Count != 0)
+            {
+                if (!mMonth.Contains(dateTime.Month))
+                {
+                    return false;
+                }
+            }
+            if (mDay.Count != 0)
+            {
+                //   //1 和 31 之间的一个值。
+                if (!mDay.Contains(dateTime.Day))
+                {
+                    return false;
+                }
+            }
+            if (mWeek.Count != 0)
+            {
+                //        //Sunday = 0 Saturday = 6
+                if (!mWeek.Contains((int)dateTime.DayOfWeek))
+                {
+                    return false;
+                }
+
+            }
+            if (mHour.Count != 0)
+            {
+                if (!mHour.Contains(dateTime.Hour))
+                {
+                    return false;
+                }
+            }
+            if (mMin.Count != 0)
+            {
+                if (!mMin.Contains(dateTime.Minute))
+                {
+                    return false;
+                }
+            }
+            return true;
+
+            //bool result = false;
+            //switch (periodType) {
+            //    case RemindType.DAY:
+            //        result = isHourMinuteSame(dateTime);
+            //        break;
+            //    case RemindType.WEEK:
+            //        int week = (int)dateTime.DayOfWeek;
+            //        result =this.week== week && isHourMinuteSame(dateTime);
+            //        break;
+            //    case RemindType.MONTH:
+            //        //1 和 31 之间的一个值。
+            //        result = this.day == dateTime.Day && isHourMinuteSame(dateTime);
+            //        break;
+            //    case RemindType.YEAR:
+            //        result = this.month==dateTime.Month && this.day == dateTime.Day && isHourMinuteSame(dateTime);
+            //        break;
+            //    case RemindType.HOUR:
+            //        result = minute== dateTime.Minute;
+            //        break;
+            //    case RemindType.ONCE:
+            //        result =this.year== dateTime.Year&& this.month == dateTime.Month && this.day == dateTime.Day && isHourMinuteSame(dateTime);
+            //        break;
+            //}
+            //return result;
         }
 
 
@@ -433,34 +638,12 @@ namespace DigitalClockPackge
         {
 
 
-            string info = null;
+            //string info = null;
 
-            switch (periodType)
-            {
-                case RemindType.DAY:
-                case RemindType.USER_DEFINE:
-                    info = string.Format("{0:D2}:{1:D2}", hour, minute);
-                    break;
-                case RemindType.WEEK:
-                    info = string.Format("周{0:C} {1:D2}:{2:D2}", Constants.weekString[week], hour, minute);
-                    break;
-                case RemindType.MONTH:
-                    info = string.Format("{0:D}日 {1:D2}:{2:D2}",day, hour, minute);
-                    break;
-                case RemindType.YEAR:
-                    info = string.Format("{0:D}-{1:D} {2:D2}:{3:D2}", month,day, hour, minute);
-                    break;
-                case RemindType.HOUR:
-                    info = string.Format("{0:D}分", minute);
-                    break;
-                case RemindType.ONCE:
-                    info = string.Format("{0:D}-{1:D}-{2:D} {3:D2}:{4:D2}",year, month, day, hour, minute);
-                    break;
-                   
-            }
+            //info = string.Format("{0}-{1}-{2} {3}:{4} 周{5}", _year, _month, _day, _hour, _min,_week);
 
             //string.Format("整数{0:D2},小数｛1:F2｝,16进0x{2:X2}",2,3,4);
-            return info;
+            return getDateInfo();
         }
 
         public bool handleWork()
@@ -469,13 +652,13 @@ namespace DigitalClockPackge
             {
                 //case TaskType.SHUT_DONW:
                 //    //关机
-                
+
                 //    return true;
                 case TaskType.OPEN_EXE:
                     Utils.runExe(extra);
                     return true;
                 case TaskType.WX_SEND_MSG:
-                    WxSendHelper helper = new WxSendHelper(extra,extra2);
+                    WxSendHelper helper = new WxSendHelper(extra, extra2);
                     if (helper.isNormalMsg())
                     {
                         NetBuilder.create(null).setUrl(helper.getHookUrl()).setPostData(helper.getExtra()).start(null);
@@ -490,7 +673,7 @@ namespace DigitalClockPackge
                             {
                                 Weather.WealthNowItem item = Utils.parseObject<Weather.WealthNowItem>(data);
 
-                                
+
                                 NetBuilder.create(null).setUrl(helper.getHookUrl()).setPostData(item.toSendString()).start(null);
                             }
                             catch (Exception e)
@@ -499,7 +682,8 @@ namespace DigitalClockPackge
                             }
                         });
                     }
-                    else if (helper.isNews()) {
+                    else if (helper.isNews())
+                    {
                         LogUtil.Print("开始获新闻" + News.URL);
 
 
@@ -511,7 +695,7 @@ namespace DigitalClockPackge
                                 News.NewsItem item = Utils.parseObject<News.NewsItem>(data);
                                 string sendString = item.toSendString(helper.getExtraAsInt(0));
                                 NetBuilder.create(null).setUrl(extra).setPostData(sendString).start(null);
-                                
+
                             }
                             catch (Exception e1)
                             {
@@ -522,23 +706,23 @@ namespace DigitalClockPackge
 
 
                     return true;
-                //case TaskType.WX_SEND_WEATHER_NOW:
-                //    NetBuilder.create(null).asGet().setUrl(Weather.getUrl(extra2, Weather.TYPE_NOW)).start((data) =>
-                //    {
-                //        LogUtil.Print(data);
-                //        try
-                //        {
-                //            Weather.WealthNowItem item = Utils.parseObject<Weather.WealthNowItem>(data);
-                //            NetBuilder.create(null).setUrl(extra).setPostData(item.ToString()).start(null);
-                //        }
-                //        catch (Exception)
-                //        {
+                    //case TaskType.WX_SEND_WEATHER_NOW:
+                    //    NetBuilder.create(null).asGet().setUrl(Weather.getUrl(extra2, Weather.TYPE_NOW)).start((data) =>
+                    //    {
+                    //        LogUtil.Print(data);
+                    //        try
+                    //        {
+                    //            Weather.WealthNowItem item = Utils.parseObject<Weather.WealthNowItem>(data);
+                    //            NetBuilder.create(null).setUrl(extra).setPostData(item.ToString()).start(null);
+                    //        }
+                    //        catch (Exception)
+                    //        {
 
-                //        }
-                //    });
+                    //        }
+                    //    });
 
-                //    break;
-                    
+                    //    break;
+
             }
             return false;
         }
@@ -546,14 +730,15 @@ namespace DigitalClockPackge
 
     }
 
-    public static class TaskType {
+    public static class TaskType
+    {
         public const int REMIND = 0;//提醒
         public const int SHUT_DONW = 1;//关机
         public const int OPEN_EXE = 2;//打开程序
 
         public const int WX_SEND_MSG = 3;//发送消息
 
-       
+
 
 
 
@@ -562,7 +747,8 @@ namespace DigitalClockPackge
 
         public static List<int> listType = new List<int>();
 
-        static TaskType() {
+        static TaskType()
+        {
             listType.Add(TaskType.REMIND);
             listType.Add(TaskType.SHUT_DONW);
             listType.Add(TaskType.OPEN_EXE);
@@ -584,48 +770,4 @@ namespace DigitalClockPackge
     }
 
 
-
-    public static class RemindType {
-
-        public const int DAY = 0;
-        public const int WEEK = 1;
-        public const int MONTH = 2;
-        public const int YEAR = 3;
-        public const int HOUR = 10;
-        public const int ONCE = 99;
-        public const int USER_DEFINE = 100;//自定义
-
-        public static Dictionary<int, string> map  = new Dictionary<int, string>(10);
-
-
-        public static List<int> listPeriod = new List<int>();
-
-        static RemindType() {
-            listPeriod.Add(RemindType.DAY);
-            listPeriod.Add(RemindType.WEEK);
-            listPeriod.Add(RemindType.MONTH);
-            listPeriod.Add(RemindType.YEAR);
-            listPeriod.Add(RemindType.HOUR);
-            listPeriod.Add(RemindType.ONCE);
-            //listPeriod.Add(RemindType.USER_DEFINE);
-
-            map.Add(DAY, "每天");
-            map.Add(WEEK, "每周");
-            map.Add(MONTH, "每月");
-            map.Add(YEAR, "每年");
-            map.Add(HOUR, "每小时");
-            map.Add(ONCE, "仅一次");
-            map.Add(USER_DEFINE, "自定义");
-
-        }
-
-
-
-
-
-        public static string type2String(int type) {
-            return map[type];
-        }
-
-    }
 }

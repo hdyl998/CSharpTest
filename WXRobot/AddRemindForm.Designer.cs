@@ -30,9 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxPeriod = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnComplete = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBoxType = new System.Windows.Forms.ComboBox();
@@ -40,19 +37,16 @@
             this.textBoxExtra = new System.Windows.Forms.TextBox();
             this.panelOpenExe = new System.Windows.Forms.Panel();
             this.btnChoose = new System.Windows.Forms.Button();
-            this.comboBoxYear = new System.Windows.Forms.ComboBox();
-            this.comboBoxMonth = new System.Windows.Forms.ComboBox();
-            this.comboBoxDay = new System.Windows.Forms.ComboBox();
-            this.comboBoxWeek = new System.Windows.Forms.ComboBox();
-            this.comboBoxHour = new System.Windows.Forms.ComboBox();
-            this.comboBoxMinute = new System.Windows.Forms.ComboBox();
             this.labelTime = new System.Windows.Forms.Label();
             this.panelSendMsg = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.buttonRobotSel = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.buttonRobotSel = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.labelShowTime = new System.Windows.Forms.Label();
             this.panelOpenExe.SuspendLayout();
             this.panelSendMsg.SuspendLayout();
             this.SuspendLayout();
@@ -60,52 +54,27 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 22);
+            this.label1.Location = new System.Drawing.Point(9, 18);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 15);
+            this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "主题";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(89, 19);
+            this.textBox1.Location = new System.Drawing.Point(42, 15);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(165, 25);
+            this.textBox1.Size = new System.Drawing.Size(125, 21);
             this.textBox1.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 59);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 15);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "周期";
-            // 
-            // comboBoxPeriod
-            // 
-            this.comboBoxPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxPeriod.FormattingEnabled = true;
-            this.comboBoxPeriod.Location = new System.Drawing.Point(89, 56);
-            this.comboBoxPeriod.Name = "comboBoxPeriod";
-            this.comboBoxPeriod.Size = new System.Drawing.Size(165, 23);
-            this.comboBoxPeriod.TabIndex = 2;
-            this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 155);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 15);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "时间";
             // 
             // btnComplete
             // 
-            this.btnComplete.Location = new System.Drawing.Point(221, 436);
+            this.btnComplete.Location = new System.Drawing.Point(166, 349);
+            this.btnComplete.Margin = new System.Windows.Forms.Padding(2);
             this.btnComplete.Name = "btnComplete";
-            this.btnComplete.Size = new System.Drawing.Size(169, 41);
+            this.btnComplete.Size = new System.Drawing.Size(127, 33);
             this.btnComplete.TabIndex = 4;
             this.btnComplete.Text = "完成";
             this.btnComplete.UseVisualStyleBackColor = true;
@@ -114,9 +83,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 101);
+            this.label4.Location = new System.Drawing.Point(9, 52);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 15);
+            this.label4.Size = new System.Drawing.Size(29, 12);
             this.label4.TabIndex = 0;
             this.label4.Text = "类别";
             // 
@@ -124,26 +94,29 @@
             // 
             this.comboBoxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxType.FormattingEnabled = true;
-            this.comboBoxType.Location = new System.Drawing.Point(89, 101);
+            this.comboBoxType.Location = new System.Drawing.Point(42, 49);
+            this.comboBoxType.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxType.Name = "comboBoxType";
-            this.comboBoxType.Size = new System.Drawing.Size(165, 23);
+            this.comboBoxType.Size = new System.Drawing.Size(125, 20);
             this.comboBoxType.TabIndex = 2;
             this.comboBoxType.SelectedIndexChanged += new System.EventHandler(this.comboBoxType_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 22);
+            this.label5.Location = new System.Drawing.Point(8, 18);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 15);
+            this.label5.Size = new System.Drawing.Size(29, 12);
             this.label5.TabIndex = 0;
             this.label5.Text = "程序";
             // 
             // textBoxExtra
             // 
-            this.textBoxExtra.Location = new System.Drawing.Point(54, 19);
+            this.textBoxExtra.Location = new System.Drawing.Point(40, 15);
+            this.textBoxExtra.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxExtra.Name = "textBoxExtra";
-            this.textBoxExtra.Size = new System.Drawing.Size(453, 25);
+            this.textBoxExtra.Size = new System.Drawing.Size(341, 21);
             this.textBoxExtra.TabIndex = 1;
             // 
             // panelOpenExe
@@ -151,87 +124,30 @@
             this.panelOpenExe.Controls.Add(this.btnChoose);
             this.panelOpenExe.Controls.Add(this.textBoxExtra);
             this.panelOpenExe.Controls.Add(this.label5);
-            this.panelOpenExe.Location = new System.Drawing.Point(1, 262);
+            this.panelOpenExe.Location = new System.Drawing.Point(1, 210);
+            this.panelOpenExe.Margin = new System.Windows.Forms.Padding(2);
             this.panelOpenExe.Name = "panelOpenExe";
-            this.panelOpenExe.Size = new System.Drawing.Size(612, 57);
+            this.panelOpenExe.Size = new System.Drawing.Size(459, 46);
             this.panelOpenExe.TabIndex = 5;
             // 
             // btnChoose
             // 
-            this.btnChoose.Location = new System.Drawing.Point(525, 19);
+            this.btnChoose.Location = new System.Drawing.Point(394, 15);
+            this.btnChoose.Margin = new System.Windows.Forms.Padding(2);
             this.btnChoose.Name = "btnChoose";
-            this.btnChoose.Size = new System.Drawing.Size(75, 25);
+            this.btnChoose.Size = new System.Drawing.Size(56, 20);
             this.btnChoose.TabIndex = 2;
             this.btnChoose.Text = "选择";
             this.btnChoose.UseVisualStyleBackColor = true;
             this.btnChoose.Click += new System.EventHandler(this.btnChoose_Click);
             // 
-            // comboBoxYear
-            // 
-            this.comboBoxYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxYear.FormattingEnabled = true;
-            this.comboBoxYear.Location = new System.Drawing.Point(89, 152);
-            this.comboBoxYear.Name = "comboBoxYear";
-            this.comboBoxYear.Size = new System.Drawing.Size(78, 23);
-            this.comboBoxYear.TabIndex = 2;
-            this.comboBoxYear.SelectedIndexChanged += new System.EventHandler(this.comboBoxYear_SelectedIndexChanged);
-            // 
-            // comboBoxMonth
-            // 
-            this.comboBoxMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxMonth.FormattingEnabled = true;
-            this.comboBoxMonth.Location = new System.Drawing.Point(180, 152);
-            this.comboBoxMonth.Name = "comboBoxMonth";
-            this.comboBoxMonth.Size = new System.Drawing.Size(78, 23);
-            this.comboBoxMonth.TabIndex = 2;
-            this.comboBoxMonth.SelectedIndexChanged += new System.EventHandler(this.comboBoxMonth_SelectedIndexChanged);
-            // 
-            // comboBoxDay
-            // 
-            this.comboBoxDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxDay.FormattingEnabled = true;
-            this.comboBoxDay.Location = new System.Drawing.Point(273, 152);
-            this.comboBoxDay.Name = "comboBoxDay";
-            this.comboBoxDay.Size = new System.Drawing.Size(78, 23);
-            this.comboBoxDay.TabIndex = 2;
-            this.comboBoxDay.SelectedIndexChanged += new System.EventHandler(this.comboBoxDay_SelectedIndexChanged);
-            // 
-            // comboBoxWeek
-            // 
-            this.comboBoxWeek.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxWeek.FormattingEnabled = true;
-            this.comboBoxWeek.Location = new System.Drawing.Point(89, 181);
-            this.comboBoxWeek.Name = "comboBoxWeek";
-            this.comboBoxWeek.Size = new System.Drawing.Size(78, 23);
-            this.comboBoxWeek.TabIndex = 2;
-            this.comboBoxWeek.SelectedIndexChanged += new System.EventHandler(this.comboBoxWeek_SelectedIndexChanged);
-            // 
-            // comboBoxHour
-            // 
-            this.comboBoxHour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxHour.FormattingEnabled = true;
-            this.comboBoxHour.Location = new System.Drawing.Point(180, 181);
-            this.comboBoxHour.Name = "comboBoxHour";
-            this.comboBoxHour.Size = new System.Drawing.Size(78, 23);
-            this.comboBoxHour.TabIndex = 2;
-            this.comboBoxHour.SelectedIndexChanged += new System.EventHandler(this.comboBoxDay_SelectedIndexChanged);
-            // 
-            // comboBoxMinute
-            // 
-            this.comboBoxMinute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxMinute.FormattingEnabled = true;
-            this.comboBoxMinute.Location = new System.Drawing.Point(273, 181);
-            this.comboBoxMinute.Name = "comboBoxMinute";
-            this.comboBoxMinute.Size = new System.Drawing.Size(78, 23);
-            this.comboBoxMinute.TabIndex = 2;
-            this.comboBoxMinute.SelectedIndexChanged += new System.EventHandler(this.comboBoxMinute_SelectedIndexChanged);
-            // 
             // labelTime
             // 
             this.labelTime.AutoSize = true;
-            this.labelTime.Location = new System.Drawing.Point(89, 229);
+            this.labelTime.Location = new System.Drawing.Point(67, 183);
+            this.labelTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(55, 15);
+            this.labelTime.Size = new System.Drawing.Size(41, 12);
             this.labelTime.TabIndex = 6;
             this.labelTime.Text = "label6";
             // 
@@ -242,75 +158,107 @@
             this.panelSendMsg.Controls.Add(this.buttonRobotSel);
             this.panelSendMsg.Controls.Add(this.label7);
             this.panelSendMsg.Controls.Add(this.label6);
-            this.panelSendMsg.Location = new System.Drawing.Point(1, 325);
+            this.panelSendMsg.Location = new System.Drawing.Point(1, 260);
+            this.panelSendMsg.Margin = new System.Windows.Forms.Padding(2);
             this.panelSendMsg.Name = "panelSendMsg";
-            this.panelSendMsg.Size = new System.Drawing.Size(612, 100);
+            this.panelSendMsg.Size = new System.Drawing.Size(459, 80);
             this.panelSendMsg.TabIndex = 7;
             // 
-            // label6
+            // textBox3
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 17);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 15);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Hook地址";
+            this.textBox3.Location = new System.Drawing.Point(64, 43);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(317, 21);
+            this.textBox3.TabIndex = 3;
             // 
-            // label7
+            // textBox2
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 57);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 15);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "发送内容";
+            this.textBox2.Location = new System.Drawing.Point(64, 11);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(317, 21);
+            this.textBox2.TabIndex = 3;
             // 
             // buttonRobotSel
             // 
-            this.buttonRobotSel.Location = new System.Drawing.Point(525, 33);
+            this.buttonRobotSel.Location = new System.Drawing.Point(394, 26);
+            this.buttonRobotSel.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRobotSel.Name = "buttonRobotSel";
-            this.buttonRobotSel.Size = new System.Drawing.Size(75, 25);
+            this.buttonRobotSel.Size = new System.Drawing.Size(56, 20);
             this.buttonRobotSel.TabIndex = 2;
             this.buttonRobotSel.Text = "选择";
             this.buttonRobotSel.UseVisualStyleBackColor = true;
             this.buttonRobotSel.Click += new System.EventHandler(this.buttonRobotSel_Click);
             // 
-            // textBox2
+            // label7
             // 
-            this.textBox2.Location = new System.Drawing.Point(86, 14);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(421, 25);
-            this.textBox2.TabIndex = 3;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 46);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 12);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "发送内容";
             // 
-            // textBox3
+            // label6
             // 
-            this.textBox3.Location = new System.Drawing.Point(86, 54);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(421, 25);
-            this.textBox3.TabIndex = 3;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 14);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Hook地址";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(376, 83);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "添加";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 88);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "时间";
+            // 
+            // labelShowTime
+            // 
+            this.labelShowTime.AutoSize = true;
+            this.labelShowTime.Location = new System.Drawing.Point(43, 88);
+            this.labelShowTime.Name = "labelShowTime";
+            this.labelShowTime.Size = new System.Drawing.Size(17, 12);
+            this.labelShowTime.TabIndex = 10;
+            this.labelShowTime.Text = "--";
             // 
             // AddRemindForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 489);
+            this.ClientSize = new System.Drawing.Size(469, 391);
+            this.Controls.Add(this.labelShowTime);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panelSendMsg);
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.panelOpenExe);
             this.Controls.Add(this.btnComplete);
-            this.Controls.Add(this.comboBoxHour);
-            this.Controls.Add(this.comboBoxDay);
-            this.Controls.Add(this.comboBoxMinute);
-            this.Controls.Add(this.comboBoxMonth);
-            this.Controls.Add(this.comboBoxWeek);
-            this.Controls.Add(this.comboBoxYear);
             this.Controls.Add(this.comboBoxType);
-            this.Controls.Add(this.comboBoxPeriod);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddRemindForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "新增周期任务";
@@ -328,22 +276,13 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBoxPeriod;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnComplete;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxType;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxExtra;
         private System.Windows.Forms.Panel panelOpenExe;
-        private System.Windows.Forms.ComboBox comboBoxYear;
-        private System.Windows.Forms.ComboBox comboBoxMonth;
-        private System.Windows.Forms.ComboBox comboBoxDay;
         private System.Windows.Forms.Button btnChoose;
-        private System.Windows.Forms.ComboBox comboBoxWeek;
-        private System.Windows.Forms.ComboBox comboBoxHour;
-        private System.Windows.Forms.ComboBox comboBoxMinute;
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Panel panelSendMsg;
         private System.Windows.Forms.Button buttonRobotSel;
@@ -351,5 +290,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelShowTime;
     }
 }

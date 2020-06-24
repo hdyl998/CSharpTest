@@ -73,12 +73,12 @@
             this.label12 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
+            this.radioButton52 = new System.Windows.Forms.RadioButton();
+            this.radioButton51 = new System.Windows.Forms.RadioButton();
             this.buttonAddressPaste = new System.Windows.Forms.Button();
             this.buttonAddTask = new System.Windows.Forms.Button();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.radioButton51 = new System.Windows.Forms.RadioButton();
-            this.radioButton52 = new System.Windows.Forms.RadioButton();
-            this.label13 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -595,6 +595,51 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "请求地址*";
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.label13);
+            this.tabPage5.Controls.Add(this.radioButton52);
+            this.tabPage5.Controls.Add(this.radioButton51);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(410, 276);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "新闻头条";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(2, 48);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(53, 12);
+            this.label13.TabIndex = 3;
+            this.label13.Text = "信息类别";
+            // 
+            // radioButton52
+            // 
+            this.radioButton52.AutoSize = true;
+            this.radioButton52.Location = new System.Drawing.Point(156, 46);
+            this.radioButton52.Name = "radioButton52";
+            this.radioButton52.Size = new System.Drawing.Size(71, 16);
+            this.radioButton52.TabIndex = 1;
+            this.radioButton52.TabStop = true;
+            this.radioButton52.Text = "图片消息";
+            this.radioButton52.UseVisualStyleBackColor = true;
+            // 
+            // radioButton51
+            // 
+            this.radioButton51.AutoSize = true;
+            this.radioButton51.Checked = true;
+            this.radioButton51.Location = new System.Drawing.Point(70, 46);
+            this.radioButton51.Name = "radioButton51";
+            this.radioButton51.Size = new System.Drawing.Size(71, 16);
+            this.radioButton51.TabIndex = 0;
+            this.radioButton51.TabStop = true;
+            this.radioButton51.Text = "文字消息";
+            this.radioButton51.UseVisualStyleBackColor = true;
+            // 
             // buttonAddressPaste
             // 
             this.buttonAddressPaste.Location = new System.Drawing.Point(344, 3);
@@ -617,51 +662,6 @@
             this.buttonAddTask.UseVisualStyleBackColor = true;
             this.buttonAddTask.Click += new System.EventHandler(this.buttonAddTask_Click);
             // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.label13);
-            this.tabPage5.Controls.Add(this.radioButton52);
-            this.tabPage5.Controls.Add(this.radioButton51);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(410, 276);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "新闻头条";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // radioButton51
-            // 
-            this.radioButton51.AutoSize = true;
-            this.radioButton51.Checked = true;
-            this.radioButton51.Location = new System.Drawing.Point(70, 46);
-            this.radioButton51.Name = "radioButton51";
-            this.radioButton51.Size = new System.Drawing.Size(71, 16);
-            this.radioButton51.TabIndex = 0;
-            this.radioButton51.TabStop = true;
-            this.radioButton51.Text = "文字消息";
-            this.radioButton51.UseVisualStyleBackColor = true;
-            // 
-            // radioButton52
-            // 
-            this.radioButton52.AutoSize = true;
-            this.radioButton52.Location = new System.Drawing.Point(156, 46);
-            this.radioButton52.Name = "radioButton52";
-            this.radioButton52.Size = new System.Drawing.Size(71, 16);
-            this.radioButton52.TabIndex = 1;
-            this.radioButton52.TabStop = true;
-            this.radioButton52.Text = "图片消息";
-            this.radioButton52.UseVisualStyleBackColor = true;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(2, 48);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(53, 12);
-            this.label13.TabIndex = 3;
-            this.label13.Text = "信息类别";
-            // 
             // WxRobotForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -675,6 +675,8 @@
             this.Controls.Add(this.textBoxWebHook);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "WxRobotForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "企业微信机器人";

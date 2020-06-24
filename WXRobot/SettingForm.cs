@@ -147,9 +147,9 @@ namespace DigitalClockPackge
             {
 
                 ListViewItem list = new ListViewItem();
-                list.Text = item.content==null?"": item.content;
+                list.Text = Utils.isTextEmpty(item.content) ?"[无主题]": item.content;
                 list.SubItems.Add(item.getShowTime());
-                list.SubItems.Add(item.getPeriodString());
+  
                 list.SubItems.Add(item.getRemindTypeString());
                 list.SubItems.Add(item.getEnableString());
 
@@ -429,9 +429,8 @@ namespace DigitalClockPackge
 
         private void btnStartPath_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Application.StartupPath) == DialogResult.OK) {
-                Clipboard.SetText(Application.StartupPath);
-            }
+
+            Utils.runCmd(string.Format("explorer {0}", Application.StartupPath));
         }
 
  

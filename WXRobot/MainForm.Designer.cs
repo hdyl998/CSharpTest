@@ -38,7 +38,12 @@
             this.画图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.记事本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.其它ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.资源管理器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.任务管理器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.计算机管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.启动项ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemUser = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
@@ -47,10 +52,7 @@
             this.menuHide_Click = new System.Windows.Forms.ToolStripMenuItem();
             this.menuShow = new System.Windows.Forms.ToolStripMenuItem();
             this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.任务管理器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.资源管理器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.计算机管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.计数器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuNotify.SuspendLayout();
             this.SuspendLayout();
@@ -67,29 +69,28 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SettingToolStripMenuItem,
             this.toolStripSeparator2,
- 
             this.计算器ToolStripMenuItem,
             this.画图ToolStripMenuItem,
             this.记事本ToolStripMenuItem,
-     
             this.其它ToolStripMenuItem,
-                    this.toolStripMenuItemUser,
+            this.toolStripMenuItem1,
+            this.toolStripMenuItemUser,
             this.toolStripSeparator1,
             this.ExitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(117, 198);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 246);
             // 
             // SettingToolStripMenuItem
             // 
             this.SettingToolStripMenuItem.Name = "SettingToolStripMenuItem";
-            this.SettingToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
+            this.SettingToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
             this.SettingToolStripMenuItem.Text = "设置";
             this.SettingToolStripMenuItem.Click += new System.EventHandler(this.SettingToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(113, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(153, 6);
             // 
             // 计算器ToolStripMenuItem
             // 
@@ -103,7 +104,7 @@
             // 
             this.画图ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("画图ToolStripMenuItem.Image")));
             this.画图ToolStripMenuItem.Name = "画图ToolStripMenuItem";
-            this.画图ToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
+            this.画图ToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
             this.画图ToolStripMenuItem.Text = "画图";
             this.画图ToolStripMenuItem.Click += new System.EventHandler(this.画图ToolStripMenuItem_Click);
             // 
@@ -111,7 +112,7 @@
             // 
             this.记事本ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("记事本ToolStripMenuItem.Image")));
             this.记事本ToolStripMenuItem.Name = "记事本ToolStripMenuItem";
-            this.记事本ToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
+            this.记事本ToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
             this.记事本ToolStripMenuItem.Text = "记事本";
             this.记事本ToolStripMenuItem.Click += new System.EventHandler(this.记事本ToolStripMenuItem_Click);
             // 
@@ -123,25 +124,60 @@
             this.计算机管理ToolStripMenuItem,
             this.启动项ToolStripMenuItem});
             this.其它ToolStripMenuItem.Name = "其它ToolStripMenuItem";
-            this.其它ToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
-            this.其它ToolStripMenuItem.Text = "其他";
+            this.其它ToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
+            this.其它ToolStripMenuItem.Text = "系统工具";
+            // 
+            // 资源管理器ToolStripMenuItem
+            // 
+            this.资源管理器ToolStripMenuItem.Name = "资源管理器ToolStripMenuItem";
+            this.资源管理器ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.资源管理器ToolStripMenuItem.Text = "资源管理器";
+            this.资源管理器ToolStripMenuItem.Click += new System.EventHandler(this.资源管理器ToolStripMenuItem_Click);
+            // 
+            // 任务管理器ToolStripMenuItem
+            // 
+            this.任务管理器ToolStripMenuItem.Name = "任务管理器ToolStripMenuItem";
+            this.任务管理器ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.任务管理器ToolStripMenuItem.Text = "任务管理器";
+            this.任务管理器ToolStripMenuItem.Click += new System.EventHandler(this.任务管理器ToolStripMenuItem_Click);
+            // 
+            // 计算机管理ToolStripMenuItem
+            // 
+            this.计算机管理ToolStripMenuItem.Name = "计算机管理ToolStripMenuItem";
+            this.计算机管理ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.计算机管理ToolStripMenuItem.Text = "计算机管理";
+            this.计算机管理ToolStripMenuItem.Click += new System.EventHandler(this.计算机管理ToolStripMenuItem_Click);
             // 
             // 启动项ToolStripMenuItem
             // 
             this.启动项ToolStripMenuItem.Name = "启动项ToolStripMenuItem";
-            this.启动项ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.启动项ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.启动项ToolStripMenuItem.Text = "启动项";
             this.启动项ToolStripMenuItem.Click += new System.EventHandler(this.启动项ToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.计数器ToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(156, 26);
+            this.toolStripMenuItem1.Text = "小工具";
+            // 
+            // toolStripMenuItemUser
+            // 
+            this.toolStripMenuItemUser.Name = "toolStripMenuItemUser";
+            this.toolStripMenuItemUser.Size = new System.Drawing.Size(156, 26);
+            this.toolStripMenuItemUser.Text = "自定义";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(113, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(153, 6);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
             this.ExitToolStripMenuItem.Text = "退出";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -193,32 +229,12 @@
             this.menuExit.Text = "退出";
             this.menuExit.Click += new System.EventHandler(this.menuExit_Click);
             // 
-            // 任务管理器ToolStripMenuItem
+            // 计数器ToolStripMenuItem
             // 
-            this.任务管理器ToolStripMenuItem.Name = "任务管理器ToolStripMenuItem";
-            this.任务管理器ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.任务管理器ToolStripMenuItem.Text = "任务管理器";
-            this.任务管理器ToolStripMenuItem.Click += new System.EventHandler(this.任务管理器ToolStripMenuItem_Click);
-            // 
-            // 资源管理器ToolStripMenuItem
-            // 
-            this.资源管理器ToolStripMenuItem.Name = "资源管理器ToolStripMenuItem";
-            this.资源管理器ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.资源管理器ToolStripMenuItem.Text = "资源管理器";
-            this.资源管理器ToolStripMenuItem.Click += new System.EventHandler(this.资源管理器ToolStripMenuItem_Click);
-            // 
-            // 计算机管理ToolStripMenuItem
-            // 
-            this.计算机管理ToolStripMenuItem.Name = "计算机管理ToolStripMenuItem";
-            this.计算机管理ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.计算机管理ToolStripMenuItem.Text = "计算机管理";
-            this.计算机管理ToolStripMenuItem.Click += new System.EventHandler(this.计算机管理ToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItemUser
-            // 
-            this.toolStripMenuItemUser.Name = "toolStripMenuItemUser";
-            this.toolStripMenuItemUser.Size = new System.Drawing.Size(116, 26);
-            this.toolStripMenuItemUser.Text = "自定义";
+            this.计数器ToolStripMenuItem.Name = "计数器ToolStripMenuItem";
+            this.计数器ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.计数器ToolStripMenuItem.Text = "计数器";
+            this.计数器ToolStripMenuItem.Click += new System.EventHandler(this.计数器ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -240,6 +256,7 @@
             this.LocationChanged += new System.EventHandler(this.Form1_LocationChanged);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDoubleClick);
             this.contextMenuStrip1.ResumeLayout(false);
             this.menuNotify.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -269,6 +286,8 @@
         private System.Windows.Forms.ToolStripMenuItem 资源管理器ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 计算机管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemUser;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 计数器ToolStripMenuItem;
     }
 }
 

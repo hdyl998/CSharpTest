@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -173,6 +174,8 @@ namespace DigitalClockPackge
                 NetBuilder.create(this).asGet().setUrl(News.URL).start((data) =>
                 {
                     LogUtil.Print(data);
+
+                   
 
                     try
                     {

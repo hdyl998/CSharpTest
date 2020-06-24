@@ -15,6 +15,12 @@ namespace DigitalClockPackge
   public static  class Utils
     {
 
+        public static void showMsg(String msg)
+        {
+            MessageBox.Show(msg, "提示*^_^*", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
         //注册表名字
         private const string APP_RIGISTER_NAME = "DigitalClock";
 
@@ -103,7 +109,7 @@ namespace DigitalClockPackge
          * **/   
         public static void runExe(params string[]listExePath) {
 
-
+         
             foreach (string str in listExePath)
             {
                 Process pr = new Process();//声明一个进程类对象
@@ -208,6 +214,104 @@ namespace DigitalClockPackge
         public static string boolean2ShowString(bool isOK)
         {
             return isOK ? "√" : "×";
+        }
+        //yyyy-MM-dd HH:mm:ss
+        private const string PATTON_DATE = "#{date}";//yy-MM-dd
+        private const string PATTON_TIME = "#{time}";//{time|HH-mm-ss}
+        private const string PATTON_RANDOM = "#{random|A:80,B:20,C:20}";
+        private const string PATTON_RANDOM2 = "#{random|A,B,C}";
+
+        private const string PATTON_IF = "#{if|contains:''}";
+
+        public static string replaceText(string text)
+        {
+            if (isTextEmpty(text))
+            {
+                return text;
+            }
+
+            //LogUtil.Print(DateTime.Now.ToShortDateString());
+            //LogUtil.Print(DateTime.Now.ToString());
+            //LogUtil.Print(DateTime.Now.Date.ToString());
+            //LogUtil.Print(DateTime.Now.ToShortTimeString());
+
+            if (text.Contains(PATTON_DATE))
+            {
+                text = text.Replace(PATTON_DATE,DateTime.Now.ToShortDateString());
+            }
+            if (text.Contains(PATTON_TIME))
+            {
+                text = text.Replace(PATTON_TIME, DateTime.Now.ToShortTimeString());
+            }
+
+            //String patton = @"#{random\|.^[A-Za-z0-9,:]+$}";
+
+
+            return text;
+        }
+        public static List<int>  parseList(string data)
+        {
+            List<int> list = new List<int>();
+            if (Utils.isTextEmpty(data))
+            {
+                return list;
+            }
+            string[] strings = data.Split(',');
+
+            foreach (string s in strings)
+            {
+                string temp = s.Trim();
+                if (temp.StartsWith("[") || temp.StartsWith("("))
+                {
+
+                    LogUtil.Print("StartsWith");
+                    try
+                    {
+                        char[] chars = temp.ToCharArray();
+                        bool startA = chars[0] == '[';
+                        bool startB = chars[0] == '(';
+
+                        bool endA = chars[chars.Length - 1] == ']';
+                        bool endB = chars[chars.Length - 1] == ')';
+
+                        if ((startA || startB) && (endA || endB))
+                        {
+                            temp = temp.Substring(1, chars.Length - 2);
+
+                            LogUtil.Print("temp"+ temp);
+                            string[] aa = temp.Split('-');
+                            int start = NumberUtil.convertToInt(aa[0]);
+                            int end = NumberUtil.convertToInt(aa[1]);
+
+                            LogUtil.Print("temp" + aa[0]);
+                            LogUtil.Print("temp" + aa[1]);
+                            int xOffset = startA ? 0 : 1;
+                            int yOffset = endA ? 1 : 0;
+
+                            for (int i = start + xOffset; i < end + yOffset; i++)
+                            {
+                                if (!list.Contains(i))
+                                    list.Add(i);
+                            }
+
+                        }
+                    }
+                    catch (Exception e2)
+                    {
+                        LogUtil.Print(e2);
+
+                    }
+                }
+                else {
+                    int tt = NumberUtil.convertToInt(temp);
+                    if (!list.Contains(tt))
+                        list.Add(tt);
+                }
+
+            }
+
+            return list;
+
         }
     }
 }
