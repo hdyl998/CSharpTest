@@ -65,6 +65,8 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPageA = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbBoxRemindTime = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBoxBorder = new System.Windows.Forms.ComboBox();
@@ -466,6 +468,8 @@
             // 
             // tabPageA
             // 
+            this.tabPageA.Controls.Add(this.label6);
+            this.tabPageA.Controls.Add(this.cbBoxRemindTime);
             this.tabPageA.Controls.Add(this.groupBox2);
             this.tabPageA.Controls.Add(this.checkBox2);
             this.tabPageA.Controls.Add(this.groupBox1);
@@ -483,6 +487,51 @@
             this.tabPageA.TabIndex = 2;
             this.tabPageA.Text = "基本功能";
             this.tabPageA.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(151, 58);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "提醒时长";
+            // 
+            // cbBoxRemindTime
+            // 
+            this.cbBoxRemindTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBoxRemindTime.FormattingEnabled = true;
+            this.cbBoxRemindTime.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "30",
+            "40",
+            "50"});
+            this.cbBoxRemindTime.Location = new System.Drawing.Point(208, 55);
+            this.cbBoxRemindTime.Margin = new System.Windows.Forms.Padding(2);
+            this.cbBoxRemindTime.Name = "cbBoxRemindTime";
+            this.cbBoxRemindTime.Size = new System.Drawing.Size(63, 20);
+            this.cbBoxRemindTime.TabIndex = 9;
+            this.cbBoxRemindTime.SelectedIndexChanged += new System.EventHandler(this.cbBoxRemindTime_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -902,5 +951,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.Button buttonQMDown;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cbBoxRemindTime;
     }
 }

@@ -55,6 +55,8 @@ namespace DigitalClockPackge
             cbShutdownHour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cbShutdownMinute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 
+            cbBoxRemindTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+
             bindListData();
             bindKJListData();
             bindQuickMenuListData();
@@ -96,6 +98,11 @@ namespace DigitalClockPackge
                     cbShutdownHour.SelectedIndex = item.guanjiHour2;
                     cbShutdownMinute.SelectedIndex = item.guanjiMinute2;
                 }
+
+                
+
+                cbBoxRemindTime.SelectedItem = DataManager.getInstance().getDataItem().remindTime+"";
+
             }
             catch (Exception)
             {
@@ -142,6 +149,7 @@ namespace DigitalClockPackge
         private void bindListData()
         {
 
+
             listView1.Items.Clear();
             foreach (RemindItem item in DataManager.getInstance().getRemindData())
             {
@@ -165,9 +173,22 @@ namespace DigitalClockPackge
             AddRemindForm dlg = new AddRemindForm();
             if (dlg.ShowDialog() == DialogResult.OK) {
                 DataManager.getInstance().getRemindData().Add(dlg.remindItem);
+                DataManager.getInstance().getRemindData().Sort((x, y) => {
+
+                    if (x.isEnable && !y.isEnable)
+                    {
+                        return -1;
+                    }
+                    if (!x.isEnable && y.isEnable)
+                    {
+                        return 1;
+                    }
+                    return 0;
+                });
+
                 DataManager.getInstance().saveAll();
                 bindListData();
-}
+            }
 
         }
 
@@ -721,6 +742,10 @@ namespace DigitalClockPackge
             }
         }
 
- 
+        private void cbBoxRemindTime_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataManager.getInstance().getDataItem().remindTime = NumberUtil.convertToInt(cbBoxRemindTime.SelectedItem.ToString());
+            DataManager.getInstance().setChanged();
+        }
     }
 }

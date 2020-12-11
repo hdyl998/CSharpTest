@@ -111,7 +111,7 @@ namespace DigitalClockPackge
                     handleAction(list);
                 }
             }
-            else if (dateTime.Second == 59)
+            else if (dateTime.Second == DataManager.getInstance().getDataItem().remindTime)
             {
                 closeDialog();
             }

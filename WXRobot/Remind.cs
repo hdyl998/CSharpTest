@@ -8,6 +8,8 @@ namespace DigitalClockPackge
 
     public class DataItem
     {
+        //提醒时间
+        public int remindTime=1;
 
         public int version;
 
@@ -252,6 +254,9 @@ namespace DigitalClockPackge
         {
 
             isChanged = false;
+
+
+
             IniUtil.setValue(Constants.APP_CONFIG, Utils.toJSONString(dataItem));
         }
 
@@ -492,10 +497,6 @@ namespace DigitalClockPackge
             {
                 builder.Append(string.Format("{0}月", _month));
             }
-            if (!Utils.isTextEmpty(_week))
-            {
-                builder.Append(string.Format("周{0} ", _week));
-            }
             if (!Utils.isTextEmpty(_day))
             {
                 builder.Append(string.Format("{0}日", _day));
@@ -507,6 +508,10 @@ namespace DigitalClockPackge
             if (!Utils.isTextEmpty(_min))
             {
                 builder.Append(string.Format("{0}分", _min));
+            }
+            if (!Utils.isTextEmpty(_week))
+            {
+                builder.Append(string.Format("周{0}", _week));
             }
             return builder.ToString();
         }
