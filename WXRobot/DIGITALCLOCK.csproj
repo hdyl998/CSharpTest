@@ -105,6 +105,7 @@
       <DependentUpon>EditStartupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
+    <Compile Include="GupiaoInfo.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

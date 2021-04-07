@@ -79,6 +79,7 @@
             this.radioButton51 = new System.Windows.Forms.RadioButton();
             this.buttonAddressPaste = new System.Windows.Forms.Button();
             this.buttonAddTask = new System.Windows.Forms.Button();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -143,6 +144,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(11, 39);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
@@ -662,6 +664,15 @@
             this.buttonAddTask.UseVisualStyleBackColor = true;
             this.buttonAddTask.Click += new System.EventHandler(this.buttonAddTask_Click);
             // 
+            // tabPage6
+            // 
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(410, 276);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "股市信息";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
             // WxRobotForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -750,5 +761,6 @@
         private System.Windows.Forms.RadioButton radioButton52;
         private System.Windows.Forms.RadioButton radioButton51;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TabPage tabPage6;
     }
 }

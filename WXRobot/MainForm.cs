@@ -124,13 +124,6 @@ namespace DigitalClockPackge
                 dlg.Close();
                 dlg = null;
             }
-
-            if (dlgShutDown != null)
-            {
-                dlgShutDown.Close();
-                dlgShutDown = null;
-            }
-
         }
 
         RemindForm dlg;

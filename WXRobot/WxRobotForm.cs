@@ -87,10 +87,14 @@ namespace DigitalClockPackge
                     textBox1.Text = helper.getExtra(1);
                     Utils.setRadioButtonCheckedIndex(initSel, radioButton41, radioButton42, radioButton43);
                 }
-                else if (helper.isNews()) {
+                else if (helper.isNews())
+                {
                     tabControl1.SelectedIndex = 4;
                     int initSel = helper.getExtraAsInt(0);
                     Utils.setRadioButtonCheckedIndex(initSel, radioButton51, radioButton52);
+                }
+                else if (helper.isGupiao()) {
+                    tabControl1.SelectedIndex = 5;
                 }
    
             }
@@ -170,12 +174,13 @@ namespace DigitalClockPackge
                     }
                 });
             }
-            else if (tabControl1.SelectedIndex == 4) {
+            else if (tabControl1.SelectedIndex == 4)
+            {
                 NetBuilder.create(this).asGet().setUrl(News.URL).start((data) =>
                 {
                     LogUtil.Print(data);
 
-                   
+
 
                     try
                     {
@@ -189,7 +194,22 @@ namespace DigitalClockPackge
                     }
                 });
             }
-            else
+            else if (tabControl1.SelectedIndex == 5) {
+
+                LogUtil.Print("开始获股票信息" + GupiaoInfo.URL);
+                NetBuilder.create(null).asGet().setUrl(GupiaoInfo.URL).start((data) =>
+                {
+                    try
+                    {
+                        string tt = GupiaoInfo.toSendString(data);
+                        sendDataConfirm(tt);
+                    }
+                    catch (Exception e1)
+                    {
+                        LogUtil.Print(e1.Message);
+                    }
+                });
+            }else
             {
                 sendDataConfirm(text);
             }
@@ -286,8 +306,10 @@ namespace DigitalClockPackge
                 item.news.articles.Add(news);
 
             }
-            else if (tabControl1.SelectedIndex == 3) {
-                if (textBox1.TextLength == 0) {
+            else if (tabControl1.SelectedIndex == 3)
+            {
+                if (textBox1.TextLength == 0)
+                {
                     MessageBox.Show("天气数据 请求地址 为空");
                     return null;
                 }
@@ -301,7 +323,9 @@ namespace DigitalClockPackge
                 string extra = string.Format("{0:d}", selIndex);//0文字，1图片
                 return WxSendHelper.getCommonExtra(WxSendHelper.EXTRA_FUN_NEWS, extra);
             }
-
+            else if (tabControl1.SelectedIndex == 5) {
+                return   WxSendHelper.getCommonExtra(WxSendHelper.EXTRA_FUN_GUPIAO," ");
+            }
 
             if (obj == null) {
                 return null;

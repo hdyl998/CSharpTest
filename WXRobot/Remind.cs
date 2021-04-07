@@ -353,7 +353,7 @@ namespace DigitalClockPackge
 
         public const string EXTRA_FUN_WEATHER = "weather";
         public const string EXTRA_FUN_NEWS = "news";
-
+        public const string EXTRA_FUN_GUPIAO = "gupiao";
 
         private string hookUrl;
         private string cmd;
@@ -425,6 +425,11 @@ namespace DigitalClockPackge
         public bool isNews()
         {
             return EXTRA_FUN_NEWS.Equals(cmd);
+        }
+
+
+        public bool isGupiao() {
+            return EXTRA_FUN_GUPIAO.Equals(cmd);
         }
 
 
@@ -700,6 +705,25 @@ namespace DigitalClockPackge
                                 News.NewsItem item = Utils.parseObject<News.NewsItem>(data);
                                 string sendString = item.toSendString(helper.getExtraAsInt(0));
                                 NetBuilder.create(null).setUrl(extra).setPostData(sendString).start(null);
+
+                            }
+                            catch (Exception e1)
+                            {
+                                LogUtil.Print(e1.Message);
+                            }
+                        });
+                    }
+                    else if (helper.isGupiao()) {
+                
+                        LogUtil.Print("开始获股票信息" + GupiaoInfo.URL);
+                        NetBuilder.create(null).asGet().setUrl(GupiaoInfo.URL).start((data) =>
+                        {
+                            try
+                            {
+                                string tt=GupiaoInfo.toSendString(data);
+                          
+                                if(tt!=null)
+                                NetBuilder.create(null).setUrl(extra).setPostData(tt).start(null);
 
                             }
                             catch (Exception e1)
